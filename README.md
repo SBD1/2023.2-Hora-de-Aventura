@@ -1,5 +1,8 @@
 # Hora de Aventura
 
+<img src="https://cdn.discordapp.com/attachments/1151311607301947453/1152663710050046125/iu.png" width="5000px;"/>
+
+
 ## Introdução
 ## Objetivo
 ## Integrantes
