@@ -2,7 +2,7 @@
 <img src="https://cdn.discordapp.com/attachments/1151311607301947453/1152663710050046125/iu.png" width="5000px;"/>
 
 ## Objetivo
-Fazer um jogo-texto **(Mud)** aplicando os conteÃºdos vistos em sala de aula sobre banco de dados relacionais, usando o banco **Postgres**. 
+Fazer um jogo-texto **(Mud)** aplicando os conteu   dos vistos em sala de aula sobre banco de dados relacionais. 
 ## Integrantes
 |Foto  | Nome | Matricula |
 |------|-----------|------|
