@@ -1,6 +1,7 @@
 # Apresentação de Entrega 01 
 
-<img src = >
+
+<img src ="https://raw.githubusercontent.com/SBD1/2023.2-Hora-de-Aventura/main/Apresenta%C3%A7%C3%B5es/img/HoraDeAventura.jpeg" width =  150px >
 
 
 ## Introdução
