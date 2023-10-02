@@ -14,4 +14,5 @@ Apresentação da entrega 01 da disciplina Sistemas de Banco de 01, ministrada p
 - Doan Filho
 - Henrique Batalha
 ## Video
-[Apresentação 01]("https://www.youtube.com/embed/WBCI31jdZxA?si=0LvJ1vItMnMTlm-X") 
+Apresentação 01:
+<https://www.youtube.com/embed/WBCI31jdZxA?si=0LvJ1vItMnMTlm-X"> 
