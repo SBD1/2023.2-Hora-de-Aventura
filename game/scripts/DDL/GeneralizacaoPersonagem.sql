@@ -28,4 +28,4 @@ CREATE OR REPLACE FUNCTION check_npc() RETURNS trigger AS -- Procedure para chec
 CREATE TRIGGER check_npc -- Trigger para adicionar PC
 BEFORE UPDATE OR INSERT ON pc
 FOR EACH ROW
-EXECUTE PROCEDURE check_npc();
+EXECUTE PROCEDURE check_npc(); 
