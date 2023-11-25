@@ -1,8 +1,9 @@
+begin transaction; 
 CREATE TABLE Mundo (
 	Nome CHAR (20) PRIMARY KEY,
 	Mundo_de_Destino CHAR(20)
 );
-
+ 
 CREATE TABLE Regiao (
 	Nome CHAR(50) PRIMARY KEY,
 	Mundo CHAR(20),
@@ -54,19 +55,30 @@ CREATE TABLE Instancia(
 	Personagem INT,
 	Numero  INT,
 	Vida INT NOT NULL,
-	Local INT NOT NULL,	
+	Local INT NOT NULL,
+	IdPersonagem int, 
 	primary key(personagem, numero),
 	FOREIGN KEY (Personagem) REFERENCES NPC(Personagem),
-	foreign key (local) references local(coordenada)
+	foreign key (local) references local(coordenada),
+	foreign key (IdPersonagem) references PC(personagem)
 ); 
 
 CREATE TABLE Missao (
 	Nome CHAR(20) PRIMARY KEY,
 	Chefe boolean,
 	Descricao VARCHAR(20) NOT NULL,
-	Recompensa int NOT null
+	Recompensa int NOT null 
 	 
 );
+
+create table PreRequisitoMissao(
+	NomePreRequisito CHAR(20),
+	RequisitoMissao CHAR(20),
+	foreign key(NomePreRequisito) references Missao(Nome),
+	foreign key(RequisitoMissao) references Missao(Nome),
+	primary key(NomePreRequisito , RequisitoMissao)	
+);
+
 --Tabela d en pra n de missao pra PC
 create table fazMissao(
 	Personagem int , 
@@ -99,19 +111,42 @@ CREATE TABLE Contem(
 
 CREATE TABLE Item(
 	IDitem INT PRIMARY KEY,
-	Nome VARCHAR(20) NOT NULL,
-	Durabilidade INT NOT NULL,
-	Dano INT NOT NULL,
-	Tipo VARCHAR(20) NOT NULL
+ 	AtcItem INT 
 );
+
+create table Armamento(
+	Item INT primary key, 
+	Nome CHAR(20),
+	Dano INT,
+	Elemento CHAR(20),
+	foreign key (Item) references Item(IDItem)
+);
+
+create table Armadura(
+	Item INT primary key, 
+	Nome CHAR(20), 
+	Durabilidade INT,
+	Defesa INT,  
+	foreign key (Item) references Item(IDitem)
+
+);
+create table Consumivel(
+	Item INT primary key,
+	Nome CHAR(20),
+	Cura INT,
+	Usos INT,
+    foreign key (Item) references Item(IDItem)
+);
+
 --Tabela de n pra instanciaItem pra NPC 
 CREATE TABLE Dropa(
-	NPC INT ,
-	Item INT,
+	NPC INT,
+	numeroItem INT, 
+	IDitem INT, 
 	Chance FLOAT NOT NULL,
-	primary key(NPC, Item),
+	primary key(NPC, numeroItem, IDitem),
 	FOREIGN KEY (NPC) REFERENCES NPC(Personagem),
-	FOREIGN KEY (Item) REFERENCES Item(IDitem)
+	FOREIGN KEY (IDitem, numeroItem) REFERENCES InstanciaItem(IDitem, numeroItem)
 );
 
 CREATE TABLE Inventario (
@@ -125,9 +160,18 @@ CREATE TABLE Habilidade(
 	IDhabilidade INT PRIMARY KEY,
 	Nome CHAR(20) NOT NULL,
 	Tempo_de_recarga INT NOT NULL,
-	Dano INT NOT NULL,
-	Nivel_requerido INT NOT NULL
+	Dano INT NOT NULL
+	
 );
+create table PreRequisitoHab(
+	IDhabilidade INT not null,
+	Requisito int not null,
+	foreign key(IDhabilidade) references Habilidade(IDhabilidade),
+	foreign key(Requisito) references Habilidade(IDhabilidade),
+	primary key(IDhabilidade, Requisito)
+
+);
+
 --Tabela de n pra n personagem pra habilidade 
 CREATE TABLE PossuiHab(
 	Personagem INT,
@@ -165,4 +209,7 @@ Create Table PossuiItem(
 	Foreign key	(IDitem) references Item(IDitem),
 	Foreign key	(Loja,Tipo)	references Loja(Nome,Tipo)
 );
+
+commit;
+end transaction; 
 	
