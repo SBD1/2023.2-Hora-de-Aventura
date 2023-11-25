@@ -19,17 +19,16 @@ class mundo:
             cursor = conexao.cursor()
             cursor.execute(f"""Select * from mundo;""")
             consulta = cursor.fetchall()
-            consultas = []
             for x in consulta:
-                consultas.append(x)
-            for resultado in consultas:
-                print(resultado)
-            return resultado    
+                print(x)
+            return x
         except psycopg2.Error as e:
             print("Erro ao executar a consulta:", e)
         finally:
             cursor.close()
+    
+        
   
-Mundo = mundo()  
+""" Mundo = mundo()  
 Mundo.consultarMundo()            
-
+ """
