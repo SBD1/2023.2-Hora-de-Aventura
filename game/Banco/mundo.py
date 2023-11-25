@@ -13,6 +13,29 @@ class mundo:
         self.db = Database()
     pass 
 
+    def inserirMundo(self,nome,mundoDestino):
+        try:
+            conexao = self.db.conexao
+            cursor = conexao.cursor()
+            cursor.execute(f"""Insert into mundo values('{nome}','{mundoDestino}');""")
+            insercaoMundo = conexao.commit()
+            return print("Mundo inserido com sucesso")
+        except psycopg2.Error as e:
+            print("Erro ao inserir em Mundo", e)
+        finally:
+            cursor.close()
+    
+    def deletarMundo(self, nome):
+        try:
+            conexao = self.db.conexao
+            cursor = conexao.cursor()
+            cursor.execute(f"""delete from mundo where nome = '{nome}';""")
+            delecaoMundo = conexao.commit()
+            return True
+        except psycopg2.Error as e:
+            print("Erro ao deletar em Mundo", e)
+        finally:
+            cursor.close()    
     def consultarMundo(self):
         try:
             conexao = self.db.conexao
@@ -27,8 +50,3 @@ class mundo:
         finally:
             cursor.close()
     
-        
-  
-""" Mundo = mundo()  
-Mundo.consultarMundo()            
- """

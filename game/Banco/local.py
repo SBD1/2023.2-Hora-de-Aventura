@@ -7,19 +7,15 @@ class local :
         self.db = Database()
     pass
 
-
     def consultarLocal(self):
         try:
             conexao = self.db.conexao
             cursor = conexao.cursor()
             cursor.execute(f"Select * from local;")
             consultaLocal = cursor.fetchall()
-            consultasLocais = []
             for x in consultaLocal:
-                consultasLocais.append(x)
-            for resultado in consultasLocais:
-                print(resultado)
-            return resultado
+                print(x)
+            return x
         except psycopg2.Error as e:
             print("Erro ao consultar local", e)
         finally:
@@ -30,4 +26,5 @@ Regiao = regiao()
 Regiao.consultarRegiao()
 Local = local()
 Local.consultarLocal() 
-  
+
+ 

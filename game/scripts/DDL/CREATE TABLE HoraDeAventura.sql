@@ -1,12 +1,12 @@
 begin transaction; 
 CREATE TABLE Mundo (
-	Nome CHAR (20) PRIMARY KEY,
+	Nome VARCHAR (20) PRIMARY KEY,
 	Mundo_de_Destino CHAR(20)
 );
  
 CREATE TABLE Regiao (
-	Nome CHAR(50) PRIMARY KEY,
-	Mundo CHAR(20),
+	Nome VARCHAR(50) PRIMARY KEY,
+	Mundo VARCHAR(20),
 	FOREIGN KEY (Mundo) REFERENCES Mundo(Nome)
 );
 
@@ -15,7 +15,7 @@ CREATE TABLE Local(
 	Descricao VARCHAR(1000) NOT NULL,
 	Nome VARCHAR(20) NOT NULL,
 	Tipo BOOLEAN NOT NULL,
-	Regiao CHAR(50) NOT NULL,
+	Regiao VARCHAR(50) NOT NULL,
 	FOREIGN KEY (Regiao) REFERENCES Regiao(Nome)
 );
 
