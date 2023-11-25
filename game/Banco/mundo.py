@@ -31,11 +31,12 @@ class mundo:
             cursor = conexao.cursor()
             cursor.execute(f"""delete from mundo where nome = '{nome}';""")
             delecaoMundo = conexao.commit()
-            return True
+            return print("Mundo deletado com sucesso")
         except psycopg2.Error as e:
             print("Erro ao deletar em Mundo", e)
         finally:
             cursor.close()    
+    
     def consultarMundo(self):
         try:
             conexao = self.db.conexao
@@ -49,4 +50,18 @@ class mundo:
             print("Erro ao executar a consulta:", e)
         finally:
             cursor.close()
-    
+            
+    def consultarMundoNome(self,nome):
+        try:
+            conexao = self.db.conexao
+            cursor = conexao.cursor()
+            cursor.execute(f"""Select * from mundo where nome = '{nome}';""")
+            consulta = cursor.fetchall()
+            for x in consulta:
+                print(x)
+            return x
+        except psycopg2.Error as e:
+            print("Erro ao executar a consulta:", e)
+        finally:
+            cursor.close()
+            
