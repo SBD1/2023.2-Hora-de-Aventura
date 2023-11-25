@@ -1,3 +1,4 @@
+begin transaction; 
 CREATE TABLE Mundo (
 	Nome CHAR (20) PRIMARY KEY,
 	Mundo_de_Destino CHAR(20)
@@ -54,10 +55,12 @@ CREATE TABLE Instancia(
 	Personagem INT,
 	Numero  INT,
 	Vida INT NOT NULL,
-	Local INT NOT NULL,	
+	Local INT NOT NULL,
+	IdPersonagem int, 
 	primary key(personagem, numero),
 	FOREIGN KEY (Personagem) REFERENCES NPC(Personagem),
-	foreign key (local) references local(coordenada)
+	foreign key (local) references local(coordenada),
+	foreign key (IdPersonagem) references PC(personagem)
 ); 
 
 CREATE TABLE Missao (
@@ -69,11 +72,11 @@ CREATE TABLE Missao (
 );
 
 create table PreRequisitoMissao(
-	Nome CHAR(20),
+	NomePreRequisito CHAR(20),
 	RequisitoMissao CHAR(20),
-	foreign key(Nome) references Missao(Nome),
+	foreign key(NomePreRequisito) references Missao(Nome),
 	foreign key(RequisitoMissao) references Missao(Nome),
-	primary key(Nome, RequisitoMissao)	
+	primary key(NomePreRequisito , RequisitoMissao)	
 );
 
 --Tabela d en pra n de missao pra PC
@@ -123,7 +126,7 @@ create table Armadura(
 	Item INT primary key, 
 	Nome CHAR(20), 
 	Durabilidade INT,
-	Defesa INT  
+	Defesa INT,  
 	foreign key (Item) references Item(IDitem)
 
 );
@@ -206,4 +209,7 @@ Create Table PossuiItem(
 	Foreign key	(IDitem) references Item(IDitem),
 	Foreign key	(Loja,Tipo)	references Loja(Nome,Tipo)
 );
+
+commit;
+end transaction; 
 	
