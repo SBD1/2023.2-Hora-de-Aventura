@@ -47,7 +47,7 @@ class Missao:
         try:
             conexao=self.db.conexao
             cursor=conexao.cursor()
-            cursor.execute(f"""SELECT * FROM Missao;""")
+            cursor.execute(f"""SELECT * FROM Missao WHERE NOME = '{nome}';""")
             conexao.commit()
             resultado=cursor.fetchall()
             print(resultado[0])
