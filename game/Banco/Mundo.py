@@ -1,8 +1,8 @@
 import psycopg2
-from database import Database
+from .Database import Database
 
 
-class mundo:
+class Mundo:
     ## construtor com argumento  
     def __init__(self, nome, mundoDestino):
         self.nome = nome 
@@ -59,9 +59,7 @@ class mundo:
             consulta = cursor.fetchall()
             for x in consulta:
                 print(x)
-            return x
         except psycopg2.Error as e:
             print("Erro ao executar a consulta:", e)
         finally:
             cursor.close()
-            

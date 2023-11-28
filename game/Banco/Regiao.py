@@ -1,6 +1,9 @@
 import psycopg2
-from database import Database
-class regiao:
+from .Database import Database
+
+
+
+class Regiao:
     def __init__(self):
         self.db = Database()
     
