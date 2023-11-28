@@ -31,7 +31,7 @@ class FazMissao:
     def deletarFazMissao(self, personagem: int):
         try:
             conexao = self.db.conexao
-            cursor =  conexao.cursor
+            cursor =  conexao.cursor()
 
             cursor.execute(f"DELETE FROM fazmissao WHERE personagem = '{personagem}';")
             delecaoFazMissao = cursor.commit()
