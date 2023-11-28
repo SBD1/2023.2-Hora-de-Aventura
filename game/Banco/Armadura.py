@@ -1,26 +1,19 @@
 import psycopg2
 from Database import Database
 
-class Armamento:
-    def __init__(self, item: int, nome: str, dano: int, elemento: str):
-        self.item = item
-        self.nome = nome
-        self.dano = dano
-        self.elemento = elemento
-    pass
-
+class Armadura:
     def __init__(self):
         self.db = Database()
     pass
-
-    def inserirArmamento(self, item: int, nome: str, dano: int, elemento: str):
+    
+    def inserirArmadura(self, item: int, nome: str, durabilidade: int, defesa: int):
         try:
             conexao = self.db.conexao
             cursor = conexao.cursor()
 
-            cursor.execute("INSERT INTO armamento VALUES(%s, %s, %s, %s);", (item, nome, dano, elemento))
+            cursor.execute("INSERT INTO armadura VALUES(%s, %s, %s, %s);", (item, nome, durabilidade, defesa))
             insercaoArmamento = conexao.commit()
-            return print("Arma inserida com sucesso!\n")
+            return print("Armadura inserida com sucesso!\n")
 
         except psycopg2.IntegrityError as e:
             print(f"Encontramos problemas ao fazer a insercao. Erro: {e}\n")
@@ -28,14 +21,14 @@ class Armamento:
         finally:
             cursor.close()
 
-    def deletarArmamento(self, item: int):
+    def deletarArmadura(self, item: int):
         try:
             conexao = self.db.conexao
             cursor =  conexao.cursor()
 
-            cursor.execute(f"DELETE FROM armamento WHERE item = '{item}';")
+            cursor.execute(f"DELETE FROM armadura WHERE item = '{item}';")
             delecaoArmamento = conexao.commit()
-            return print("Arma deletada com sucesso!\n")
+            return print("Armadura deletada com sucesso!\n")
         
         except psycopg2.IntegrityError as e:
             print(f"Encontramos problemas ao fazer a delecao. Erro: {e}\n")
@@ -43,15 +36,16 @@ class Armamento:
         finally:
             cursor.close()
 
-    def consultarArmamentoId(self, item: int):
+    def consultarArmaduraId(self, item: int):
         try:
             conexao = self.db.conexao
             cursor = conexao.cursor()
-            cursor.execute(f"SELECT * FROM armamento WHERE item = '{item}';")
+            
+            cursor.execute(f"SELECT * FROM armadura WHERE item = '{item}';")
             consulta = cursor.fetchall()
 
             if not consulta:
-                print("Não foi há armas cadastradas\n")
+                print("Não foi há itens cadastrados\n")
             else:
                 for i in consulta:
                     print(i)
@@ -63,15 +57,16 @@ class Armamento:
         finally:
             cursor.close()
 
-    def consultarArmamento(self):
+    def consultarArmadura(self):
         try:
             conexao = self.db.conexao
             cursor = conexao.cursor()
-            cursor.execute(f"SELECT * FROM armamento;")
+            
+            cursor.execute(f"SELECT * FROM armadura;")
             consulta = cursor.fetchall()
 
             if not consulta:
-                print("Não foi há armas cadastradas\n")
+                print("Não foi há itens cadastrados\n")
             else:
                 for i in consulta:
                     print(i)
@@ -83,6 +78,3 @@ class Armamento:
         finally:
             cursor.close()
 
-a = Armamento()
-a.deletarArmamento(3)
-a.consultarArmamento()
