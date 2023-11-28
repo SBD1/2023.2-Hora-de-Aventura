@@ -1,8 +1,10 @@
 import psycopg2
-from database import Database
-from mundo import mundo
-from regiao import regiao
-class local :
+from .Database import Database
+from .Mundo import Mundo
+from .Regiao import Regiao
+
+
+class Local :
     def __init__(self):
         self.db = Database()
     pass

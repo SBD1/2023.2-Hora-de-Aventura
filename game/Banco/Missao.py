@@ -1,5 +1,5 @@
 import psycopg2
-from database import Database
+from .Database import Database
 
 class Missao:
     def __init__(self):
