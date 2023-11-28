@@ -1,6 +1,6 @@
 import psycopg2
 from typing import Optional
-from Database import Database
+from .Database import Database
 
 class Instancia:
     

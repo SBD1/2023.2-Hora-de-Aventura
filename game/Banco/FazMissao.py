@@ -1,5 +1,5 @@
 import psycopg2
-from Database import Database
+from .Database import Database
 
 class FazMissao:
     def __init__(self):

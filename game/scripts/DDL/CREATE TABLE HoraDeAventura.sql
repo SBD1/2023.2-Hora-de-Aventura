@@ -1,7 +1,7 @@
 begin transaction; 
 CREATE TABLE Mundo (
 	Nome VARCHAR (20) PRIMARY KEY,
-	Mundo_de_Destino CHAR(20)
+	Mundo_de_Destino CHAR(20) default 'Cubo do prismo'
 );
  
 CREATE TABLE Regiao (
@@ -34,7 +34,7 @@ CREATE TABLE PC(
 	Especie VARCHAR(20) NOT NULL,
 	Forca INT NOT NULL,
 	Defesa INT NOT NULL,
-	Local INT NOT NULL,
+	Local INT NOT null default 0,
 	FOREIGN KEY(Personagem) REFERENCES Personagem(IDpersonagem),
 	FOREIGN KEY(Local) REFERENCES Local(Coordenada)
 );
