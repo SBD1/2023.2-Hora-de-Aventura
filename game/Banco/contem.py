@@ -1,58 +1,58 @@
 import psycopg2
 from Database import Database
 
-class Missao:
+class Contem:
     def __init__(self):
         self.db=Database()
-    
-    def inserirMissao(self, nome:str, chefe:bool, descricao:str, recompensa:int):
+
+    def inserirContem(self, local:int, missao:str, status:bool):
         try:
             conexao=self.db.conexao
             cursor=conexao.cursor()
-            cursor.execute(f"""INSERT INTO Missao VALUES('{nome}', {chefe}, '{descricao}', {recompensa});""")
+            cursor.execute(f"""INSERT INTO Contem VALUES({local}, '{missao}', {status});""")
             conexao.commit()
-            return print("Missão Inserida")
+            return print("Contem Inserido")
         except psycopg2.Error as e:
-            print("Erro ao inserir Missão", e)
+            print("Erro ao inserir Contem", e)
         finally:
             cursor.close()
 
-    def consultarMissao(self):
+    def consultarContem(self):
         try:
             conexao=self.db.conexao
             cursor=conexao.cursor()
-            cursor.execute(f"""SELECT * FROM Missao;""")
+            cursor.execute(f"""SELECT * FROM Contem;""")
             conexao.commit()
             resultado=cursor.fetchall()
             for i in resultado:
                 print(i)
         except psycopg2.Error as e:
-            print("Erro ao consultar Missão", e)
-        finally:
-            cursor.close()      
-
-    def deletarMissao(self, nome:str):
-        try:
-            conexao=self.db.conexao
-            cursor=conexao.cursor()
-            cursor.execute(f"""DELETE FROM Missao WHERE NOME = '{nome}';""")
-            conexao.commit()
-            return print("Missão Deletada")
-        except psycopg2.Error as e:
-            print("Erro ao deletar Missão", e)
+            print("Erro ao consultar Contem", e)
         finally:
             cursor.close()
-
-    def consultarMissaoNome(self, nome:str):
+    
+    def deletarContem(self, local:int, missao:str):
         try:
             conexao=self.db.conexao
             cursor=conexao.cursor()
-            cursor.execute(f"""SELECT * FROM Missao WHERE NOME = '{nome}';""")
+            cursor.execute(f"""DELETE FROM Contem WHERE LOCAL = '{local}' AND MISSAO = '{missao}';""")
+            conexao.commit()
+            return print("Contem Deletada")
+        except psycopg2.Error as e:
+            print("Erro ao deletar Contem", e)
+        finally:
+            cursor.close()
+    
+    def consultarContemEspecifico(self, local:int, missao:str):
+        try:
+            conexao=self.db.conexao
+            cursor=conexao.cursor()
+            cursor.execute(f"""SELECT * FROM Contem WHERE LOCAL = '{local}' AND MISSAO = '{missao}';""")
             conexao.commit()
             resultado=cursor.fetchall()
             if resultado:
                 print(resultado[0])
         except psycopg2.Error as e:
-            print("Erro ao consultar Missão", e)
+            print("Erro ao consultar Contem", e)
         finally:
-            cursor.close() 
+            cursor.close()
