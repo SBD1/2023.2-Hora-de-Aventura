@@ -7,7 +7,7 @@ class Personagem:
         self.db = Database()
     pass
         
-    def criarPersonagem(self, IDpersonagem,ATC:bool):
+    def criarPersonagem(self, IDpersonagem:int,ATC:bool):
         try:    
             conexao = self.db.conexao
             cursor = conexao.cursor()
@@ -55,7 +55,7 @@ class Personagem:
             cursor = conexao.cursor()
             query = cursor.execute(f"""delete from personagem where IDpersonagem = {IDpersonagem};""") 
             conexao.commit()
-            query_exec = query 
+            
         except psycopg2.Error as e:
             print("Erro ao deletar em Mundo", e)
         finally:       

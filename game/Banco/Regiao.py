@@ -7,7 +7,7 @@ class Regiao:
     def __init__(self):
         self.db = Database()
     
-    def inserirRegiao(self,nome, mundo):
+    def inserirRegiao(self,nome:str, mundo:str):
         try:
             conexao = self.db.conexao
             cursor = conexao.cursor()
@@ -19,7 +19,7 @@ class Regiao:
         finally:
             cursor.close()
     
-    def deletarRegiao(self, nome):
+    def deletarRegiao(self, nome:str):
         try:
             conexao = self.db.conexao
             cursor = conexao.cursor()
@@ -45,7 +45,7 @@ class Regiao:
         finally:
             cursor.close()
 
-    def consultarRegiaoNome(self,nome):
+    def consultarRegiaoNome(self,nome:str):
         try:
             conexao = self.db.conexao
             cursor = conexao.cursor()

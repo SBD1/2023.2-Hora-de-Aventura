@@ -9,7 +9,7 @@ class Local :
         self.db = Database()
     pass
     
-    def inserirLocal(self,coordenada, descrição,nome,tipo:bool,regiao):
+    def inserirLocal(self,coordenada:int, descrição:str,nome:str,tipo:bool,regiao:str):
         try:
             conexao = self.db.conexao
             cursor = conexao.cursor()
@@ -21,7 +21,7 @@ class Local :
         finally:
             cursor.close()
     
-    def deletarLocal(self, coordenada):
+    def deletarLocal(self, coordenada:int):
         try:
             conexao = self.db.conexao
             cursor = conexao.cursor()
@@ -47,7 +47,7 @@ class Local :
         finally:
             cursor.close()
     
-    def consultarLocalCoordenada(self,coordena):
+    def consultarLocalCoordenada(self,coordena:int):
         try:
             conexao = self.db.conexao
             cursor = conexao.cursor()

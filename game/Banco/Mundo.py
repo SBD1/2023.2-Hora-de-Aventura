@@ -2,18 +2,12 @@ import psycopg2
 from .Database import Database
 
 
-class Mundo:
-    ## construtor com argumento  
-    def __init__(self, nome, mundoDestino):
-        self.nome = nome 
-        self.mundoDestino = mundoDestino
-    pass
-    ## construtor sem nada 
+class Mundo: 
     def __init__(self):    
         self.db = Database()
     pass 
 
-    def inserirMundo(self,nome,mundoDestino):
+    def inserirMundo(self,nome:str,mundoDestino:str):
         try:
             conexao = self.db.conexao
             cursor = conexao.cursor()
@@ -25,7 +19,7 @@ class Mundo:
         finally:
             cursor.close()
     
-    def deletarMundo(self, nome):
+    def deletarMundo(self, nome:str):
         try:
             conexao = self.db.conexao
             cursor = conexao.cursor()
@@ -51,7 +45,7 @@ class Mundo:
         finally:
             cursor.close()
             
-    def consultarMundoNome(self,nome):
+    def consultarMundoNome(self,nome:str):
         try:
             conexao = self.db.conexao
             cursor = conexao.cursor()

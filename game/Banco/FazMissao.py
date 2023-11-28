@@ -2,13 +2,6 @@ import psycopg2
 from Database import Database
 
 class FazMissao:
-
-    def __init__(self, personagem: int, nomeMissao: str, status: bool):
-        self.personagem = personagem
-        self.nomeMissao = nomeMissao
-        self.status = status
-    pass
-
     def __init__(self):
         self.db = Database()
     pass
