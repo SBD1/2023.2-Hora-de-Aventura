@@ -1,5 +1,5 @@
 import psycopg2
-from Database import Database
+from .Database import Database
 
 class Consumivel:
 
@@ -76,7 +76,3 @@ class Consumivel:
 
         finally:
             cursor.close()
-
-c = Consumivel()
-c.inserirConsumivel(2, "Poção de vida", 30, 1)
-c.consultarConsumivelId(2)
