@@ -5,11 +5,11 @@ class Loja:
     def __init__(self):
         self.db=Database()
 
-    def inserirLoja(self, Nome:str, Funcionalidade:str, Tipo:str, Local:int):
+    def inserirLoja(self, Nome:str, Tipo:str, Dano:int, Elemento:str, Local:int):
         try:
             conexao=self.db.conexao
             cursor=conexao.cursor()
-            cursor.execute(f"""INSERT INTO Loja VALUES('{Nome}', '{Funcionalidade}', '{Tipo}', {Local});""")
+            cursor.execute(f"""INSERT INTO Loja VALUES('{Nome}', '{Tipo}',{Dano}, '{Elemento}', {Local});""")
             conexao.commit()
             return print("Loja Inserida")
         except psycopg2.Error as e:
@@ -31,7 +31,7 @@ class Loja:
         finally:
             cursor.close()
 
-    def deletarLoja(self, Nome:str, Funcionalidade:str, Tipo:str, Local:int):
+    def deletarLoja(self, Nome:str, Tipo:str):
         try:
             conexao=self.db.conexao
             cursor=conexao.cursor()
@@ -43,7 +43,7 @@ class Loja:
         finally:
             cursor.close()
 
-    def consultarLojaEspecifico(self, Nome:str, Funcionalidade:str, Tipo:str, Local:int):
+    def consultarLojaEspecifico(self, Nome:str, Tipo:str):
         try:
             conexao=self.db.conexao
             cursor=conexao.cursor()
@@ -56,3 +56,4 @@ class Loja:
             print("Erro ao consultar Loja", e)
         finally:
             cursor.close()
+

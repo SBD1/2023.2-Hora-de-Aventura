@@ -66,7 +66,7 @@ CREATE TABLE Instancia(
 CREATE TABLE Missao (
 	Nome CHAR(20) PRIMARY KEY,
 	Chefe boolean,
-	Descricao VARCHAR(20) NOT NULL,
+	Descricao VARCHAR(100) NOT NULL,
 	Recompensa int NOT null 
 	 
 );
@@ -103,7 +103,6 @@ create table chefe(
 CREATE TABLE Contem(
 	Local int,
 	Missao CHAR(20),
-	Status CHAR(20),
 	FOREIGN KEY (Local) REFERENCES Local(coordenada),
 	FOREIGN KEY (Missao) REFERENCES Missao(nome),	
 	primary key(Local, Missao)	
@@ -193,8 +192,9 @@ CREATE TABLE InstanciaItem (
 
 Create Table Loja(
 	Nome char(20),
-	Funcionalidade char(20),
 	Tipo varchar(20),
+	Dano int,
+	Elemento char(1),
 	Local int,		
 	primary key(Nome, Tipo),
 	Foreign key	(Local)	references Local(Coordenada)

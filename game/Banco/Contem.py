@@ -5,11 +5,11 @@ class Contem:
     def __init__(self):
         self.db=Database()
 
-    def inserirContem(self, local:int, missao:str, status:bool):
+    def inserirContem(self, local:int, missao:str):
         try:
             conexao=self.db.conexao
             cursor=conexao.cursor()
-            cursor.execute(f"""INSERT INTO Contem VALUES({local}, '{missao}', {status});""")
+            cursor.execute(f"""INSERT INTO Contem VALUES({local}, '{missao}';""")
             conexao.commit()
             return print("Contem Inserido")
         except psycopg2.Error as e:

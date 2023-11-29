@@ -3,28 +3,28 @@ from Banco import *
 personagem = Personagem()
 pc = Pc()
 
-print(" _   _                       _         ___                  _                   ")
+print("\033[1;31m _   _                       _         ___                  _                   ")
 print("| | | |                     | |       / _ \                | |                  ")
 print("| |_| | ___  _ __ __ _    __| | ___  / /_\ \_   _____ _ __ | |_ _   _ _ __ __ _ ")
 print("|  _  |/ _ \| '__/ _` |  / _` |/ _ \ |  _  \ \ / / _ \ '_ \| __| | | | '__/ _` |")
 print("| | | | (_) | | | (_| | | (_| |  __/ | | | |\ V /  __/ | | | |_| |_| | | | (_| |")
-print("\_| |_/\___/|_|  \__,_|  \__,_|\___| \_| |_/ \_/ \___|_| |_|\__|\__,_|_|  \__,_|")
+print("\_| |_/\___/|_|  \__,_|  \__,_|\___| \_| |_/ \_/ \___|_| |_|\__|\__,_|_|  \__,_|\033[0m")
 
 while(True):
 
-    print("\n**Bem vindo ao Hora de aventura**\n")
-    print("*1 = Acessar Menu***")
-    print("*2 = Criar Personagem(PC)*")
-    print("*3 = Fazer party*")
-    print("*4 = Ver localização*")
-    print("**5 = Fechar jogo**\n")        
+    print("\n\033[1;32m| Bem-vindo ao MUD Hora de Aventura |\033[0m\n")
+    print("\033[0;36m|1| = Acessar Menu")
+    print("|2| = Criar Personagem(PC)")
+    print("|3| = Fazer party")
+    print("|4| = Ver localização")
+    print("|5| = Fechar jogo\n")        
     
-    print("Escolha uma opção de 1 a 5:")
+    print("\033[1;32mEscolha uma opção de 1 a 5:\033[0m\n")
     opcao = input()
     match opcao:
         case '1':  
                 
-            print("Opções de jogador")
+            print("\033[1;32mOpções de jogador:\033[0m")
             print("     1 = Ver jogador")
             print("     2 = Atualizar jogador")
             print("     3 = Deletar jogador")
