@@ -1,3 +1,4 @@
+from .Database import *
 from .Mundo import * 
 from .Regiao import * 
 from .Local import * 
@@ -13,5 +14,5 @@ from .Armadura import *
 from .Consumivel import *
 from .PreRequistoMissao import *
 from .Chefe import *
-
+from .Loja import *
 
