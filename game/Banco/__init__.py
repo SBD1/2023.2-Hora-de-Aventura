@@ -9,6 +9,9 @@ from .Contem import *
 from .Item import * 
 from .Armamento import * 
 from .Inventario import * 
-
+from .Armadura import *
+from .Consumivel import *
+from .PreRequistoMissao import *
+from .Chefe import *
 
 
