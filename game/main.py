@@ -3,6 +3,11 @@ from Banco import *
 personagem = Personagem()
 pc = Pc()
 
+def CarregarJogo():
+    Save=input("\033[1;32mDigite o ID do seu personagem: \033[0m")
+    jogador=pc.consultarPCID(Save)
+    return jogador[0]
+
 print("\033[1;31m _   _                       _         ___                  _                   ")
 print("| | | |                     | |       / _ \                | |                  ")
 print("| |_| | ___  _ __ __ _    __| | ___  / /_\ \_   _____ _ __ | |_ _   _ _ __ __ _ ")
@@ -56,7 +61,11 @@ while(True):
             criarPC.criarPc(pcID,pcNome,0,100,0,0,pcEspecie,5,0,0)
                 
         case'3':
+            jogador=CarregarJogo()
+
+            
             print("oi party")
+            print(jogador[1])
             print("\n--------------------------------------------------------------------------------\n")
         case '4':
             print("Localização")

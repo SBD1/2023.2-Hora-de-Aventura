@@ -14,7 +14,7 @@ class Pc:
             conexao = self.db.conexao
             cursor = conexao.cursor()
             cursor.execute(f"""insert into pc values({personagem},'{nome}',{xp},
-                           {vida},{lvl},{dinheiro},'{especie}',{forca},{defesa});""")
+                           {vida},{lvl},{dinheiro},'{especie}',{forca},{defesa},{local});""")
             conexao.commit()
             return print("PC criado com sucesso")
         except psycopg2.Error as e: 
@@ -52,7 +52,8 @@ class Pc:
         except psycopg2.Error as e:
             print("Erro ao cosultar os PC's", e )
         finally:
-                cursor.close()
+            cursor.close()
+            return consultarNPC
                 
     def deletarNPC(self, IDpersonagem:int):
         try:     
