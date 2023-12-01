@@ -81,5 +81,18 @@ class Pc:
         finally:
             cursor.close()
             
-                
+    def updatePcLocal(self,Personagem:int, Local:int):
+        try:
+            conexao = self.db.conexao
+            cursor = conexao.cursor()
+            cursor.execute(f"""update pc set local = {Local} where personagem = {Personagem}; """)
+            consultarNPC = cursor.fetchall() 
+            if(consultarNPC == []):
+                print("Não existe nenhum PC com esse ID ")
+            else:
+                return consultarNPC
+        except psycopg2.Error as e:
+            print("Erro ao cosultar os PC's", e )
+        finally:
+            cursor.close()
             

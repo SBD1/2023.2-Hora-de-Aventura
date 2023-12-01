@@ -60,7 +60,7 @@ while(True):
         case'3':
             jogador=game.CarregarJogo()
             lc=Local()
-            posicao=lc.getLocal(jogador[9])
+            posicao=lc.getLocalPc(jogador[0])
 
             print("\n--------------------------------------------------------------------------------\n")
             print(f"\033[1;32m{jogador[1]}\nLocal: {posicao[0][2]}\nDescrição: {posicao[0][1]}\nCoordenada: {posicao[0][0]}\033[0m")
