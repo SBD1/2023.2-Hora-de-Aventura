@@ -1,5 +1,5 @@
 import psycopg2 
-from Database import Database
+from .Database import Database
 
 
 class Habilidade:
@@ -65,9 +65,9 @@ class Habilidade:
         finally:
             cursor.close()    
                 
-fogo = Habilidade()
+""" fogo = Habilidade()
 fogo.inserirHabilidade(3,'Fogo',0,100)
 fogo.consultarHabildade()    
 print("\n")               
 fogo.deletarHabilidade(3)
-fogo.consultarHabilidadeID(3)
+fogo.consultarHabilidadeID(3) """
