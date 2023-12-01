@@ -15,4 +15,4 @@ from .Consumivel import *
 from .PreRequistoMissao import *
 from .Chefe import *
 from .Loja import *
-
+from .Habilidade import * 
