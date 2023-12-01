@@ -60,5 +60,20 @@ class Local :
             print("Erro ao consultar local", e)
         finally:
             cursor.close()
+    
+    def getLocal(self,coordena:int):
+        try:
+            conexao = self.db.conexao
+            cursor = conexao.cursor()
+            cursor.execute(f"Select * from local where coordenada = {coordena};")
+            consultaLocal = cursor.fetchall()
+            if(consultaLocal == []):
+                return None
+            else:
+                return consultaLocal
+        except psycopg2.Error as e:
+            print("Erro ao consultar local", e)
+        finally:
+            cursor.close()
                 
             

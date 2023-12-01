@@ -1,12 +1,9 @@
 from Banco import * 
+import game
 
 personagem = Personagem()
 pc = Pc()
 
-def CarregarJogo():
-    Save=input("\033[1;32mDigite o ID do seu personagem: \033[0m")
-    jogador=pc.consultarPCID(Save)
-    return jogador[0]
 
 print("\033[1;31m _   _                       _         ___                  _                   ")
 print("| | | |                     | |       / _ \                | |                  ")
@@ -20,7 +17,7 @@ while(True):
     print("\n\033[1;32m| Bem-vindo ao MUD Hora de Aventura |\033[0m\n")
     print("\033[0;36m|1| = Acessar Menu")
     print("|2| = Criar Personagem(PC)")
-    print("|3| = Fazer party")
+    print("|3| = Carregar Jogo")
     print("|4| = Ver localização")
     print("|5| = Fechar jogo\n")        
     
@@ -61,12 +58,17 @@ while(True):
             criarPC.criarPc(pcID,pcNome,0,100,0,0,pcEspecie,5,0,0)
                 
         case'3':
-            jogador=CarregarJogo()
+            jogador=game.CarregarJogo()
+            lc=Local()
+            posicao=lc.getLocal(jogador[9])
 
-            
-            print("oi party")
-            print(jogador[1])
             print("\n--------------------------------------------------------------------------------\n")
+            print(f"\033[1;32m{jogador[1]}\nLocal: {posicao[0][2]}\nDescrição: {posicao[0][1]}\nCoordenada: {posicao[0][0]}\033[0m")
+            print("\n--------------------------------------------------------------------------------\n")
+            salas=game.EncontrarSalas(jogador[9])
+            print(salas)
+
+            print("\n"+80*"-"+"\n")
         case '4':
             print("Localização")
             print("\n--------------------------------------------------------------------------------\n")

@@ -53,7 +53,22 @@ class Pc:
             print("Erro ao cosultar os PC's", e )
         finally:
             cursor.close()
-            return consultarNPC
+        
+    def getPC(self,Personagem:int):
+        try:
+            conexao = self.db.conexao
+            cursor = conexao.cursor()
+            cursor.execute(f"""Select * from PC where personagem = {Personagem}; """)
+            consultarNPC = cursor.fetchall() 
+            if(consultarNPC == []):
+                print("Não existe nenhum PC com esse ID ")
+            else:
+                return consultarNPC
+        except psycopg2.Error as e:
+            print("Erro ao cosultar os PC's", e )
+        finally:
+            cursor.close()
+
                 
     def deletarNPC(self, IDpersonagem:int):
         try:     
