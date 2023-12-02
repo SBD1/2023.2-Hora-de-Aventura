@@ -1,32 +1,49 @@
 import psycopg2
 from .Database import Database
-from .Npc import Npc
 from .Item import Item
+from .Inventario import Inventario
 
-
-class Dropa:
+class PosuuiItem:
     def __init__(self):
         self.db = Database()
     pass
 
-    def inserirDropDeItem(self, Npc:int, numeroItem:int, IDItem:int, chance:float):
+    def inserirPossuiItem(self, IDitem:int, loja:str, tipo:str ,precoItem:int ):
         try:
             conexao = self.db.conexao
             cursor = conexao.cursor()
-            cursor.execute(f"""Insert into dropa values({Npc},{numeroItem},{IDItem},{chance});""")
+            cursor.execute(f"""Insert into possuiitem values({IDitem},'{loja}','{tipo}',{precoItem});""")
             inserirDropItem = conexao.commit()
-            return print("Drop de item inserido com sucesso")
+            return print("possuiitem inserido com sucesso")
 
         except psycopg2.IntegrityError as e:
-            print(f"Erro ao inserir Drop de item", e)
+            print(f"Erro ao inserir possuiitem", e)
         finally:
             cursor.close()
-            
-    def consultarDropDeItemPK(self, Npc:int,numeroItem:int, IDitem:int):
+
+    def consultarPossuiItemPK(self, IDitem:int, loja:str, tipo:str):
         try:
             conexao = self.db.conexao
             cursor = conexao.cursor()
-            cursor.execute(f"SELECT * FROM dropa WHERE Npc = {Npc} and numeroItem = {numeroItem} and IDitem = {IDitem} ;")
+            cursor.execute(f"SELECT * FROM possuiItem WHERE IDitem = {IDitem} and loja = '{loja}' and tipo = '{tipo}';")
+            consulta = cursor.fetchall()
+
+            if not consulta:
+                print("Não foi há possuiItem cadastrados\n")
+            else:
+                for x in consulta:
+                    print(x)
+                return x
+        except psycopg2.IntegrityError as e:
+            print(f"Encontramos problemas ao fazer a consulta. Erro: {e}\n")
+        finally:
+            cursor.close()
+    
+    def consultarPossuiItem(self):
+        try:
+            conexao = self.db.conexao
+            cursor = conexao.cursor()
+            cursor.execute(f"SELECT * FROM possuiItem ;")
             consulta = cursor.fetchall()
 
             if not consulta:
@@ -39,36 +56,26 @@ class Dropa:
             print(f"Encontramos problemas ao fazer a consulta. Erro: {e}\n")
         finally:
             cursor.close()
-    
-    
-    def consultarDropDeItem(self):
-        try:
-            conexao = self.db.conexao
-            cursor = conexao.cursor()
-            cursor.execute(f"SELECT * FROM dropa;")
-            consulta = cursor.fetchall()
-
-            if not consulta:
-                print("Não foi há DropDeItens cadastrados\n")
-            else:
-                for x in consulta:
-                    print(x)
-                return x
-        except psycopg2.IntegrityError as e:
-            print(f"Encontramos problemas ao fazer a consulta. Erro: {e}\n")
-        finally:
-            cursor.close()
-                            
-    def deletarDropaItemPK(self, npc:int, numeroItem:int, IDitem:int ):
+            
+    def deletarPossuiItem(self, IDitem:int, loja:str, tipo:str):
         try:
             conexao = self.db.conexao
             cursor =  conexao.cursor()
-            cursor.execute(f"DELETE FROM dropa WHERE npc = {npc} and numeroItem ={numeroItem} and iditem = {IDitem};")
+            cursor.execute(f"DELETE FROM possuiItem WHERE iditem = {IDitem} and numeroitem = '{loja}' and tipo = '{tipo}';")
             delecaoFazMissao = conexao.commit()
-            return print("Drop deletado com sucesso!\n")
+            return print("PossuiItem  deletado com sucesso!\n")
 
         except psycopg2.IntegrityError as e:
             print(f"Encontramos problemas ao fazer a delecao. Erro: {e}\n")
         
         finally:
             cursor.close()
+
+
+pI = PosuuiItem()
+
+#pI.inserirPossuiItem(1, 'Loja de Arma', 'Espadas', 100)
+
+#pI.consultarPossuiItemPK(1,'Loja de Arma', 'Espadas')
+
+#pI.consultarPossuiItemPK(1,'Loja de Arma', 'Espadas')

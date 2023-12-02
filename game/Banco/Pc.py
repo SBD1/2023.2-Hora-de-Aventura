@@ -59,11 +59,11 @@ class Pc:
             conexao = self.db.conexao
             cursor = conexao.cursor()
             cursor.execute(f"""Select * from PC where personagem = {Personagem}; """)
-            consultarNPC = cursor.fetchall() 
-            if(consultarNPC == []):
+            consultarPC = cursor.fetchall()
+            if(consultarPC == []):
                 print("Não existe nenhum PC com esse ID ")
             else:
-                return consultarNPC
+                return consultarPC
         except psycopg2.Error as e:
             print("Erro ao cosultar os PC's", e )
         finally:

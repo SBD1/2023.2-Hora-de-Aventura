@@ -1,32 +1,49 @@
 import psycopg2
 from .Database import Database
-from .Npc import Npc
 from .Item import Item
+from .Inventario import Inventario
 
-
-class Dropa:
+class Instanciaitem:
     def __init__(self):
         self.db = Database()
     pass
 
-    def inserirDropDeItem(self, Npc:int, numeroItem:int, IDItem:int, chance:float):
+    def inserirInstaciaItem(self, IDitem:int, numeroItem:int,durabilidade:int , IDinv:int):
         try:
             conexao = self.db.conexao
             cursor = conexao.cursor()
-            cursor.execute(f"""Insert into dropa values({Npc},{numeroItem},{IDItem},{chance});""")
+            cursor.execute(f"""Insert into instanciaitem values({IDitem},{numeroItem},{durabilidade},{IDinv});""")
             inserirDropItem = conexao.commit()
-            return print("Drop de item inserido com sucesso")
+            return print("Instancia de item inserido com sucesso")
 
         except psycopg2.IntegrityError as e:
-            print(f"Erro ao inserir Drop de item", e)
+            print(f"Erro ao inserir Instancia de item", e)
         finally:
             cursor.close()
-            
-    def consultarDropDeItemPK(self, Npc:int,numeroItem:int, IDitem:int):
+
+    def consultarInstanciaItemPK(self, IDitem:int, numeroItem:int):
         try:
             conexao = self.db.conexao
             cursor = conexao.cursor()
-            cursor.execute(f"SELECT * FROM dropa WHERE Npc = {Npc} and numeroItem = {numeroItem} and IDitem = {IDitem} ;")
+            cursor.execute(f"SELECT * FROM instanciaItem WHERE IDitem = {IDitem} and numeroItem = {numeroItem};")
+            consulta = cursor.fetchall()
+
+            if not consulta:
+                print("Não foi há instanciaItem cadastrados\n")
+            else:
+                for x in consulta:
+                    print(x)
+                return x
+        except psycopg2.IntegrityError as e:
+            print(f"Encontramos problemas ao fazer a consulta. Erro: {e}\n")
+        finally:
+            cursor.close()
+    
+    def consultarInstanciaItem(self):
+        try:
+            conexao = self.db.conexao
+            cursor = conexao.cursor()
+            cursor.execute(f"SELECT * FROM Instanciaitem ;")
             consulta = cursor.fetchall()
 
             if not consulta:
@@ -39,36 +56,25 @@ class Dropa:
             print(f"Encontramos problemas ao fazer a consulta. Erro: {e}\n")
         finally:
             cursor.close()
-    
-    
-    def consultarDropDeItem(self):
-        try:
-            conexao = self.db.conexao
-            cursor = conexao.cursor()
-            cursor.execute(f"SELECT * FROM dropa;")
-            consulta = cursor.fetchall()
-
-            if not consulta:
-                print("Não foi há DropDeItens cadastrados\n")
-            else:
-                for x in consulta:
-                    print(x)
-                return x
-        except psycopg2.IntegrityError as e:
-            print(f"Encontramos problemas ao fazer a consulta. Erro: {e}\n")
-        finally:
-            cursor.close()
-                            
-    def deletarDropaItemPK(self, npc:int, numeroItem:int, IDitem:int ):
+            
+    def deletarInstanciaItem(self, IDItem: int, numeroItem:int,):
         try:
             conexao = self.db.conexao
             cursor =  conexao.cursor()
-            cursor.execute(f"DELETE FROM dropa WHERE npc = {npc} and numeroItem ={numeroItem} and iditem = {IDitem};")
+            cursor.execute(f"DELETE FROM instanciaItem WHERE iditem = {IDItem} and numeroitem = {numeroItem};")
             delecaoFazMissao = conexao.commit()
-            return print("Drop deletado com sucesso!\n")
+            return print("Instancia de item  deletado com sucesso!\n")
 
         except psycopg2.IntegrityError as e:
             print(f"Encontramos problemas ao fazer a delecao. Erro: {e}\n")
         
         finally:
             cursor.close()
+
+
+
+item2 = Instanciaitem()
+#item2.inserirInstaciaItem(2, 1, 0, 2)
+
+item2.deletarInstanciaItem(2,1)
+item2.consultarInstanciaItem()

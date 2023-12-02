@@ -2,19 +2,19 @@ import psycopg2
 from Database import Database
 
 
-class Habilidade:
+class PreRequisitoHab:
     def __init__(self): 
         self.db = Database() 
         pass
     
-    def consultarHabildade(self):
+    def consultarPreRequisitoHab(self):
         try:    
             conexao = self.db.conexao
             cursor = conexao.cursor()
-            cursor.execute(f"SELECT * FROM habilidade;")
+            cursor.execute(f"SELECT * FROM prerequisitohab;")
             consultaHabildade = cursor.fetchall()
             if(consultaHabildade == []):
-                print("Não foi possivel consultar habildade")
+                print("Não foi possivel consultar Os pre requisitos de habildade")
             else:
                 for x in consultaHabildade:
                     print(x)
@@ -24,28 +24,27 @@ class Habilidade:
             cursor.close()
     
     
-    def inserirHabilidade(self,IDhabilidade:int, nome:str, tempoDeRecarga:int, dano:int):
+    def inserirRequisitoHab(self,IDhabilidade:int, requisito:int):
         try:
             conexao = self.db.conexao
             cursor = conexao.cursor()
-            cursor.execute(f"""Insert into habilidade values({IDhabilidade},'{nome}',
-                           {tempoDeRecarga},{dano});""")
+            cursor.execute(f"""Insert into prerequisitohab values({IDhabilidade},{requisito});""")
             insercaoHabilidade = conexao.commit()
-            return print("Habilidade criada com sucesso")
+            return print("Pre Requisito de habilidade criada com sucesso")
         except psycopg2.Error as e:
-            print("Erro ao criar Habilidade ", e)
+            print("Erro ao criar pre requisito", e)
         finally:
             cursor.close()
     
               
-    def consultarHabilidadeID(self,IDhabilidade:int):
+    def consultarPreRequisitoHabilidadeID(self,IDhabilidade:int, requisito:int):
         try:
             conexao = self.db.conexao
             cursor = conexao.cursor()
-            cursor.execute(f"""Select * from habilidade where IDhabilidade = {IDhabilidade};""")
+            cursor.execute(f"""Select * from prerequisitohab where IDhabilidade = {IDhabilidade} and requisito = {requisito};""")
             consultaHabilidade = cursor.fetchall()
             if(consultaHabilidade == []):
-                print("Erro ao consultar habilidade por ID")
+                print("Erro ao consultar Pre requisito habilidade por ID")
             else:    
                 for x in consultaHabilidade:
                     print(x)
@@ -54,20 +53,20 @@ class Habilidade:
         finally:
             cursor.close() 
             
-    def deletarHabilidade(self, IDhabilidade:int):
+    def deletarRequisitoHab(self, IDhabilidade:int, requisito:int):
         try:
             conexao = self.db.conexao
             cursor = conexao.cursor()
-            cursor.execute(f"""Delete from habilidade where IDhabilidade = {IDhabilidade};""")
+            cursor.execute(f"""Delete from habilidade where IDhabilidade = {IDhabilidade} and requisito = {requisito};""")
             conexao.commit()
         except psycopg2.Error as e:
             print("Erro ao deletar a Habilidade ", e )
         finally:
             cursor.close()    
                 
-fogo = Habilidade()
-fogo.inserirHabilidade(3,'Fogo',0,100)
-fogo.consultarHabildade()    
-print("\n")               
-fogo.deletarHabilidade(3)
-fogo.consultarHabilidadeID(3)
+prh = PreRequisitoHab()
+""" 
+prh.inserirRequisitoHab(3, 4) """
+prh.consultarPreRequisitoHab()
+print("\n")
+prh.consultarPreRequisitoHabilidadeID(3,4)               

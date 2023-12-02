@@ -3,8 +3,8 @@ from Banco import *
 pc = Pc()
 
 def CarregarJogo():
-    Save = input("\033[1;32mDigite o ID do seu personagem: \033[0m")
-    jogador = pc.getPC(Save)
+    Save=input("\033[1;32mDigite o ID do seu personagem: \033[0m")
+    jogador=pc.getPC(Save)
     return jogador[0]
 
 def EncontrarSalas(pos):
@@ -15,7 +15,7 @@ def EncontrarSalas(pos):
     Leste=lc.getLocal(pos+1)
     Sul=lc.getLocal(pos+Quadrado)
     salas_disponiveis = []
-     
+
     # Adicionar à lista se não for None
     if Oeste is not None:
         salas_disponiveis.append(Oeste[0][0])
@@ -32,6 +32,4 @@ def EncontrarSalas(pos):
 
     # Retornar a lista de salas disponíveis
     return salas_disponiveis
-
-
-     
+    

@@ -4,6 +4,7 @@ import game
 personagem = Personagem()
 pc = Pc()
 
+<<<<<<< HEAD
 print("            ⠀⠀⠀⠀⠀⠀⠀⠰⣶⣶⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀      ")
 print("            ⠀⠀⠀⠀⠀⠀⠀⢰⣿⡟⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀      ")
 print("            ⠀⠀⠀⠀⠀⢀⣀⣼⣿⣀⣹⣿⡆⠀⢤⡄⢤⣄⢤⡤⠀⢤⣤⣤⣤⣤⢤⣄⠀⢤⣤⡤⣤⣤⣤⢠⡄⠀⣤⢤⡤⢤⡠⣤⠤⣴⠀⠀⠀⠀      ")
@@ -38,20 +39,17 @@ print("                             Visitar                                     
 print("                             O mundo de Jake e seu amigo Finn                  ")
 print("                             Diversão é aqui!                                  ")
 print("                             Hora de aventura!                                 ")
-      
-      
+    
+=======
 
+print("\033[1;31m _   _                       _         ___                  _                   ")
+print("| | | |                     | |       / _ \                | |                  ")
+print("| |_| | ___  _ __ __ _    __| | ___  / /_\ \_   _____ _ __ | |_ _   _ _ __ __ _ ")
+print("|  _  |/ _ \| '__/ _` |  / _` |/ _ \ |  _  \ \ / / _ \ '_ \| __| | | | '__/ _` |")
+print("| | | | (_) | | | (_| | | (_| |  __/ | | | |\ V /  __/ | | | |_| |_| | | | (_| |")
+print("\_| |_/\___/|_|  \__,_|  \__,_|\___| \_| |_/ \_/ \___|_| |_|\__|\__,_|_|  \__,_|\033[0m")
 
-
-
-
-         
-
-
-
-
- 
-
+>>>>>>> parent of 315f900 (adicionando a buniteza do jogo)
 while(True):
 
     print("\n\033[1;32m| Bem-vindo ao MUD Hora de Aventura |\033[0m\n")
@@ -67,10 +65,10 @@ while(True):
         case '1':  
                 
             print("\033[1;32mOpções de jogador:\033[0m")
-            print("     \033[0;36m|1| = Ver jogador\033[0m")
-            print("     \033[0;36m|2| = Atualizar jogador\033[0m")
-            print("     \033[0;36m|3| = Deletar jogador\033[0m")
-            print("     \033[0;36m|4| = Voltar jogador\033[0m")
+            print("     1 = Ver jogador")
+            print("     2 = Atualizar jogador")
+            print("     3 = Deletar jogador")
+            print("     4 = Voltar")
             menuJogador = input()
             
             match menuJogador:
@@ -110,23 +108,8 @@ while(True):
 
             print("\n"+80*"-"+"\n")
         case '4':
-            jogador=game.CarregarJogo()
-            lc=Local()
-            posicao=lc.getLocalPc(jogador[0])
-                
-            print(f"\033[1;32m{jogador[1]}\nLocal: {posicao[0]}\nCoordenada: {posicao[0]}\033[0m")
             print("Localização")
             print("\n--------------------------------------------------------------------------------\n")
-            #salas = game.EncontrarSalas(jogador[9])
-            #print(salas)
-            print("\n--------------------------------------------------------------------------------\n")
-            mudarSala = input("Deseja mudar de sala ? Sim/Não")
-            if(mudarSala == 'ss' or 'Sim' or 's'):
-                salas = game.EncontrarSalas(jogador[9])
-                sala = input("Qual sala você deseja ir ? :")     
-                print(salas)
-                pc.updatePcLocal(jogador[0], sala)
-                
         case '5':
            print("Finalizando o jogo.....")
            break    
