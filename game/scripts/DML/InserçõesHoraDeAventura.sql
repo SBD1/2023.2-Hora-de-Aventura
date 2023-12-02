@@ -129,7 +129,7 @@ insert into local values('69','Muitos cadernos preenchem as prateleiras, repleto
 
 insert into local values('73','Ao invés de copas de folhas, as daqui tem cópas de fogo e metal derretido' ,'Floresta Forno', true, 'Reino de Fogo');
 
-insert into local values('76','Aqui a maga da floresta ora para seus deuses' ,'totem de oração', false, 'selva');
+insert into local values('76','Aqui a maga da floresta ora para seus deuses' ,'totem de oração', false, 'Selva');
  
 
 
