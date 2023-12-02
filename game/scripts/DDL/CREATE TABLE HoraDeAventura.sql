@@ -138,15 +138,6 @@ create table Consumivel(
 );
 
 --Tabela de n pra instanciaItem pra NPC 
-CREATE TABLE Dropa(
-	NPC INT,
-	numeroItem INT, 
-	IDitem INT, 
-	Chance FLOAT NOT NULL,
-	primary key(NPC, numeroItem, IDitem),
-	FOREIGN KEY (NPC) REFERENCES NPC(Personagem),
-	FOREIGN KEY (IDitem, numeroItem) REFERENCES InstanciaItem(IDitem, numeroItem)
-);
 
 CREATE TABLE Inventario (
 	IDinv INT PRIMARY KEY,
@@ -188,6 +179,16 @@ CREATE TABLE InstanciaItem (
     primary key (IDitem, numeroItem),
     FOREIGN KEY (IDitem) REFERENCES Item(IDitem),
     foreign key (IDinv) references Inventario(IDinv)
+);
+
+CREATE TABLE Dropa(
+	NPC INT,
+	numeroItem INT, 
+	IDitem INT, 
+	Chance FLOAT NOT NULL,
+	primary key(NPC, numeroItem, IDitem),
+	FOREIGN KEY (NPC) REFERENCES NPC(Personagem),
+	FOREIGN KEY (IDitem, numeroItem) REFERENCES InstanciaItem(IDitem, numeroItem)
 );
 
 Create Table Loja(
