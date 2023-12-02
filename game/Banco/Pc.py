@@ -38,17 +38,16 @@ class Pc:
         finally:
                 cursor.close()
                 
-    def consultarPCID(self,Personagem:int):
+    def consultarPCNome(self, Nome:str):
         try:
             conexao = self.db.conexao
             cursor = conexao.cursor()
-            cursor.execute(f"""Select * from PC where personagem = {Personagem}; """)
-            consultarNPC = cursor.fetchall() 
-            if(consultarNPC == []):
-                print("Não existe nenhum PC com esse ID ")
+            cursor.execute(f"""Select * from PC where nome = '{Nome}'; """)
+            consultarPC = cursor.fetchall() 
+            if(consultarPC == []):
+                print("Não existe nenhum PC com esse nome ")
             else:
-                for x in consultarNPC:
-                    print(x)
+                return consultarPC
         except psycopg2.Error as e:
             print("Erro ao cosultar os PC's", e )
         finally:

@@ -61,7 +61,7 @@ while(True):
             
             print("Opção escolhida: ", opcoes)
             print("\n")
-            
+    
             if(opcoes == '1'):
                 game.menuJogador()
             if(opcoes == '2'):

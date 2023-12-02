@@ -60,10 +60,13 @@ def criarJogador():
     menuJogador()
                 
 def verJogadorOp():
-    IDdoJogador = input("Digite o ID do jogador que busca:")
-    jogador = pc.getPC(IDdoJogador)
+    NomedoJogador = input("Digite o Nome do jogador que busca:")
+    jogador = pc.consultarPCNome(NomedoJogador)
+    """ 
+    for x in jogador:
+         """
     print("\n--------------------------------------------------------------------------------\n")
-    print(f"\033[1;32m\nNome: {jogador[0][1]}\nVida:{jogador[0][3]}\nLVL: {jogador[0][4]}\nDinheiro: {jogador[0][5]}\033[0m")
+    print(f"\033[1;32m\nIDjogador: {jogador}\nNome: {jogador}\nVida:{jogador}\nLVL: {jogador}\nDinheiro: {jogador[0][5]}\033[0m")
     print("\n--------------------------------------------------------------------------------\n")
     menuJogador()
 
