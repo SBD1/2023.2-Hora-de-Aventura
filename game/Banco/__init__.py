@@ -17,7 +17,8 @@ from .Missao import *
 from .Mundo import * 
 from .Npc import * 
 from .Pc import * 
-from .Personagem import * 
+from .Personagem import *
+from .PossuiHab import * 
 from .PossuiItem import * 
 from .PreRequisitoHab import * 
 from .PreRequistoMissao import *

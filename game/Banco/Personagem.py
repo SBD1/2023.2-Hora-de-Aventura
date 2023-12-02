@@ -13,7 +13,6 @@ class Personagem:
             cursor = conexao.cursor()
             cursor.execute(f"""insert into personagem values({IDpersonagem},{ATC});""")
             insercaoPersonagem = conexao.commit()
-            return print("Personagem criado com sucesso")
         except psycopg2.Error as e: 
             print("Erro ao inserir personagem", e)
         finally:
@@ -60,6 +59,8 @@ class Personagem:
             print("Erro ao deletar em Mundo", e)
         finally:       
                cursor.close()
+    
+    
     
         
                 

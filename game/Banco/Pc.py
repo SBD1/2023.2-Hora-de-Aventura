@@ -16,7 +16,7 @@ class Pc:
             cursor.execute(f"""insert into pc values({personagem},'{nome}',{xp},
                            {vida},{lvl},{dinheiro},'{especie}',{forca},{defesa},{local});""")
             conexao.commit()
-            return print("PC criado com sucesso")
+            return print("\nPersonagem criado com sucesso")
         except psycopg2.Error as e: 
             print("Erro ao inserir PC", e)
         finally:
