@@ -72,9 +72,3 @@ class Instanciaitem:
             cursor.close()
 
 
-
-item2 = Instanciaitem()
-#item2.inserirInstaciaItem(2, 1, 0, 2)
-
-item2.deletarInstanciaItem(2,1)
-item2.consultarInstanciaItem()

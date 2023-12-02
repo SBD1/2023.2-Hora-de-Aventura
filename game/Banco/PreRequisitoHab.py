@@ -1,5 +1,5 @@
 import psycopg2 
-from Database import Database
+from .Database import Database
 
 
 class PreRequisitoHab:
@@ -63,10 +63,3 @@ class PreRequisitoHab:
             print("Erro ao deletar a Habilidade ", e )
         finally:
             cursor.close()    
-                
-prh = PreRequisitoHab()
-""" 
-prh.inserirRequisitoHab(3, 4) """
-prh.consultarPreRequisitoHab()
-print("\n")
-prh.consultarPreRequisitoHabilidadeID(3,4)               

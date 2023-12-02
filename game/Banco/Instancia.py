@@ -107,8 +107,3 @@ class Instancia:
         finally:
             cursor.close()
 
-## i = Instancia()
-## i.consultarInstancia()
-
-
-

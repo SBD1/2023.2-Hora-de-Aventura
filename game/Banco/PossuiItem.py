@@ -71,11 +71,3 @@ class PosuuiItem:
         finally:
             cursor.close()
 
-
-pI = PosuuiItem()
-
-#pI.inserirPossuiItem(1, 'Loja de Arma', 'Espadas', 100)
-
-#pI.consultarPossuiItemPK(1,'Loja de Arma', 'Espadas')
-
-#pI.consultarPossuiItemPK(1,'Loja de Arma', 'Espadas')
