@@ -1,12 +1,12 @@
 begin transaction; 
 CREATE TABLE Mundo (
-	Nome CHAR (20) PRIMARY KEY,
-	Mundo_de_Destino CHAR(20)
+	Nome VARCHAR (20) PRIMARY KEY,
+	Mundo_de_Destino CHAR(20) default 'Cubo do prismo'
 );
  
 CREATE TABLE Regiao (
-	Nome CHAR(50) PRIMARY KEY,
-	Mundo CHAR(20),
+	Nome VARCHAR(50) PRIMARY KEY,
+	Mundo VARCHAR(20),
 	FOREIGN KEY (Mundo) REFERENCES Mundo(Nome)
 );
 
@@ -15,7 +15,7 @@ CREATE TABLE Local(
 	Descricao VARCHAR(1000) NOT NULL,
 	Nome VARCHAR(20) NOT NULL,
 	Tipo BOOLEAN NOT NULL,
-	Regiao CHAR(50) NOT NULL,
+	Regiao VARCHAR(50) NOT NULL,
 	FOREIGN KEY (Regiao) REFERENCES Regiao(Nome)
 );
 
@@ -34,7 +34,7 @@ CREATE TABLE PC(
 	Especie VARCHAR(20) NOT NULL,
 	Forca INT NOT NULL,
 	Defesa INT NOT NULL,
-	Local INT NOT NULL,
+	Local INT NOT null default 0,
 	FOREIGN KEY(Personagem) REFERENCES Personagem(IDpersonagem),
 	FOREIGN KEY(Local) REFERENCES Local(Coordenada)
 );
@@ -66,7 +66,7 @@ CREATE TABLE Instancia(
 CREATE TABLE Missao (
 	Nome CHAR(20) PRIMARY KEY,
 	Chefe boolean,
-	Descricao VARCHAR(20) NOT NULL,
+	Descricao VARCHAR(100) NOT NULL,
 	Recompensa int NOT null 
 	 
 );
@@ -103,7 +103,6 @@ create table chefe(
 CREATE TABLE Contem(
 	Local int,
 	Missao CHAR(20),
-	Status CHAR(20),
 	FOREIGN KEY (Local) REFERENCES Local(coordenada),
 	FOREIGN KEY (Missao) REFERENCES Missao(nome),	
 	primary key(Local, Missao)	
@@ -193,8 +192,9 @@ CREATE TABLE Dropa(
 
 Create Table Loja(
 	Nome char(20),
-	Funcionalidade char(20),
 	Tipo varchar(20),
+	Dano int,
+	Elemento char(1),
 	Local int,		
 	primary key(Nome, Tipo),
 	Foreign key	(Local)	references Local(Coordenada)
