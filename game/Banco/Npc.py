@@ -63,6 +63,21 @@ class Npc:
             print("Erro ao deletar NPC", e )
         finally:
             cursor.close()
+
+    def getNPCID(self,Personagem:int):
+        try:
+            conexao = self.db.conexao
+            cursor = conexao.cursor()
+            cursor.execute(f"""Select * from NPC where personagem = {Personagem}; """)
+            consultarNPC = cursor.fetchall() 
+            if(consultarNPC == []):
+                print("Não existe nenhum NPC com esse ID ")
+            else:
+                return consultarNPC
+        except psycopg2.Error as e:
+            print("Erro ao cosultar os NPC's", e )
+        finally:
+                cursor.close()
             
                 
             

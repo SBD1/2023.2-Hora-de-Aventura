@@ -107,3 +107,20 @@ class Instancia:
         finally:
             cursor.close()
 
+    def getInstanciaID(self, personagem: int, numero: int):
+        try:
+            conexao = self.db.conexao
+            cursor = conexao.cursor()
+            cursor.execute(f"SELECT * FROM instancia WHERE personagem = '{personagem}' AND numero = '{numero}';")
+            consulta = cursor.fetchall()
+
+            if not consulta:
+                print("Não há nenhuma instancia com essas caracteristicas\n")
+            else:
+                return consulta
+
+        except psycopg2.Error as e:
+            print("Não foi possivel fazer essa consulta")
+
+        finally:
+            cursor.close()

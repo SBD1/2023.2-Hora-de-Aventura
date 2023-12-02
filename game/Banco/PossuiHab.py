@@ -25,7 +25,7 @@ class PossuiHab:
         try:
             conexao = self.db.conexao
             cursor = conexao.cursor()
-            cursor.execute(f"SELECT * FROM possuihab WHERE IDitem = {personagem} and loja = {habilidade};")
+            cursor.execute(f"SELECT * FROM possuihab WHERE personagem = {personagem} and habilidade = {habilidade};")
             consulta = cursor.fetchall()
 
             if not consulta:
