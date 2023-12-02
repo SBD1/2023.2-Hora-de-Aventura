@@ -3,6 +3,7 @@ import game
 
 personagem = Personagem()
 pc = Pc()
+lc=Local()
 
 print("            ⠀⠀⠀⠀⠀⠀⠀⠰⣶⣶⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀       ")
 print("            ⠀⠀⠀⠀⠀⠀⠀⢰⣿⡟⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀       ")
@@ -68,12 +69,18 @@ while(True):
                    
         case'2':
             jogador=game.CarregarJogo()
-            lc=Local()
+
             posicao=lc.getLocalPc(jogador[0])
             print("\n--------------------------------------------------------------------------------\n")
+
             print(f"\033[1;32m{jogador[1]}\nLocal: {posicao[0][2]}\nDescrição: {posicao[0][1]}\nCoordenada: {posicao[0][0]}\033[0m")
+
             print("\n--------------------------------------------------------------------------------\n")
-            salas=game.EncontrarSalas(jogador[9])
+
+
+            game.EncontrarSalas(jogador[9], jogador[0])
+
+            #print(f"\nTeste: {jogador}")
             print("\n"+80*"-"+"\n")
         
         case '3':
