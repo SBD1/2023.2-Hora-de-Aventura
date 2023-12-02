@@ -130,6 +130,96 @@ insert into local values('69','Muitos cadernos preenchem as prateleiras, repleto
 insert into local values('73','Ao invés de copas de folhas, as daqui tem cópas de fogo e metal derretido' ,'Floresta Forno', true, 'Reino de Fogo');
 
 insert into local values('76','Aqui a maga da floresta ora para seus deuses' ,'totem de oração', false, 'Selva');
+
+insert into local values('77','Aqui a maga guarda suas armas. Não roube ela ein' ,'Arsenal da maga', false, 'Selva');
+
+insert into local values('78','Aqui a maga dorme' ,'Quarto da Maga', false, 'Selva');
+
+insert into local values('80','Tem olinhos nesse poço pedindo moedas em troca de itens' ,'Poço velho', false, 'Selva');
+
+insert into local values('84','A temperatura começa a se elevar na saída do reino gelado' ,'Saída reino gelado', true, 'Reino Gelado');
+
+insert into local values('87','A temperatura arde ' ,'Campos Flamejantes', true, 'Reino de Fogo');
+
+insert into local values('88','A temperatura arde ' ,'Floresta de Fogo', true, 'Reino de Fogo');
+
+insert into local values('89','A temperatura arde MUITO ' ,'Bosque de Fogo', true, 'Reino de Fogo');
+
+insert into local values('90','A rainha vampira Marceline vive aqui ' ,'Casa da Marceline', false, 'Pantano');
+
+insert into local values('94','Festas Iradas acontecem aqui a noite ' ,'Mata das festas', false, 'Pantano');
+
+insert into local values('95','a floresta chama seu nome, ao olhar pra trás você vê verdades ocultas que te atormentam. Ao olhar para frente você já se esqueceu ' ,'Floresta Macabra', true, 'Pantano');
+
+insert into local values('96','Um cometa Catalisador já caiu aqui séculos atrás' ,'Grande cratéra', true, 'Deserto');
+
+insert into local values('97','Um casal de idosos vive nessas terras inospistas com seu cão' ,'Lugar nenhum', false, 'Deserto');
+
+insert into local values('98','Já houve muitas criaturas aqui. Hoje apenas baratas e poeira' ,'Prédio em ruínas', true, 'Deserto');
+
+insert into local values('99', 'Monstros habitam estas terras' ,'Prédio em ruínas', true, 'Deserto');
+
+insert into local values('100', 'Destroços de uma velha ponte' ,'ponte velha', true, 'Deserto');
+
+insert into local values('101', 'O chão começa a ferver, revelando uma terra de chamas' ,'pedreira ígnea', true, 'Reino de Fogo');
+
+insert into local values('102', 'Aqui do alto dá pra ver muito longe mesmo' ,'Monte do fogo', true, 'Reino de Fogo');
+
+insert into local values('103', 'aqui queima como o inferno' ,'campos ardentes', true, 'Reino de Fogo');
+
+insert into local values('104', 'um lago de magma borbulha aqui' ,'lago de magma', true, 'Reino de Fogo');
+
+insert into local values('105', 'Quadra de basquete da marceline' ,'Quadra de basquete', false, 'Pantano');
+
+insert into local values('106', 'não dá pra ver os próprios pés na água' ,'Águas turvas', true, 'Pantano');
+
+insert into local values('107', 'Caverna' ,'Caverna3', true, 'Pantano');
+
+insert into local values('108', 'Caverna' ,'Caverna2', true, 'Pantano');
+
+insert into local values('109', 'Caverna' ,'Caverna', true, 'Pantano');
+
+insert into local values('110', 'Uma velharia de tempos passados' ,'Nave abandonada', true, 'Deserto');
+
+insert into local values('112', 'mal dá pra ver um palmo a sua frente' ,'Caverna Mais escura', true, 'Deserto');
+
+insert into local values('114', 'Aqui tem tecnologias do passado que estão anos a frente da nossa' ,'Ferro Velho', true, 'Deserto');
+
+insert into local values('115', 'Aqui tem tecnologias do passado que estão anos a frente da nossa. esqueletos de criaturas mortas cobrem o chão.' ,'Laboratorio velho', true, 'Deserto');
+
+insert into local values('117', 'Um adorável ser de fogo vive aqui' ,'Casa do Foguin', false, 'Reino de Fogo');
+
+insert into local values('118', 'Um vulcão frio está aqui, ele pode te mandar pro céu' ,'Vulcão Frio', false, 'Reino de Fogo');
+
+insert into local values('119', 'Henrique montou aqui sua lojinha pra te ajudar' ,'Lojinha fervente', false, 'Reino de Fogo');
+
+insert into local values('125', 'Esqueletos macabros andam por aqui' ,'Cemitério', true, 'Terra do Litch');
+
+insert into local values('127', 'Mutantes da guerra dos cogumelos habitam aqui' ,'Lar dos mutantes', true, 'Deserto');
+
+insert into local values('128', 'Uma vez princesa jujuba, finn e jake se meteram numa confusão com os mutantes nessa nave' ,'Ruinas de uma nave', true, 'Deserto');
+
+insert into local values('130', 'Uma imagem macabra de um monstro cabeçudo' ,'Totem da Noitosfera', true, 'Deserto');
+
+insert into local values('133', 'O vulcão frio tem seu topo aqui' ,'vulcão propulsor', false, 'Reino de Fogo');
+
+insert into local values('138', 'Oba, um báu' ,'Báu', true, 'Terra do Litch');
+
+insert into local values('139', 'Uma sala da dungeon, as vezes tem monstros' ,'Sala1', true, 'Terra do Litch');
+
+insert into local values('140', 'Entrada da dungeon do litch, se eu fosse você,tomaria cuidado com ele que é final boss' ,'Entrada da dungeon', true, 'Terra do Litch');
+
+insert into local values('145', 'Uma imagem macabra de um monstro cabeçudo de trouxe aqui' ,'Tunel misterioso', true, 'Deserto');
+
+insert into local values('147', 'Uma casa literalmente fofinha. O homem nuvem vive aqui com a mulher nuvem' ,'Casa nuvem', false, 'Céu');
+
+insert into local values('148', 'Aqui é um local muito bonito e alto. Veio pelo vulcão?' ,'Porta do Céu', false, 'Céu');
+
+insert into local values('149', 'Lugar de criança' ,'Parque Céu', false, 'Céu');
+
+insert into local values('152', 'Um dracolich malvado vive aqui' ,'Câmara do Dracolich', true, 'Terra do Litch');
+
+insert into local values('155', 'Um corredor comum' ,'corredor 1', true, 'Terra do Litch');
  
 
 
