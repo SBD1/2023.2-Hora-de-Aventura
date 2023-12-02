@@ -220,6 +220,142 @@ insert into local values('149', 'Lugar de criança' ,'Parque Céu', false, 'Céu
 insert into local values('152', 'Um dracolich malvado vive aqui' ,'Câmara do Dracolich', true, 'Terra do Litch');
 
 insert into local values('155', 'Um corredor comum' ,'corredor 1', true, 'Terra do Litch');
+
+insert into local values('158', 'Um rio de lava macabro' ,'Rio de lava', true, 'Inferno');
+
+insert into local values('159', 'Aqui é onde os demônios pegam seu número pra fila' ,'Central demônio', true, 'Inferno');
+
+insert into local values('160', 'Aqui é a entrada da noitosfera, a dimensão do inferno' ,'Entrada', true, 'Inferno');
+
+insert into local values('162', 'loja bacaninha' ,'Loja do Mr.Mcloud', false, 'Céu');
+
+insert into local values('163', 'núvens que parecem algodão e são tão mácias quanto plumas promovem um campo a perder de vista' ,'Campos fofos', false, 'Céu');
+
+insert into local values('167', 'Uma sala da dungeon, as vezes tem monstros' ,'Sala5', true, 'Terra do Litch');
+
+insert into local values('168', 'Uma sala da dungeon, as vezes tem monstros' ,'Sala4', true, 'Terra do Litch');
+
+insert into local values('169', 'Uma sala da dungeon, as vezes tem monstros' ,'Sala3', true, 'Terra do Litch');
+
+insert into local values('170', 'Um corredor comum' ,'corredor 2', true, 'Terra do Litch');
+
+insert into local values('171', 'Uma Lojinha muito especial e alegre, com tudo que você precisa' ,'Lojinha do Davi', false, 'Terra do Litch');
+
+insert into local values('173', 'Uma poça de lava' ,'Lava1', true, 'Inferno');
+
+insert into local values('174', 'Uma Fila de demônios, muito cuidado' ,'Fila do mal', true, 'Inferno');
+
+insert into local values('175', 'Um rio de lava macabro' ,'Rio de lava2', true, 'Inferno');
+
+insert into local values('178', 'Até o rei gelado é bem vindo aqui' ,'Salão de festas', false, 'Céu');
+
+insert into local values('185', 'Um corredor comum' ,'corredor 3', true, 'Terra do Litch');
+
+insert into local values('189', 'Uma Fila de demônios, muito cuidado eles estão muito furiosos por estarem quase sendo atendidos' ,'Fila do mal2', true, 'Inferno');
+
+insert into local values('193', 'Uma piscina geladinha' ,'Piscina do céu', false, 'Céu');
+
+insert into local values('195', 'Uma sala da dungeon, as vezes tem monstros' ,'Sala8', true, 'Terra do Litch');
+
+insert into local values('196', 'Uma sala da dungeon, as vezes tem monstros' ,'Sala7', true, 'Terra do Litch');
+
+insert into local values('197', 'Os esqueletos mais fortes do reino descansam aqui' ,'Cemitério esqueleto', true, 'Terra do Litch');
+
+insert into local values('198', 'Uma tumba de um ser macabro do passado' ,'Tumba', true, 'Terra do Litch');
+
+insert into local values('199', 'Um corredor comum' ,'corredor 5', true, 'Terra do Litch');
+
+insert into local values('200', 'Um corredor comum' ,'corredor 4', true, 'Terra do Litch');
+
+insert into local values('201', 'Uma sala da dungeon, as vezes tem monstros' ,'Sala6', true, 'Terra do Litch');
+
+insert into local values('202', 'Antigo ferreiro esqueleto. É hora de melhorar as armas' ,'Ferreiro', false, 'Terra do Litch');
+
+insert into local values('204', 'Uma Fila de demônios, muito cuidado eles estão muito, MUITO MESMO furiosos por estarem quase sendo atendidos' ,'Fila do mal3', true, 'Inferno');
+
+insert into local values('208', 'Uma cachoeira mágica geladinha' ,'Piscina do céu', false, 'Céu');
+
+insert into local values('212', 'Um portal bizarro' ,'portal quântico', false, 'Terra do Litch');
+
+insert into local values('218', 'Um Jardim de horrores cósmicos que se devoram e se multiplicam simultâneamente' ,'Jardim maligno', true, 'Inferno');
+
+insert into local values('219', 'Um portão que é o fim da fila' ,'Portão da corte', true, 'Inferno');
+
+insert into local values('220', 'Um Jardim de horrores cósmicos que se devoram e se multiplicam simultâneamente' ,'Jardim maligno2', true, 'Inferno');
+
+insert into local values('222', 'Ilha feita de um caroço gigante' ,'Jardim Caroço', true, 'Reino Caroço');
+
+insert into local values('223', 'Planice feita de um caroço gigante' ,'planice Caroço', true, 'Reino Caroço');
+
+insert into local values('224', 'Restaurante feito em um caroço gigante' ,'Restaurante', false, 'Reino Caroço');
+
+
+insert into local values('226', 'Espaço Infindável, cuidado você está quase saindo da órbita' ,'Espaço Sideral 2', true, 'Exosfera');
+
+insert into local values('227', 'Espaço Infindável' ,'Espaço Sideral', true, 'Exosfera');
+
+insert into local values('228', 'Um rocheado vagando tranquilo no espaço Infindável, tem uma base espacial nele' ,'Rocheado', true, 'Exosfera');
+
+insert into local values('229', 'Porto espacial para descanso. Quem poderia ter construido ele aqui? Tem uma nave atracada' ,'Porto espacial', false, 'Exosfera');
+
+insert into local values('230', 'Uma nave amarela feita pelo Lemongrab? Achei que ele estivesse morto, como pode ter feito uma nave?' ,'Cyberlimonave', true, 'Exosfera');
+
+insert into local values('234', 'Salão principal do rei da Noitosfera. O devorador de batatinhas e pai de Marceline a rainha vampira' ,'Salão central', true, 'Inferno');
+
+insert into local values('237', 'Uma balada bem parada' ,'Balada Caroço', true, 'Reino Caroço');
+
+insert into local values('238', 'Espaço Infindável' ,'Vazio Infindável', false, 'Reino Caroço');
+
+insert into local values('241', 'Espaço Infindável' ,'Espaço Sideral3', true, 'Exosfera');
+insert into local values('242', 'Pedrinhas voadoras' ,'Aerolitos', true, 'Exosfera');
+
+insert into local values('243', 'Cadáver de um gigante celeste, totalmente congelado. Deve ser daqui que vem as crias do espaço' ,'Cadáver celeste', true, 'Exosfera');
+
+insert into local values('252', 'Pequena ilha caroço' ,'Ilihnha', false, 'Reino Caroço');
+
+insert into local values('253', 'Centro da cidade' ,'Centro', false, 'Reino Caroço');
+
+local values('256', 'O restaurante entre esse o fim do universo' ,'Restaurante the end', false, 'Exosfera');
+
+insert into local values('257', 'O planetoide do fim ' ,'Planetoide', true, 'Exosfera');
+
+insert into local values('261', 'Sela onde o Litch aprisionou a Princesa Jujuba!!' ,'Sela Jujuba', false, 'Exosfera');
+
+insert into local values('262', 'O Litch soltou uma aura aterradora nesse lugar' ,'Câmara do litch', true, 'Exosfera');
+
+insert into local values('263', 'O lugar onde as sentinelas são guardadas' ,'Sala de robôs', true, 'Exosfera');
+
+insert into local values('264', 'O lugar mais macabro, dá pra sentir a aura do litch' ,'O corredor escuro', true, 'Exosfera');
+
+insert into local values('268', 'O lugar onde a realeza caroço vive' ,'Castelo Caroço', false, 'Reino Caroço');
+
+insert into local values('270', 'Aqui habita o Elefante de Guerra pré histórico' ,'Câmara do elefante', false, 'Exosfera');
+
+insert into local values('272', 'Porto espacial para cidadela' ,'Porto espacial', true, 'Exosfera');
+
+insert into local values('279', ' Dá pra sentir a aura do litch' ,'O corredor escuro', true, 'Exosfera');
+
+insert into local values('280', ' Se for enfrentar o boss, é sua ultima chance de comprar itens' ,'A ultima loja', false, 'Exosfera');
+
+insert into local values('285', ' Um peculiar cofre. Eba!' ,'Sala do Cofre', true, 'Exosfera');
+
+insert into local values('286', ' Um corredor futurista mas desgastado' ,'corredor', true, 'Exosfera');
+
+insert into local values('287', ' A entrada da temida cidadela, agora abandonda após um infeliz incidente' ,'Entrada da cidadela', true, 'Exosfera');
+
+insert into local values('288', ' Um corredor futurista mas desgastado' ,'corredor2', true, 'Exosfera');
+
+insert into local values('289', ' Catracas velhas, alguns esqueletos estão encostados nelas, totalmente mortos.' ,'Catracas', true, 'Exosfera');
+
+insert into local values('290', ' Um corredor futurista mas desgastado' ,'corredor3', true, 'Exosfera');
+
+insert into local values('291', ' Um corredor futurista mas desgastado e com partes faltando, dando vista pro espaço' ,'corredor4', true, 'Exosfera');
+
+insert into local values('292', ' Um corredor futurista mas desgastado' ,'corredor5', true, 'Exosfera');
+
+insert into local values('293', ' Um corredor futurista com um monte de corpos, no centro um amalgama de carne que forma um olho que pisca freneticamente. Possivelmente feito pelo Litch' ,'corredor de Carne', true, 'Exosfera');
+
+insert into local values('294', ' Uma quina, para a única virada que sobrou da destruida e mal acabada cidadela' ,'virada de corredor', true, 'Exosfera');
  
 
 
