@@ -360,13 +360,61 @@ insert into local values('294', ' Uma quina, para a única virada que sobrou da 
 
 
 
+
+
 insert into personagem values('1',false);
 
 insert into npc values('1','Litch',1000,false, 100,'Primordial', 1000, 1000);
 
-insert into instancia values(1,1 ,1000 , 0001);
+insert into instancia values(1,1 ,1000 ,262);
 
-insert into instancia values(3,1 ,30 , 0001,2);
+insert into personagem values('2',false);
+insert into npc values(2,'Jake', 80, false, 30, 'cachorro', 30, 50);
+
+insert into instancia values(2,2 ,80 ,20);
+
+insert into personagem values('3',false);
+insert into npc values(3,'Finn', 70, false, 15, 'humano', 30, 50);
+
+insert into instancia values(3,3 ,70 ,20);
+
+insert into personagem values('4',false);
+insert into npc values(4,'Jujuba', 20, false, 5, 'doce', 20, 20);
+
+insert into instancia values(4,4 ,20 ,261);
+
+insert into personagem values('5',false);
+insert into npc values(5,'Mordomo Menta', 60, false, 90, 'doce', 80, 20);
+
+insert into instancia values(5,5 ,60 ,30);
+
+insert into personagem values('6',false);
+insert into npc values(6,'Canelinha', 10, false, 1, 'doce', 2, 10);
+
+insert into instancia values(6,6 ,10 ,30);
+
+insert into personagem values('7',false);
+insert into npc values(7,'Rato Doce', 20, false, 1, 'doce', 5, 15);
+
+insert into instancia values(7,7 ,20 ,46);
+
+insert into personagem values('8',false);
+insert into npc values(8,'Aberração dagua', 30, true, 3, 'besta', 10, 15);
+
+insert into personagem values('9',false);
+insert into npc values(9,'Susana Forte', 50, true, 10, 'besta', 60, 80);
+
+insert into personagem values('10',false);
+insert into npc values(10,'Prinscesa de Fogo', 70, false, 10, 'fogo', 40, 50);
+
+insert into personagem values('11',false);
+insert into npc values(11,'Rei de Fogo', 200, true, 30, 'fogo', 90, 50);
+
+insert into personagem values('12',false);
+insert into npc values(12,'Soldado Ardente', 20, true, 5, 'fogo', 11, 9);
+
+insert into personagem values('13',false);
+insert into npc values(13,'Cria de Magma', 10, true, 2, 'fogo', 9, 9);
 
 insert into missao values('Salvar princesa ',true , 'Salvar princesa', 100);
 
@@ -382,13 +430,9 @@ insert into chefe values (1,'Salvar princesa ',1);
 
 insert into personagem  values('2', true);
 
-insert into pc values('2', 'Finn', 50, 40, 40, 0, 'humano', 40, 20, 1);
-
 insert into fazmissao values(2, 'Salvar princesa', false);  
 
 insert into contem values(1,'Salvar princesa', 'Incompleto' );
-
-insert into local values('0002','Casa onde habita Finn' ,'Casa na árvore', false, 'Reino Doce');
 
 insert into habilidade values(1, 'Elasticidade', 0, 100);
 
@@ -421,8 +465,3 @@ insert into dropa values(1,1,0.22);
 insert into loja values('Loja de Arma', 'Arma','Espadas', 2 );
 
 insert into possuiitem values(1,'Loja de Arma', 'Espadas', 2);
-
-insert into npc values(3,'Jake', 80, false, 30, 'cachorro', 30, 50);
-
-insert into personagem values(3, false);
-
