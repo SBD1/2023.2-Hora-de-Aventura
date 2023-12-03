@@ -401,20 +401,114 @@ insert into instancia values(7,7 ,20 ,46);
 insert into personagem values('8',false);
 insert into npc values(8,'Aberração dagua', 30, true, 3, 'besta', 10, 15);
 
+insert into instancia values(8,8 ,30 ,8);
+insert into instancia values(8,9 ,40 ,24);
+insert into instancia values(8,10 ,70 ,25);
+
 insert into personagem values('9',false);
 insert into npc values(9,'Susana Forte', 50, true, 10, 'besta', 60, 80);
+
+insert into instancia values(9,11 ,50 ,9);
 
 insert into personagem values('10',false);
 insert into npc values(10,'Prinscesa de Fogo', 70, false, 10, 'fogo', 40, 50);
 
+insert into instancia values(10,12 ,70 ,28);
+
 insert into personagem values('11',false);
 insert into npc values(11,'Rei de Fogo', 200, true, 30, 'fogo', 90, 50);
+
+insert into instancia values(11,13 ,200 ,43);
 
 insert into personagem values('12',false);
 insert into npc values(12,'Soldado Ardente', 20, true, 5, 'fogo', 11, 9);
 
+insert into instancia values(12,14 ,20 ,73);
+insert into instancia values(12,15 ,20 ,87);
+insert into instancia values(12,16 ,20 ,88);
+insert into instancia values(12,17 ,20 ,89);
+
 insert into personagem values('13',false);
 insert into npc values(13,'Cria de Magma', 10, true, 2, 'fogo', 9, 9);
+
+insert into instancia values(13,18 ,10 ,102);
+insert into instancia values(13,19 ,10 ,103);
+insert into instancia values(13,20 ,10 ,104);
+
+insert into personagem values('14',false);
+insert into npc values(14,'Cria vampírica', 10, true, 2, 'Vampiro', 9, 9);
+
+insert into instancia values(14,21 ,10 ,66);
+insert into instancia values(14,22 ,10 ,94);
+insert into instancia values(14,23 ,10 ,95);
+
+insert into personagem values('15',false);
+insert into npc values(15,'Morcego', 5, true, 1, 'Besta', 5, 5);
+
+insert into instancia values(15,24 ,5 ,107);
+insert into instancia values(15,25 ,5 ,108);
+insert into instancia values(15,26 ,5 ,109);
+insert into instancia values(15,33 ,5 ,112);
+
+insert into personagem values('16',false);
+insert into npc values(16,'Urso malvado', 17, true, 55, 'Besta', 30, 60);
+
+insert into instancia values(16,27 ,55 ,64);
+
+insert into personagem values('17',false);
+insert into npc values(17,'Lobo Raivoso', 7, true, 16, 'Besta', 10, 20);
+
+insert into instancia values(17,28 ,16 ,64);
+insert into instancia values(17,29 ,16 ,65);
+insert into instancia values(17,30 ,16 ,49);
+insert into instancia values(17,31 ,16 ,50);
+
+insert into personagem values('18',false);
+insert into npc values(18,'Maga da Floresta', 700, false,45, 'Primordial', 60, 50);
+
+insert into instancia values(18,32 ,700 ,78);
+
+insert into personagem values('19',false);
+insert into npc values(19,'Mutante', 100, true,30, 'Aberração', 60, 50);
+
+insert into instancia values(19,34 ,100 ,96);
+insert into instancia values(19,35 ,100 ,98);
+insert into instancia values(19,36 ,100 ,99);
+insert into instancia values(19,37 ,100 ,100);
+insert into instancia values(19,38 ,100 ,127);
+insert into instancia values(19,39 ,100 ,128);
+
+insert into personagem values('20',false);
+insert into npc values(20,'Marceline', 300, false,30, 'Vampiro', 60, 90);
+
+insert into instancia values(20,40 ,300 ,90);
+
+insert into personagem values('21',false);
+insert into npc values(21,'Rei Gelado', 300, false,34, 'Humano', 70, 20);
+
+insert into instancia values(21,41 ,300 ,53);
+
+insert into personagem values('22',false);
+insert into npc values(22,'Muriel', 40, false,3, 'Humano', 10, 20);
+
+insert into instancia values(22,42 ,40 ,97);
+
+insert into personagem values('23',false);
+insert into npc values(23,'Coragem', 40, false,5, 'cachorro', 10, 30);
+
+insert into instancia values(23,43 ,40 ,97);
+
+insert into personagem values('24',false);
+insert into npc values(24,'Eustácio', 20, false,3, 'Humano', 10, 20);
+
+insert into instancia values(24,44 ,20 ,97);
+
+insert into personagem values('25',false);
+insert into npc values(25,'Gunter', 600, false,999, 'Pinguim', 700, 200);
+
+insert into instancia values(25,45 ,600 ,54);
+
+
 
 insert into missao values('Salvar princesa ',true , 'Salvar princesa', 100);
 
