@@ -508,25 +508,150 @@ insert into npc values(25,'Gunter', 600, false,999, 'Pinguim', 700, 200);
 
 insert into instancia values(25,45 ,600 ,54);
 
+insert into personagem values('26',false);
+insert into npc values(26,'Esqueleto', 100, true,48, 'Besta', 40, 20);
+
+insert into instancia values(26,46 ,100 ,125);
+insert into instancia values(26,47 ,100 ,139);
+insert into instancia values(26,48 ,100 ,140);
+insert into instancia values(26,49 ,100 ,155);
+insert into instancia values(26,50 ,100 ,170);
+insert into instancia values(26,51 ,100 ,168);
+insert into instancia values(26,52 ,100 ,169);
+insert into instancia values(26,53 ,100 ,167);
+insert into instancia values(26,54 ,100 ,185);
+insert into instancia values(26,55 ,100 ,195);
+insert into instancia values(26,56 ,100 ,196);
+insert into instancia values(26,57 ,100 ,199);
+insert into instancia values(26,58 ,100 ,200);
+insert into instancia values(26,59 ,100 ,201);
+
+insert into personagem values('27',false);
+insert into npc values(27,'Planta do mal', 10, true,8, 'Planta', 20, 9);
+
+insert into instancia values(27,60 ,10 ,218);
+insert into instancia values(27,61 ,10 ,220);
+
+insert into personagem values('28',false);
+insert into npc values(28,'Demônio', 60, true,32, 'Infernal', 60, 20);
+
+insert into instancia values(28,62 ,60 ,159);
+insert into instancia values(28,63 ,60 ,160);
+insert into instancia values(28,64 ,60 ,174);
+insert into instancia values(28,65 ,60 ,189);
+insert into instancia values(28,66 ,60 ,204);
+
+insert into personagem values('29',false);
+insert into npc values(29,'Dracolich', 700, true,32, 'Primordial', 50, 200);
+
+insert into instancia values(29,67 ,700 ,152);
+
+insert into personagem values('30',false);
+insert into npc values(30,'Hunson Abadeer', 700, true,32, 'Primordial', 106, 200);
+
+insert into instancia values(30,68 ,700 ,234);
+
+insert into personagem values('31',false);
+insert into npc values(31,'Homem Nuvem', 2, false,1, 'nuvem', 1, 1);
+
+insert into instancia values(31,69 ,2 ,147);
+insert into instancia values(31,70 ,2 ,163);
+
+insert into personagem values('32',false);
+insert into npc values(32,'Criança Nuvem', 1, false,1, 'nuvem', 1, 1);
+
+insert into instancia values(32,71 ,1 ,149);
+
+insert into personagem values('34',false);
+insert into npc values(34,'Faraó', 590, true,99, 'Esqueleto', 500, 500);
+
+insert into instancia values(34,73 ,590 ,198);
+
+insert into personagem values('35',false);
+insert into npc values(35,'Cyberlemongrab', 400, true,99, 'doce', 600, 500);
+
+insert into instancia values(35,74 ,400 ,230);
+
+insert into personagem values('36',false);
+insert into npc values(36,'Vermes Espaciais', 100, true,99, 'verme', 10, 300);
+
+insert into instancia values(36,75 ,100 ,226);
+insert into instancia values(36,76 ,100 ,227);
+insert into instancia values(36,77 ,100 ,228);
+insert into instancia values(36,78 ,100 ,241);
+insert into instancia values(36,79 ,100 ,242);
+insert into instancia values(36,80 ,100 ,243);
+
+insert into personagem values('37',false);
+insert into npc values(37,'Robô mal', 200, true,99, 'robô', 100, 300);
+
+insert into instancia values(37,81 ,200 ,263);
 
 
-insert into missao values('Salvar princesa ',true , 'Salvar princesa', 100);
+INSERT INTO Missao VALUES ('ganhar arma', false, 'Forje uma espada com o mordo menta', 100);
+INSERT INTO Missao VALUES ('AmigoStoyAqui', false, 'ponha alguém na party', 50);
+INSERT INTO Missao VALUES ('Mate um monstro', false, 'Mate um bicho no mapa', 150);
+INSERT INTO Missao VALUES ('Festa no céu', false, 'chegue no céu', 150);
+INSERT INTO Missao VALUES ('Reino de fogo', false, 'Busque o reino de fogo', 200);
+INSERT INTO Missao Values ('Salve a dama', false, 'Salve a Princesa de fogo', 100);
+INSERT INTO Missao VALUES ('Mate o rei de fogo', true, 'Confronto com o Chefe', 500);
+INSERT INTO Missao VALUES ('ficando forte', false, 'Chegue no Deserto', 100);
+INSERT INTO Missao VALUES ('Rainha Vampira', false, 'Encontre a Marceline',100);
+INSERT INTO Missao VALUES ('Hora de Aventura', false, 'Coloque Finn na sua party', 60);
+INSERT INTO Missao VALUES ('inferno é Fogo', false, 'siga pra noitosfera',200);
+INSERT INTO Missao VALUES ('Caçar demônios', false, 'Mate três criaturas no inferno', 200);
+INSERT INTO Missao VALUES ('Embate a noitosfera', true, 'Mate o Hunson Abadeer', 800);
+INSERT INTO Missao VALUES ('Rumo ao Litch', false, 'Chegue ao ferreiro da dungeon', 50);
+INSERT INTO Missao VALUES ('Maior, mais forte', false, 'Use o ferreiro',100);
+INSERT INTO Missao VALUES ('conquista do espaço', false, 'Encontre o espaço sideral', 200);
+INSERT INTO Missao VALUES ('Duro de matar', true, 'mate o lemongrab. Pra sempre', 900);
+INSERT INTO Missao VALUES ('Morte ao bruxo', true, 'mate o Litch', 1000);
+INSERT INTO Missao VALUES ('Salve Princesa', false, 'Ache a Princesa Jujuba', 999);
 
-insert into missao values('matar esqueletos ',false , 'Salvar princesa', 100);
 
-insert into prerequisitomissao values('matar esqueletos', 'Salvar princesa');
+INSERT INTO PreRequisitoMissao VALUES ('ganhar arma', 'Mate um monstro');
+INSERT INTO PreRequisitoMissao VALUES ('ganhar arma', 'AmigoStoyAqui');
+INSERT INTO PreRequisitoMissao VALUES ('Mate um monstro', 'Reino de fogo');
+INSERT INTO PreRequisitoMissao VALUES ('Mate um monstro', 'Festa no céu');
+INSERT INTO PreRequisitoMissao VALUES ('Reino de fogo', 'Mate o rei de fogo');
+INSERT INTO PreRequisitoMissao VALUES ('Reino de fogo', 'Salve a dama');
+INSERT INTO PreRequisitoMissao VALUES ('ganhar arma', 'ficando forte');
+INSERT INTO PreRequisitoMissao VALUES ('Mate um monstro', 'Rainha Vampira');
+INSERT INTO PreRequisitoMissao VALUES ('AmigoStoyAqui', 'Hora de Aventura');
+INSERT INTO PreRequisitoMissao VALUES ('Mate o rei de fogo', 'inferno é Fogo');
+INSERT INTO PreRequisitoMissao VALUES ('inferno é Fogo', 'Caçar demônios');
+INSERT INTO PreRequisitoMissao VALUES ('Caçar demônios', 'Embate a noitosfera');
+INSERT INTO PreRequisitoMissao VALUES ('Embate a noitosfera', 'Rumo ao Litch');
+INSERT INTO PreRequisitoMissao VALUES ('Rumo ao Litch', 'Maior, mais forte');
+INSERT INTO PreRequisitoMissao VALUES ('Rumo ao Litch', 'conquista do espaço');
+INSERT INTO PreRequisitoMissao VALUES ('conquista do espaço', 'Duro de matar');
+INSERT INTO PreRequisitoMissao VALUES ('Duro de matar', 'Morte ao bruxo');
+INSERT INTO PreRequisitoMissao VALUES ('Morte ao bruxo', 'Salve Princesa');
 
-insert into missao values('ganhar espada',false , 'forjar uma espada ', 100);
+INSERT INTO Contem VALUES (1, 'ganhar arma');
+INSERT INTO Contem VALUES (1, 'AmigoStoyAqui');
+INSERT INTO Contem VALUES (5, 'Mate um monstro');
+INSERT INTO Contem VALUES (73, 'Festa no céu');
+INSERT INTO Contem VALUES (5, 'Reino de fogo');
+INSERT INTO Contem VALUES (43, 'Salve a dama');
+INSERT INTO Contem VALUES (43, 'Mate o rei de fogo');
+INSERT INTO Contem VALUES (43, 'ficando forte');
+INSERT INTO Contem VALUES (5, 'Rainha Vampira');
+INSERT INTO Contem VALUES (20, 'Hora de Aventura');
+INSERT INTO Contem VALUES (115, 'inferno é Fogo');
+INSERT INTO Contem VALUES (145, 'Caçar demônios');
+INSERT INTO Contem VALUES (204, 'Embate a noitosfera');
+INSERT INTO Contem VALUES (204, 'Rumo ao Litch');
+INSERT INTO Contem VALUES (202, 'Maior, mais forte');
+INSERT INTO Contem VALUES (202, 'conquista do espaço');
+INSERT INTO Contem VALUES (202, 'Duro de matar');
+INSERT INTO Contem VALUES (230, 'Morte ao bruxo');
+INSERT INTO Contem VALUES (262, 'Salve Princesa');
 
-insert into prerequisitomissao values('ganhar espada', 'matar esqueletos');
-
-insert into chefe values (1,'Salvar princesa ',1);
-
-insert into personagem  values('2', true);
-
-insert into fazmissao values(2, 'Salvar princesa', false);  
-
-insert into contem values(1,'Salvar princesa', 'Incompleto' );
+INSERT INTO chefe VALUES (13, 'Mate o rei de fogo', 11);
+INSERT INTO chefe VALUES (68, 'Embate a noitosfera', 30);
+INSERT INTO chefe VALUES (74, 'Duro de matar', 35);
+INSERT INTO chefe VALUES (1, 'Morte ao bruxo', 1);
 
 insert into habilidade values(1, 'Elasticidade', 0, 100);
 
