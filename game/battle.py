@@ -1,16 +1,6 @@
 from Banco import *
 from random import randint
 
-
-#funcao localizar persogem mostra coordenada do local
-#funcao pega essa coordenada e vê quais instancias de monstro estao no local
-#chamar a funcao de lutar, passando numero e id da instancia, e o id do personagem que vem da main
-
-#select i.personagem,i.numero, i.vida, n.nome, n.vidamax, n.especie, n.lvl, n.forca, n.defesa from instancia i
-#join npc n
-#on i.personagem = n.personagem;
-#luta(nome: str, especie: str, forca: int, defesa: int, vidaInstacia: int):
-
 def luta(idNPC: int, numInstancia: int, jogadorID: int):
    
     
@@ -72,7 +62,7 @@ def luta(idNPC: int, numInstancia: int, jogadorID: int):
             case 'atacar':
                 
                 #listar opcoes de ataque que o personagem possui: habilidades e itens do inventario que são do tipo armamento
-                print("Voce pode atacar com habilidades ou itens: (hab/it)\n")
+                print("Voce pode atacar com habilidades, itens ou usar poção: (hab/it/poc)\n")
                 atacar = input()
 
                 if(atacar == "habilidade" or atacar == "hab" or atacar == "habilidades"):
@@ -87,11 +77,11 @@ def luta(idNPC: int, numInstancia: int, jogadorID: int):
                     hab = input()
                     ID = consulta.getPossuiHabPK(jogadorID, hab)
                     if ID is not None:
-                        danoAtaque = ID[0][3] + randint(-10,10)
-                        defesa = defesaJogador + randint(-10,10)
+                        danoAtaque = ID[0][3] + randint(-4,3)
+                        defesa = defesaJogador + randint(-4,3)
 
-                        danoMonstro = forca + randint(-10,10)
-                        defesaMonstro = defesa + randint(-10,10)
+                        danoMonstro = forca + randint(-4,3)
+                        defesaMonstro = defesa + randint(-4,3)
 
                         danoInfligidoJogador = danoMonstro - defesaJogador
                         danoInfligidoMonstro = danoAtaque - defesaMonstro
@@ -108,8 +98,8 @@ def luta(idNPC: int, numInstancia: int, jogadorID: int):
                             inimigoAux.atualizarVidaInstanciaID(idNPC, numInstancia, novaVidaMonstro)
                     
                     else:
-                        danoMonstro = forca + randint(-10,10)
-                        defesa = defesaJogador + randint(-10,10)
+                        danoMonstro = forca + randint(-4,3)
+                        defesa = defesaJogador + randint(-4,3)
                         danoInfligidoJogador = danoMonstro - defesaJogador
 
                         print(f"jogador{danoInfligidoJogador}\n")
@@ -119,23 +109,68 @@ def luta(idNPC: int, numInstancia: int, jogadorID: int):
                             jogador.atualizarVidaPCID(jogadorID, novaVida)
 
                 
-                #if(atacar == "i" or atacar == "item" or atacar == "it"):
+                elif(atacar == "i" or atacar == "item" or atacar == "it"):
 
+                    print("\n itens disponiveis:\n")
+                    print("ID | Nome | Dano\n\n")
 
+                    inv = Inventario()
+                    inv.consultarInventarioArmasID(jogadorID)
 
+                    print("\nDigite apenas o id do item!\n")
+                    item = input()
+                    IDi = inv.getInventarioArmasID(jogadorID, item)  
 
+                    if IDi is not None:
+                        danoAtaque = IDi[0][2] + randint(-4,3)
+                        defesa = defesaJogador + randint(-4,3)
+
+                        danoMonstro = forca + randint(-4,3)
+                        defesaMonstro = defesa + randint(-4,3)
+
+                        danoInfligidoJogador = danoMonstro - defesaJogador
+                        danoInfligidoMonstro = danoAtaque - defesaMonstro
+
+                        print(f"jogador -{danoInfligidoJogador}")
+                        print(f"monstro -{danoInfligidoMonstro}")
+
+                        if(danoInfligidoJogador > 0):
+                            novaVida = vidaJogador - danoInfligidoJogador
+                            jogador.atualizarVidaPCID(jogadorID, novaVida)
                         
-                    #ao atacar, fazer o sistema de dano. Decrementar da vida da instancia o dano do personagem
-                    #e ver quanto de dano tira dependendo da defesa do npc monstro
-                    #se a vida do personagem ou do monstro for <=0 parar luta
-                    #se a instancia tiver perdido, deletar instancia da tabela instancias
-                    #se o personagem tiver perdido GAME OVER, mandar pro spawn ou inicio da dungeon
-                    #ao final, tem que atualizar no banco as duas tabelas de qualquer forma
-                    #porque a vida que o personagem perdeu na batalha continua perdida 
+                        if(danoInfligidoMonstro > 0):
+                            novaVidaMonstro = vidaInstacia - danoInfligidoMonstro
+                            inimigoAux.atualizarVidaInstanciaID(idNPC, numInstancia, novaVidaMonstro)
                     
+                    else:
+                        danoMonstro = forca + randint(-4,3)
+                        defesa = defesaJogador + randint(-4,3)
+                        danoInfligidoJogador = danoMonstro - defesaJogador
+
+                        print(f"jogador -{danoInfligidoJogador}\n")
+
+                        if(danoInfligidoJogador > 0):
+                            novaVida = vidaJogador - danoInfligidoJogador
+                            jogador.atualizarVidaPCID(jogadorID, novaVida)
+
+                elif(atacar == "poção" or atacar == "poc" or atacar == "pocao"):
+                    print("\nPoções disponiveis:\n")
+                    print("ID | Nome | Cura | Usos\n\n")
+
+                    inv2 = Inventario()
+                    inv2.consultarInventarioConsumiveisID(jogadorID)
+
+                    print("\nDigite apenas o ID da poção!\n")
+
+                    IdPocao = input()
+                    teste = inv2.getInventarioConsumiveisID(jogadorID, IdPocao)
+
+                    if teste is not None:
+                        novaVida = vidaJogador + teste[0][2]
+                        jogador.atualizarVidaPCID(jogadorID, novaVida)                    
                 
             case 'fugir':
-                print("voce foge\n")
+                print("Você fugiu!\n")
                 break
 
             case _:
@@ -145,9 +180,3 @@ def luta(idNPC: int, numInstancia: int, jogadorID: int):
         print("\nVoce derrotou o monstro\n")
 
 luta(3, 1, 4)
-
-
-
-
-
-##def luta(forca: int, nome: str, especie: str, defesa: int, vidaInstacia: int, instanciaNum: int):
