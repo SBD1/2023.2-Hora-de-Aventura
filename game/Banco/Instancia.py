@@ -107,6 +107,23 @@ class Instancia:
         finally:
             cursor.close()
 
+    def atualizarVidaInstanciaID(self, IDinstancia: int, numeroInstancia: int, novaVida: int):
+        try:
+            conexao = self.db.conexao
+            cursor = conexao.cursor()
+            cursor.execute(f"""UPDATE instancia SET vida = '{novaVida}' WHERE personagem = '{IDinstancia}' AND numero = '{numeroInstancia}'; """)
+            linhas_afetadas = cursor.rowcount
+            conexao.commit()  
+
+            if linhas_afetadas == 0:
+                print("Não há dados na tabela que correspondam à condição de atualização.")
+        except psycopg2.Error as e:
+            print("Erro ao atualizar a vida da instância:", e)
+        finally:
+            cursor.close()
+
+
+
     def getInstanciaID(self, personagem: int, numero: int):
         try:
             conexao = self.db.conexao

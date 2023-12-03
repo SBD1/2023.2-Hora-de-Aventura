@@ -38,6 +38,22 @@ class PossuiHab:
             print(f"Encontramos problemas ao fazer a consulta. Erro: {e}\n")
         finally:
             cursor.close()
+
+    def getPossuiHabPK(self,personagem: int, idescolhido: int):
+        try:
+            conexao = self.db.conexao
+            cursor = conexao.cursor()
+            cursor.execute(f"SELECT IDhabilidade, Nome, Tempo_de_recarga, Dano "
+                           f"FROM Habilidade "
+                           f"INNER JOIN PossuiHab ON Habilidade = IDhabilidade "
+                           f"WHERE Personagem = {personagem} AND idhabilidade = {idescolhido};")
+            consulta = cursor.fetchall()
+            if consulta:
+                return consulta
+        except psycopg2.IntegrityError as e:
+            print(f"Encontramos problemas ao fazer a consulta. Erro: {e}\n")
+        finally:
+            cursor.close()
     
     def consultarPossuiHab(self):
         try:
