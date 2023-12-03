@@ -5,7 +5,6 @@ personagem = Personagem()
 possuiHab = PossuiHab()
 lc=Local()
 
-
 def CarregarJogo():
     Save=input("\033[1;32mDigite o ID do seu personagem: \033[0m")
     jogador=pc.getPC(Save)
@@ -58,18 +57,16 @@ def criarJogador():
     personagem.criarPersonagem(pcID, False) 
     criarPC.criarPc(pcID,pcNome,0,100,0,0,pcEspecie,5,0,0)
     menuJogador()
-                
+                                
 def verJogadorOp():
-    NomedoJogador = input("Digite o Nome do jogador que busca:")
+    NomedoJogador = input("Digite o Nome do jogador(es) que busca:")
     jogador = pc.consultarPCNome(NomedoJogador)
-    """ 
-    for x in jogador:
-         """
-    print("\n--------------------------------------------------------------------------------\n")
-    print(f"\033[1;32m\nIDjogador: {jogador}\nNome: {jogador}\nVida:{jogador}\nLVL: {jogador}\nDinheiro: {jogador[0][5]}\033[0m")
-    print("\n--------------------------------------------------------------------------------\n")
+    tuplas = [f"| ID:{x[0]} | Nome: {x[1]} | LVL:{x[4]} | Especie:{x[6]}|" for x in jogador]
+    for y in tuplas:
+        print(y)  
     menuJogador()
-
+    
+    
 def menuJogador():
     print("\033[1;32m Opções de Jogador")
     print("\033[0;36m|1| = Criar personagem")
@@ -87,4 +84,5 @@ def menuJogador():
             verJogadorOp()                
                             
 
-
+#verJogadorOp()
+#ListarHabilidadePersonagem()

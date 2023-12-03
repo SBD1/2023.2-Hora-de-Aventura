@@ -45,7 +45,7 @@ class Pc:
             cursor.execute(f"""Select * from PC where nome = '{Nome}'; """)
             consultarPC = cursor.fetchall() 
             if(consultarPC == []):
-                print("Não existe nenhum PC com esse nome ")
+                print("Não há Personagem com esse nome no banco")
             else:
                 return consultarPC
         except psycopg2.Error as e:
@@ -90,4 +90,4 @@ class Pc:
             print("Erro ao cosultar os PC's", e )
         finally:
             cursor.close()
-            
+
