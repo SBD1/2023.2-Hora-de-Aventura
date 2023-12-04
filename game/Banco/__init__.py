@@ -8,6 +8,7 @@ from .Dropa import *
 from .FazMissao import *
 from .Habilidade import *
 from .Instancia import *
+from .InstanciaItem import *
 from .InstanciaItem import *   
 from .Inventario import * 
 from .Item import * 
@@ -17,7 +18,8 @@ from .Missao import *
 from .Mundo import * 
 from .Npc import * 
 from .Pc import * 
-from .Personagem import * 
+from .Personagem import *
+from .PossuiHab import * 
 from .PossuiItem import * 
 from .PreRequisitoHab import * 
 from .PreRequistoMissao import *

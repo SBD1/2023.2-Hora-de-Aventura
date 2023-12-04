@@ -137,8 +137,6 @@ create table Consumivel(
     foreign key (Item) references Item(IDItem)
 );
 
---Tabela de n pra instanciaItem pra NPC 
-
 CREATE TABLE Inventario (
 	IDinv INT PRIMARY KEY,
 	QTD_de_itens INT,
@@ -180,6 +178,7 @@ CREATE TABLE InstanciaItem (
     FOREIGN KEY (IDitem) REFERENCES Item(IDitem),
     foreign key (IDinv) references Inventario(IDinv)
 );
+
 
 CREATE TABLE Dropa(
 	NPC INT,
