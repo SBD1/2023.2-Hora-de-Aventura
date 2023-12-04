@@ -105,7 +105,7 @@ def luta(idNPC: int, numInstancia: int, jogadorID: int):
 
                         os.system('cls')
                         print_devagar(f"jogador -{danoInfligidoJogador}\n")
-                        print_devagar(f"monstro -{danoInfligidoMonstro}")
+                        print_devagar(f"monstro -{danoInfligidoMonstro}\n\n")
 
                         if(danoInfligidoJogador > 0):
                             novaVida = vidaJogador - danoInfligidoJogador
@@ -141,7 +141,7 @@ def luta(idNPC: int, numInstancia: int, jogadorID: int):
                         defesa = defesaJogador + randint(-4,3)
                         danoInfligidoJogador = danoMonstro - defesaJogador
 
-                        print_devagar(f"jogador -{danoInfligidoJogador}\n")
+                        print_devagar(f"jogador -{danoInfligidoJogador}\n\n")
 
                         if(danoInfligidoJogador > 0):
                             novaVida = vidaJogador - danoInfligidoJogador
@@ -189,8 +189,8 @@ def luta(idNPC: int, numInstancia: int, jogadorID: int):
                         danoInfligidoMonstro = danoAtaque - defesaMonstro
 
                         os.system('cls')
-                        print_devagar(f"jogador -{danoInfligidoJogador}")
-                        print_devagar(f"monstro -{danoInfligidoMonstro}")
+                        print_devagar(f"jogador -{danoInfligidoJogador}\n")
+                        print_devagar(f"monstro -{danoInfligidoMonstro}\n\n")
 
                         if(danoInfligidoJogador > 0):
                             novaVida = vidaJogador - danoInfligidoJogador
