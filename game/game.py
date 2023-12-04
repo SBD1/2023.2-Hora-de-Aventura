@@ -4,6 +4,7 @@ pc = Pc()
 personagem = Personagem()
 possuiHab = PossuiHab()
 lc=Local()
+instanciaItem = Instanciaitem()
 
 def CarregarJogo():
     Save=input("\033[1;32mDigite o ID do seu personagem: \033[0m")
@@ -44,29 +45,58 @@ def EncontrarSalas(pos, Id):
             pc.updatePcLocal(Id, mudar)
 
 
-def ListarHabilidadePersonagem():    
-    habilidadePersonagem = input("\033[1;32mDigite o ID do seu personagem: \033[0m")
-    habilidade = possuiHab.consultarPossuiHabPersonagem(habilidadePersonagem)
-    return habilidade[0]
+""" 
+def ListarInventarioJogador(IDjogador):
+     """
+    
+    
+    
+    
 
-def criarJogador():
-    pcID = input("ID do jogador :")
-    pcNome = input("Nome do jogador :")
-    pcEspecie = input("Especie do jogador :")
+def ListarHabilidadePersonagem(pcID):    
+    habilidade = possuiHab.consultarPossuiHabPersonagem(pcID)
+    tuplasHabilidade =[f"|Habilidades que possui\n|Nome Habilidade:| {y[1]}\n\n" for y in habilidade]
+    for x in tuplasHabilidade:
+        print(x)       
+    
+def definirHabilidadePersonagem(pcEspecie,pcID):
+    possuiHab = PossuiHab()       
+    match pcEspecie:
+        case 'Humano':
+            possuiHab.inserirPossuiHab(pcID,1)
+        
+        case 'Povo fogo':
+            possuiHab.inserirPossuiHab(pcID,2)
+        
+        case 'Povo crystal':
+            possuiHab.inserirPossuiHab(pcID,3)
+                
+        case 'Vampiro':
+            possuiHab.inserirPossuiHab(pcID,4)
+    
+def deletarJogador(pcID):
     criarPC = Pc()
-    personagem.criarPersonagem(pcID, False) 
-    criarPC.criarPc(pcID,pcNome,0,100,0,0,pcEspecie,5,0,0)
-    menuJogador()
-                                
-def verJogadorOp():
-    NomedoJogador = input("Digite o Nome do jogador(es) que busca:")
+    criarPC.deletarPC(pcID)
+    
+def verJogadorOp(NomedoJogador,pcID):
     jogador = pc.consultarPCNome(NomedoJogador)
-    tuplas = [f"| ID:{x[0]} | Nome: {x[1]} | LVL:{x[4]} | Especie:{x[6]}|" for x in jogador]
+    tuplas = [f"|Caracteristicas personagem\n| ID:{x[0]} | Nome: {x[1]} | LVL:{x[4]}| Especie:{x[6]}|\n\n" for x in jogador]
     for y in tuplas:
-        print(y)  
+        print(y)
+    ListarHabilidadePersonagem(pcID)
     menuJogador()
-    
-    
+            
+def atualizarJogador(pcID,pcNome):
+    pc.updatePc(pcID,pcNome)
+    menuJogador()
+
+def criarJogador(pcID,pcNome,pcEspecie):
+    criarPC = Pc()
+    personagem.criarPersonagem(pcID, True) 
+    criarPC.criarPc(pcID,pcNome,0,100,0,0,pcEspecie,5,0,0)
+    definirHabilidadePersonagem(pcEspecie, pcID)
+    menuJogador()
+
 def menuJogador():
     print("\033[1;32m Opções de Jogador")
     print("\033[0;36m|1| = Criar personagem")
@@ -79,10 +109,19 @@ def menuJogador():
     
     match OpçaoJogador:
         case '1':
-            criarJogador()
+            pcID = input("ID do jogador :")
+            pcNome = input("Nome do jogador :")
+            pcEspecie = input("|Especies: |\n|Humano|\n|Povo Fogo|\n|Povo crystal|\n|Vampiro|:\n")
+            criarJogador(pcID,pcNome,pcEspecie)
         case '2':
-            verJogadorOp()                
-                            
-
-#verJogadorOp()
-#ListarHabilidadePersonagem()
+            pcID = input("ID do jogador :")
+            NomedoJogador = input("Digite o Nome do jogador(es) que busca:")
+            verJogadorOp(NomedoJogador,pcID)                
+        case '3':
+            NomedoJogador = input("Digite seu Nome")
+            pcID = input("ID do jogador que você deseja atualizar o Nome:")
+            pcNome = input("Novo Nome do jogador :")
+            atualizarJogador(NomedoJogador,pcID,pcNome)
+        case '4':
+            pcID = input("ID do jogador que deseja deletar :")
+            deletarJogador(pcID)

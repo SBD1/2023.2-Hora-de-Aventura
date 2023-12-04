@@ -38,7 +38,24 @@ class Instanciaitem:
             print(f"Encontramos problemas ao fazer a consulta. Erro: {e}\n")
         finally:
             cursor.close()
-    
+
+    def consultarInstanciaItemJogador(self, Personagem:int):
+        try:
+            conexao = self.db.conexao
+            cursor = conexao.cursor()
+            cursor.execute(f"SELECT  I.IDitem FROM Item I JOIN InstanciaItem Ia ON I.IDitem = Ia.IDitem"
+                            f"JOIN Inventario Inv ON Ia.IDinv = Inv.IDinv"
+                            f"JOIN Personagem P ON Inv.Personagem = P.IDpersonagem"
+                            f"WHERE P.IDpersonagem = {Personagem};")
+            consulta = cursor.fetchall()
+            if not consulta:
+                print("Não foi há instanciaItem cadastrados\n")
+            else:
+                return consulta
+        except psycopg2.IntegrityError as e:
+            print(f"Encontramos problemas ao fazer a consulta. Erro: {e}\n")
+        finally:
+            cursor.close()
     def consultarInstanciaItem(self):
         try:
             conexao = self.db.conexao

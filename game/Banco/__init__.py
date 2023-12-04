@@ -8,6 +8,7 @@ from .Dropa import *
 from .FazMissao import *
 from .Habilidade import *
 from .Instancia import *
+from .InstanciaItem import *
 from .InstanciaItem import *   
 from .Inventario import * 
 from .Item import * 
