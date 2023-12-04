@@ -45,7 +45,7 @@ while(True):
     print("\033[0;36m|1| = Acessar Menu")
     print("|2| = Carregar Jogo")
     print("|3| = Fechar jogo\n")        
-    print("\033[1;32mEscolha uma opção de 1 a 5:\033[0m\n")
+    print("\033[1;32mEscolha uma opção de 1 a 3:\033[0m\n")
     
     opcao = input()
     print("Opção escolhida: ", opcao)
@@ -68,22 +68,10 @@ while(True):
                 print("opcoes 2 ") 
                    
         case'2':
-            jogador=game.CarregarJogo()
+            game.CarregarJogo()
 
-            posicao=lc.getLocalPc(jogador[0])
-            print("\n--------------------------------------------------------------------------------\n")
-
-            print(f"\033[1;32m{jogador[1]}\nLocal: {posicao[0][2]}\nDescrição: {posicao[0][1]}\nCoordenada: {posicao[0][0]}\033[0m")
-
-            print("\n--------------------------------------------------------------------------------\n")
-
-
-            game.EncontrarSalas(jogador[9], jogador[0])
-
-            #print(f"\nTeste: {jogador}")
-            print("\n"+80*"-"+"\n")
         
         case '3':
-           print("Finalizando o jogo.....")
+           print("\033[31;1;4mFinalizando o jogo.....\033[0m")
            break    
              
