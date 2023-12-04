@@ -5,6 +5,7 @@ personagem = Personagem()
 possuiHab = PossuiHab()
 lc=Local()
 instanciaItem = Instanciaitem()
+inventario = Inventario()
 
 def CarregarJogo():
     Save=input("\033[1;32mDigite o ID do seu personagem: \033[0m")
@@ -45,13 +46,10 @@ def EncontrarSalas(pos, Id):
             pc.updatePcLocal(Id, mudar)
 
 
-""" 
-def ListarInventarioJogador(IDjogador):
-     """
-    
-    
-    
-    
+        
+def inserirInventarioPersonagem(pcID):
+    IDinv+=1
+    inventario.inserirInventario(IDinv,1,pcID)    
 
 def ListarHabilidadePersonagem(pcID):    
     habilidade = possuiHab.consultarPossuiHabPersonagem(pcID)
@@ -95,6 +93,7 @@ def criarJogador(pcID,pcNome,pcEspecie):
     personagem.criarPersonagem(pcID, True) 
     criarPC.criarPc(pcID,pcNome,0,100,0,0,pcEspecie,5,0,0)
     definirHabilidadePersonagem(pcEspecie, pcID)
+    inserirInventarioPersonagem(pcID)
     menuJogador()
 
 def menuJogador():
