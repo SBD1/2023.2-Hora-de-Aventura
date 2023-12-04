@@ -10,7 +10,20 @@ inventario = Inventario()
 def CarregarJogo():
     Save=input("\033[1;32mDigite o ID do seu personagem: \033[0m")
     jogador=pc.getPC(Save)
-    return jogador[0]
+    while(True):
+        posicao=lc.getLocalPc(jogador[0][0])
+        print("\n"+80*"-"+"\n")
+        print(f"\033[1;32m{jogador[0][1]}\nLocal: {posicao[0][2]}\nDescrição: {posicao[0][1]}\nCoordenada: {posicao[0][0]}\033[0m")
+        print("\n"+80*"-"+"\n")
+        print("\033[0;36m|1| = Mudar de sala\n|2| = Voltar para o menu principal\033[0m")
+        opcao = input()
+        match opcao:
+            case '1':
+                EncontrarSalas(posicao[0][0], jogador[0][0])
+            case '2':
+                print("\033[31;1;4mVoltando para o menu principal\033[0m")
+                break
+
 
 def EncontrarSalas(pos, Id):
     Quadrado=2
@@ -42,7 +55,7 @@ def EncontrarSalas(pos, Id):
 
     for i in salas_disponiveis:
         if(i==mudar):
-            print("")
+            print(f"Você viajou para a sala: {i}")
             pc.updatePcLocal(Id, mudar)
 
 
@@ -120,7 +133,7 @@ def menuJogador():
             NomedoJogador = input("Digite seu Nome")
             pcID = input("ID do jogador que você deseja atualizar o Nome:")
             pcNome = input("Novo Nome do jogador :")
-            atualizarJogador(NomedoJogador,pcID,pcNome)
+            atualizarJogador(pcID,pcNome)
         case '4':
             pcID = input("ID do jogador que deseja deletar :")
             deletarJogador(pcID)
