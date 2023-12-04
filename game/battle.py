@@ -279,6 +279,3 @@ def luta(idNPC: int, numInstancia: int, jogadorID: int):
 
             case _:
                 print_devagar("\nDigite uma das opcoes!\n")
-
-
-luta(3, 2, 4)
