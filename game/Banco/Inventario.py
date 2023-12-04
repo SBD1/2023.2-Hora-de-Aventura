@@ -130,3 +130,21 @@ class Inventario:
             print(f"Encontramos problemas ao fazer a consulta. Erro: {e}\n")
         finally:
             cursor.close()
+            
+    def verItensInventario(self, IDpersonagem:int):
+        try:
+            conexao=self.db.conexao
+            cursor=conexao.cursor()
+            cursor.execute(f"""SELECT I.IDitem  FROM Item I """
+                       f"""JOIN InstanciaItem Ia ON I.IDitem = Ia.IDitem """
+                       f"""JOIN Inventario Inv ON Ia.IDinv = Inv.IDinv """
+                       f"""JOIN Personagem P ON Inv.Personagem = P.IDpersonagem """  # Adicionando um espaço aqui
+                       f"""WHERE P.IDpersonagem = {IDpersonagem};""")
+            conexao.commit()
+            resultado=cursor.fetchall()
+            if resultado:
+                print(resultado[0])
+        except psycopg2.Error as e:
+            print("Erro ao consultar Inventario", e)
+        finally:
+            cursor.close()

@@ -14,8 +14,6 @@ class PossuiHab:
             cursor = conexao.cursor()
             cursor.execute(f"""Insert into possuihab values({personagem},{habilidade});""")
             inserirDropItem = conexao.commit()
-            return print("possuihab inserido com sucesso")
-
         except psycopg2.IntegrityError as e:
             print(f"Erro ao inserir possuihab", e)
         finally:
@@ -31,9 +29,7 @@ class PossuiHab:
             if not consulta:
                 print("Não foi há possuiHab cadastrados\n")
             else:
-                for x in consulta:
-                    print(x)
-                return x
+                return consulta
         except psycopg2.IntegrityError as e:
             print(f"Encontramos problemas ao fazer a consulta. Erro: {e}\n")
         finally:
@@ -65,9 +61,7 @@ class PossuiHab:
             if not consulta:
                 print("Não foi há itens cadastrados\n")
             else:
-                for x in consulta:
-                    print(x)
-                return x
+                return consulta
         except psycopg2.IntegrityError as e:
             print(f"Encontramos problemas ao fazer a consulta. Erro: {e}\n")
         finally:
@@ -87,21 +81,19 @@ class PossuiHab:
         finally:
             cursor.close()
 
-    def consultarPossuiHabPersonagem(self,personagem:int):
+    def consultarPossuiHabPersonagem(self,nome:str):
         try:
             conexao = self.db.conexao
             cursor = conexao.cursor()
             cursor.execute(f"SELECT IDhabilidade, Nome, Tempo_de_recarga, Dano "
                            f"FROM Habilidade "
                            f"INNER JOIN PossuiHab ON Habilidade = IDhabilidade "
-                           f"WHERE Personagem = {personagem};")
+                           f"WHERE Personagem = '{nome}';")
             consulta = cursor.fetchall()
             if not consulta:
                 print("Não foi há possuiHab cadastrados\n")
             else:
-                for x in consulta:
-                    print(x)
-                return x
+                return consulta
         except psycopg2.IntegrityError as e:
             print(f"Encontramos problemas ao fazer a consulta. Erro: {e}\n")
         finally:

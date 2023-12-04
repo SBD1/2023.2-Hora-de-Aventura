@@ -3,58 +3,97 @@ from Banco import *
 pc = Pc()
 personagem = Personagem()
 possuiHab = PossuiHab()
+lc=Local()
+instanciaItem = Instanciaitem()
+inventario = Inventario()
 
 def CarregarJogo():
     Save=input("\033[1;32mDigite o ID do seu personagem: \033[0m")
     jogador=pc.getPC(Save)
     return jogador[0]
 
-def EncontrarSalas(pos):
+def EncontrarSalas(pos, Id):
     Quadrado=2
-    lc=Local()
     Oeste=lc.getLocal(pos-1)
     Norte=lc.getLocal(pos-Quadrado)
     Leste=lc.getLocal(pos+1)
     Sul=lc.getLocal(pos+Quadrado)
     salas_disponiveis = []
 
-    # Adicionar à lista se não for None
-    if Oeste is not None:
+    print("\033[1;32mSuas opções de viajem são:\033[0m\n")
+
+    if Oeste is not None and ((pos)%Quadrado):
+        print(f"\033[0;36mOeste = {Oeste[0][2]} / Cordenada {Oeste[0][0]}\033[0m\n")
         salas_disponiveis.append(Oeste[0][0])
-        #salas_disponiveis.append(Oeste[0][2])
+
     if Norte is not None:
+        print(f"\033[0;36mNorte = {Norte[0][2]} / Cordenada {Norte[0][0]}\033[0m\n")
         salas_disponiveis.append(Norte[0][0])
-        #salas_disponiveis.append(Norte[0][2])
-    if Leste is not None:
+
+    if Leste is not None and (((pos+1)%Quadrado) != 0):
+        print(f"\033[0;36mLeste = {Leste[0][2]} / Cordenada {Leste[0][0]}\033[0m\n")
         salas_disponiveis.append(Leste[0][0])
-        #salas_disponiveis.append(Leste[0][2])
+
     if Sul is not None:
+        print(f"\033[0;36mSul = {Sul[0][2]} / Cordenada {Sul[0][0]}\033[0m\n")
         salas_disponiveis.append(Sul[0][0])
-        #salas_disponiveis.append(Sul[0][2])
 
-    # Retornar a lista de salas disponíveis
-    return salas_disponiveis
+    mudar=int(input("\033[1;32mPara qual sala deseja viajar? Digite -1 para Sair: \033[0m"))
 
-def ListarHabilidadePersonagem():    
-    habilidadePersonagem = input("\033[1;32mDigite o ID do seu personagem: \033[0m")
-    habilidade = possuiHab.consultarPossuiHabPersonagem(habilidadePersonagem)
-    return habilidade[0]
+    for i in salas_disponiveis:
+        if(i==mudar):
+            print("")
+            pc.updatePcLocal(Id, mudar)
 
-def criarJogador():
-    pcID = input("ID do jogador :")
-    pcNome = input("Nome do jogador :")
-    pcEspecie = input("Especie do jogador :")
-    criarPC = Pc()
-    personagem.criarPersonagem(pcID, False) 
-    criarPC.criarPc(pcID,pcNome,0,100,0,0,pcEspecie,5,0,0)
-    menuJogador()
+
+        
+def inserirInventarioPersonagem(pcID):
+    IDinv+=1
+    inventario.inserirInventario(IDinv,1,pcID)    
+
+def ListarHabilidadePersonagem(pcID):    
+    habilidade = possuiHab.consultarPossuiHabPersonagem(pcID)
+    tuplasHabilidade =[f"|Habilidades que possui\n|Nome Habilidade:| {y[1]}\n\n" for y in habilidade]
+    for x in tuplasHabilidade:
+        print(x)       
+    
+def definirHabilidadePersonagem(pcEspecie,pcID):
+    possuiHab = PossuiHab()       
+    match pcEspecie:
+        case 'Humano':
+            possuiHab.inserirPossuiHab(pcID,1)
+        
+        case 'Povo fogo':
+            possuiHab.inserirPossuiHab(pcID,2)
+        
+        case 'Povo crystal':
+            possuiHab.inserirPossuiHab(pcID,3)
                 
-def verJogadorOp():
-    IDdoJogador = input("Digite o ID do jogador que busca:")
-    jogador = pc.getPC(IDdoJogador)
-    print("\n--------------------------------------------------------------------------------\n")
-    print(f"\033[1;32m\nNome: {jogador[0][1]}\nVida:{jogador[0][3]}\nLVL: {jogador[0][4]}\nDinheiro: {jogador[0][5]}\033[0m")
-    print("\n--------------------------------------------------------------------------------\n")
+        case 'Vampiro':
+            possuiHab.inserirPossuiHab(pcID,4)
+    
+def deletarJogador(pcID):
+    criarPC = Pc()
+    criarPC.deletarPC(pcID)
+    
+def verJogadorOp(NomedoJogador,pcID):
+    jogador = pc.consultarPCNome(NomedoJogador)
+    tuplas = [f"|Caracteristicas personagem\n| ID:{x[0]} | Nome: {x[1]} | LVL:{x[4]}| Especie:{x[6]}|\n\n" for x in jogador]
+    for y in tuplas:
+        print(y)
+    ListarHabilidadePersonagem(pcID)
+    menuJogador()
+            
+def atualizarJogador(pcID,pcNome):
+    pc.updatePc(pcID,pcNome)
+    menuJogador()
+
+def criarJogador(pcID,pcNome,pcEspecie):
+    criarPC = Pc()
+    personagem.criarPersonagem(pcID, True) 
+    criarPC.criarPc(pcID,pcNome,0,100,0,0,pcEspecie,5,0,0)
+    definirHabilidadePersonagem(pcEspecie, pcID)
+    inserirInventarioPersonagem(pcID)
     menuJogador()
 
 def menuJogador():
@@ -69,7 +108,19 @@ def menuJogador():
     
     match OpçaoJogador:
         case '1':
-            criarJogador()
+            pcID = input("ID do jogador :")
+            pcNome = input("Nome do jogador :")
+            pcEspecie = input("|Especies: |\n|Humano|\n|Povo Fogo|\n|Povo crystal|\n|Vampiro|:\n")
+            criarJogador(pcID,pcNome,pcEspecie)
         case '2':
-            verJogadorOp()                
-                            
+            pcID = input("ID do jogador :")
+            NomedoJogador = input("Digite o Nome do jogador(es) que busca:")
+            verJogadorOp(NomedoJogador,pcID)                
+        case '3':
+            NomedoJogador = input("Digite seu Nome")
+            pcID = input("ID do jogador que você deseja atualizar o Nome:")
+            pcNome = input("Novo Nome do jogador :")
+            atualizarJogador(NomedoJogador,pcID,pcNome)
+        case '4':
+            pcID = input("ID do jogador que deseja deletar :")
+            deletarJogador(pcID)
