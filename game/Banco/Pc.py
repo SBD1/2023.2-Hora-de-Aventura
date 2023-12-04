@@ -48,6 +48,21 @@ class Pc:
             print("Erro ao cosultar os PC's", e )
         finally:
             cursor.close()
+
+    def atualizarVidaPCID(self,personagem: int, novaVida: int):
+        try:
+            conexao = self.db.conexao
+            cursor = conexao.cursor()
+            cursor.execute(f"""UPDATE pc SET vida = {novaVida} where personagem = '{personagem}'; """)
+            linhas_afetadas = cursor.rowcount
+            conexao.commit()  
+
+            if linhas_afetadas == 0:
+                print("Não há dados na tabela que correspondam à condição de atualização.")
+        except psycopg2.Error as e:
+            print("Erro ao atualizar a vida do pc:", e)
+        finally:
+            cursor.close()
         
     def getPC(self,Personagem:int):
         try:
@@ -101,4 +116,3 @@ class Pc:
             print("Erro ao cosultar os PC's", e )
         finally:
             cursor.close()
-
