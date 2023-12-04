@@ -179,7 +179,7 @@ CREATE TABLE InstanciaItem (
     foreign key (IDinv) references Inventario(IDinv)
 );
 
---Tabela de n pra instanciaItem pra NPC 
+
 CREATE TABLE Dropa(
 	NPC INT,
 	numeroItem INT, 
