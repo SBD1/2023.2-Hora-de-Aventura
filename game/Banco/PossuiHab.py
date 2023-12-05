@@ -67,11 +67,11 @@ class PossuiHab:
         finally:
             cursor.close()
             
-    def deletarPossuiHabilidaed(self, personagem:int, habilidade:int):
+    def deletarPossuiHabilidade(self, personagem:int, habilidade:int):
         try:
             conexao = self.db.conexao
             cursor =  conexao.cursor()
-            cursor.execute(f"DELETE FROM possuiHabilidade WHERE personagem = {personagem} and habilidade = {habilidade};")
+            cursor.execute(f"DELETE FROM possuihab WHERE personagem = {personagem} and habilidade = {habilidade};")
             delecaoFazMissao = conexao.commit()
             return print("PossuiHab  deletado com sucesso!\n")
 
@@ -80,6 +80,21 @@ class PossuiHab:
         
         finally:
             cursor.close()
+
+    def deletarPossuiHabALL(self, personagem: int):
+        try:
+            conexao = self.db.conexao
+            cursor =  conexao.cursor()
+            cursor.execute(f"DELETE FROM possuihab WHERE personagem = {personagem};")
+            delecaoFazMissao = conexao.commit()
+            return 
+
+        except psycopg2.IntegrityError as e:
+            print(f"Encontramos problemas ao fazer a delecao. Erro: {e}\n")
+        
+        finally:
+            cursor.close()
+
 
     def consultarPossuiHabPersonagem(self,nome:str):
         try:

@@ -46,6 +46,21 @@ class Personagem:
         except psycopg2.Error as e : 
             print("Erro ao consultar personagem por ID:", e )            
         finally: 
+            cursor.close()
+
+    def getPersonagemByID(self, IDpersonagem:int):
+        try:
+            conexao = self.db.conexao 
+            cursor = conexao.cursor()
+            cursor.execute(f"""Select * from personagem where IDpersonagem = {IDpersonagem};""")    
+            teste = cursor.fetchall()
+            if(teste == []):
+                print('\n')
+            else:
+                return teste
+        except psycopg2.Error as e : 
+            print("Erro ao consultar personagem por ID:", e )            
+        finally: 
             cursor.close() 
             
     def deletarPersonagem(self, IDpersonagem:int):

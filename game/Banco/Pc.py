@@ -25,17 +25,19 @@ class Pc:
         try:
             conexao = self.db.conexao
             cursor = conexao.cursor()
-            cursor.execute(f"""Select * from PC; """)
-            consultarNPC = cursor.fetchall() 
-            if(consultarNPC == []):
+            cursor.execute(f"""SELECT * FROM PC; """)
+            consultarPC = cursor.fetchall() 
+            if not consultarPC:
                 print("Não existe nenhum PC")
             else:
-                for x in consultarNPC:
-                    print(x)
+                for pc in consultarPC:
+                    print(', '.join(map(str, pc)))
+                print("\n")
         except psycopg2.Error as e:
-            print("Erro ao cosultar os PC's", e )
+            print("Erro ao consultar os PCs:", e)
         finally:
-                cursor.close()
+            cursor.close()
+
                 
     def consultarPCNome(self, Nome:str):
         try:

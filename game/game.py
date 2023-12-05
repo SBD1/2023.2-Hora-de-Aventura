@@ -26,7 +26,7 @@ def CarregarJogo():
 
 
 def EncontrarSalas(pos, Id):
-    Quadrado=2
+    Quadrado=15
     Oeste=lc.getLocal(pos-1)
     Norte=lc.getLocal(pos-Quadrado)
     Leste=lc.getLocal(pos+1)
@@ -60,9 +60,9 @@ def EncontrarSalas(pos, Id):
 
 
         
-def inserirInventarioPersonagem(pcID):
-    IDinv+=1
-    inventario.inserirInventario(IDinv,1,pcID)    
+#def inserirInventarioPersonagem(pcID):
+#    IDinv+=1
+#    inventario.inserirInventario(IDinv,1,pcID)    
 
 def ListarHabilidadePersonagem(pcID):    
     habilidade = possuiHab.consultarPossuiHabPersonagem(pcID)
@@ -73,18 +73,45 @@ def ListarHabilidadePersonagem(pcID):
 def definirHabilidadePersonagem(pcEspecie,pcID):
     possuiHab = PossuiHab()       
     match pcEspecie:
+        ## --- Humanous ---
         case 'Humano':
             possuiHab.inserirPossuiHab(pcID,1)
         
+        case 'humano':
+            possuiHab.inserirPossuiHab(pcID,1)
+        
+        ## --- Povo do fogo ---
         case 'Povo fogo':
             possuiHab.inserirPossuiHab(pcID,2)
         
+        case 'Povo Fogo':
+            possuiHab.inserirPossuiHab(pcID,2)
+        
+        case 'povo fogo':
+            possuiHab.inserirPossuiHab(pcID,2)
+        
+        ## --- Povo do crystal ---
         case 'Povo crystal':
             possuiHab.inserirPossuiHab(pcID,3)
+        
+        case 'Povo Crystal':
+            possuiHab.inserirPossuiHab(pcID,3)
+        
+        case 'povo crystal':
+            possuiHab.inserirPossuiHab(pcID,3)
                 
+        ## --- Vampirous ---        
         case 'Vampiro':
             possuiHab.inserirPossuiHab(pcID,4)
-    
+        
+        case 'vampiro':
+            possuiHab.inserirPossuiHab(pcID,4)
+
+        ## --- Nao digitou nenhuma opcao valida ---
+        case _:
+            print("\nDigite uma opção válida\n")
+            menuJogador()
+
 def deletarJogador(pcID):
     criarPC = Pc()
     criarPC.deletarPC(pcID)
@@ -102,11 +129,22 @@ def atualizarJogador(pcID,pcNome):
     menuJogador()
 
 def criarJogador(pcID,pcNome,pcEspecie):
+    # --- Verificando se o id selecionado pelo usuario já existe no banco ---
+    conferir = personagem.getPersonagemByID(pcID)
+    if conferir is not None:
+        print("\nEste ID já está em uso para algum jogador ou para algum npc")
+        print("\033[1;33mDica: Selecione 'Ver jogadores' pra ver os que já foram criados\n")
+        menuJogador()
+        return
+    if(pcEspecie != "Humano" and pcEspecie != "humano" and pcEspecie != "Povo Fogo" and pcEspecie != "Povo fogo" and pcEspecie != "povo fogo" and pcEspecie != "Povo Crystal" and pcEspecie != "Povo crystal" and pcEspecie != "povo crystal" and pcEspecie != "Vampiro" and pcEspecie != "vampiro"):
+        print("\033[1;31mERROR: ESPÉCIE INVÁLIDA!\n")
+        return
+    #------------------------------------------------------------------------   
     criarPC = Pc()
     personagem.criarPersonagem(pcID, True) 
     criarPC.criarPc(pcID,pcNome,0,100,0,0,pcEspecie,5,0,0)
     definirHabilidadePersonagem(pcEspecie, pcID)
-    inserirInventarioPersonagem(pcID)
+    ##inserirInventarioPersonagem(pcID)
     menuJogador()
 
 def menuJogador():
@@ -123,12 +161,14 @@ def menuJogador():
         case '1':
             pcID = input("ID do jogador :")
             pcNome = input("Nome do jogador :")
-            pcEspecie = input("|Especies: |\n|Humano|\n|Povo Fogo|\n|Povo crystal|\n|Vampiro|:\n")
+            pcEspecie = input("|Especies: |\n|Humano|\n|Povo Fogo|\n|Povo Crystal|\n|Vampiro|:\n")
             criarJogador(pcID,pcNome,pcEspecie)
         case '2':
-            pcID = input("ID do jogador :")
-            NomedoJogador = input("Digite o Nome do jogador(es) que busca:")
-            verJogadorOp(NomedoJogador,pcID)                
+            print("\nPersonagens já criados:\n\n")
+            print("\033[1;32mID | Nome | Xp | Pv | lvl | $ | Esp | For | Def | Local\033[0;36m")
+            conf = pc.consultarPC()
+            menuJogador()
+                          
         case '3':
             NomedoJogador = input("Digite seu Nome")
             pcID = input("ID do jogador que você deseja atualizar o Nome:")
@@ -136,4 +176,9 @@ def menuJogador():
             atualizarJogador(pcID,pcNome)
         case '4':
             pcID = input("ID do jogador que deseja deletar :")
+            #Ordem de deleção: pc -> possuihab -> personagem
             deletarJogador(pcID)
+            #tirar id de possuihab
+            possuiHab.deletarPossuiHabALL(pcID)
+            #tirar id de personagem
+            personagem.deletarPersonagem(pcID)
