@@ -18,10 +18,19 @@ def luta(idNPC: int, numInstancia: int, jogadorID: int):
    
     
     while(True):
-        inimigo = Npc() #atributos do monstro que estao na tabela npc
 
+        inimigo = Npc() #atributos do monstro que estao na tabela npc
+        inimigoAux = Instancia() #atributos da tabela instancia, especificando qual monstro que é
+
+                
+        #pegando a vida da instancia
         i = inimigo.getNPCID(idNPC) # Pegando a informacao da tupla do monstro passado pela funcao
+        iAux = inimigoAux.getInstanciaID(idNPC,numInstancia) # Acessando a informacao da instancia especifica do monstro
         
+        ## verificando se instancia de monstro é valida
+        if iAux is None:
+            print_devagar("\nInimigo já foi derrotado ou não existe\n")
+            break
         
         #carregando status vindos da tabela npc
         nome = i[0][1] 
@@ -30,12 +39,6 @@ def luta(idNPC: int, numInstancia: int, jogadorID: int):
         forca = i[0][6]
         defesa = i[0][7]
 
-        #pegando a vida da instancia
-        inimigoAux = Instancia() #atributos da tabela instancia, especificando qual monstro que é
-        iAux = inimigoAux.getInstanciaID(idNPC,numInstancia) # Acessando a informacao da instancia especifica do monstro
-        if iAux is None:
-            print_devagar("\nInimigo já foi derrotado ou não existe\n")
-            break
         vidaInstacia = iAux[0][2]
 
         if(vidaInstacia <= 0):
@@ -178,7 +181,7 @@ def luta(idNPC: int, numInstancia: int, jogadorID: int):
 
                     print_devagar("\nDigite apenas o id do item!\n")
                     item = input()
-                    IDi = inv.getInventarioArmasID(jogadorID, item)  
+                    IDi = inv.getInventarioArmasID(jogadorID, item)
 
                     if IDi is not None:
                         danoAtaque = IDi[0][2] + randint(-4,3)

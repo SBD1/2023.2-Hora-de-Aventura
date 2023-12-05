@@ -31,7 +31,17 @@ class Pc:
                 print("Não existe nenhum PC")
             else:
                 for pc in consultarPC:
-                    print(', '.join(map(str, pc)))
+                    id = pc[0]
+                    nome = pc[1]
+                    xp = pc[2]
+                    pv = pc[3]
+                    lvl = pc[4]
+                    dinheiro = pc[5]
+                    especie = pc[6]
+                    forca = pc[7]
+                    defesa = pc[8]
+                    local = pc[9]
+                    print(f"{id},  {nome},  {xp},   {pv},   {lvl},   {dinheiro},  {especie}, {forca},   {defesa},     {local}")
                 print("\n")
         except psycopg2.Error as e:
             print("Erro ao consultar os PCs:", e)

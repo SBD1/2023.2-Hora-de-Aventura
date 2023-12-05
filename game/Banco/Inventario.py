@@ -71,7 +71,7 @@ class Inventario:
                 for x in consulta:
                     print(x)
             else: 
-                print("Parece que você não tem itens do tipo armamento\n")
+                print("\nParece que você não tem itens do tipo armamento\n")
         except psycopg2.IntegrityError as e:
             print(f"Encontramos problemas ao fazer a consulta. Erro: {e}\n")
         finally:

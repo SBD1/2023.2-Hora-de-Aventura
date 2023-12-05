@@ -1,9 +1,11 @@
 from Banco import *
+from battle import *
 
 pc = Pc()
 personagem = Personagem()
 possuiHab = PossuiHab()
 lc=Local()
+instancia = Instancia()
 instanciaItem = Instanciaitem()
 inventario = Inventario()
 
@@ -14,15 +16,32 @@ def CarregarJogo():
         posicao=lc.getLocalPc(jogador[0][0])
         print("\n"+80*"-"+"\n")
         print(f"\033[1;32m{jogador[0][1]}\nLocal: {posicao[0][2]}\nDescrição: {posicao[0][1]}\nCoordenada: {posicao[0][0]}\033[0m")
+        ameacas = instancia.getInstanciasLocais(posicao[0][0])
         print("\n"+80*"-"+"\n")
-        print("\033[0;36m|1| = Mudar de sala\n|2| = Voltar para o menu principal\033[0m")
+        print("\033[0;36m|1| = Mudar de sala\n|2| = Voltar para o menu principal\n|3| = Lutar\033[0m")
         opcao = input()
         match opcao:
             case '1':
                 EncontrarSalas(posicao[0][0], jogador[0][0])
             case '2':
-                print("\033[31;1;4mVoltando para o menu principal\033[0m")
+                print_devagar("\033[31;1;4m\nVoltando para o menu principal\n\033[0m")
                 break
+            case '3':
+                if ameacas is None:
+                    print_devagar("\nMas não tem ninguém pra lutar. Ué?\n")
+                else:                  
+                    print_devagar("\n\033[1mDigite o ID, e apenas o ID, do inimigo\033[0m\n")              
+                    IDbat = input()
+                    print_devagar("\n\033[1mDigite o numero, e apenas o numero, do inimigo\033[0m\n")
+                    numBat = input()
+                    verificador = instancia.conferirInstanciaDoLocalPersonagem(posicao[0][0], IDbat, numBat)
+                    if verificador is not None:
+                        luta(IDbat, numBat, Save)
+                    else:
+                        print_devagar("\n\033[1mEssa monstro não está aqui. Talvez nem exista\033[0m\n")   
+            case _:
+                print("\nOpção inválida\n")    
+                
 
 
 def EncontrarSalas(pos, Id):
@@ -165,9 +184,12 @@ def menuJogador():
             criarJogador(pcID,pcNome,pcEspecie)
         case '2':
             print("\nPersonagens já criados:\n\n")
-            print("\033[1;32mID | Nome | Xp | Pv | lvl | $ | Esp | For | Def | Local\033[0;36m")
+            print("\033[1;32mID | Nome | Xp | Pv | lvl | $ | Esp    | For | Def | Local\033[0;36m")
             conf = pc.consultarPC()
-            menuJogador()
+            pcID = input("ID do jogador :")
+            NomedoJogador = input("Digite o Nome do jogador(es) que busca:")
+            print("\n")
+            verJogadorOp(NomedoJogador,pcID)
                           
         case '3':
             NomedoJogador = input("Digite seu Nome")

@@ -122,7 +122,49 @@ class Instancia:
         finally:
             cursor.close()
 
+    def getInstanciasLocais(self, localAtual: int):
+        try:
+            conexao = self.db.conexao
+            cursor = conexao.cursor()
+            cursor.execute(f"SELECT i.personagem, i.numero, n.nome, n.lvl, n.especie FROM instancia i JOIN npc n ON i.personagem = n.personagem WHERE i.local = '{localAtual}' and conduta = true;")
+            monstros_no_local = cursor.fetchall()
 
+            if not monstros_no_local:
+                print("Felizmente, nenhum inimigo por aqui!\n")
+            else:
+                print("\033[1;32mMonstros no local:\033[0m")
+                for instancia in monstros_no_local:
+                    id_instancia = instancia[0]
+                    num_instancia = instancia[1]
+                    nome_instancia = instancia[2].strip()
+                    lvl_instancia = instancia[3]
+                    esp_instancia = instancia[4].strip()  
+                    print(f"Nome = {nome_instancia}, lvl = {lvl_instancia}, Espécie = {esp_instancia} -- ID = {id_instancia} Num = {num_instancia}")
+                return monstros_no_local
+
+        except psycopg2.Error as e:
+            print("Não foi possivel fazer essa consulta")
+
+        finally:
+            cursor.close()
+
+    def conferirInstanciaDoLocalPersonagem(self, localAtual: int, ID: int, Num: int):
+        try:
+            conexao = self.db.conexao
+            cursor = conexao.cursor()
+            cursor.execute(f"SELECT i.personagem, i.numero, n.nome, n.lvl, n.especie FROM instancia i JOIN npc n ON i.personagem = n.personagem WHERE i.local = '{localAtual}' and n.conduta = true and i.personagem = '{ID}' and i.numero = '{Num}';")
+            monstros_no_local2 = cursor.fetchall()
+
+            if not monstros_no_local2:
+                print("\n")
+            else:
+                return monstros_no_local2
+
+        except psycopg2.IntegrityError as e:
+            print("aaaaaaaaaaaa")
+        
+        finally:
+            cursor.close()
 
     def getInstanciaID(self, personagem: int, numero: int):
         try:
