@@ -19,3 +19,4 @@ Apresentação da entrega 03 da disciplina Sistemas de Banco de 01, ministrada p
 ## Video
 Apresentação 03:
 <https://www.youtube.com/watch?v=CeE8b735jvA>
+*Professor por favor olhe o comentário fixado no vídeo*
