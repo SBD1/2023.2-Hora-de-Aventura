@@ -34,7 +34,11 @@ def CarregarJogo():
                     IDbat = input()
                     print_devagar("\n\033[1mDigite o numero, e apenas o numero, do inimigo\033[0m\n")
                     numBat = input()
-                    verificador = instancia.conferirInstanciaDoLocalPersonagem(posicao[0][0], IDbat, numBat)
+                    if IDbat.isdigit() and numBat.isdigit():                        
+                        verificador = instancia.conferirInstanciaDoLocalPersonagem(posicao[0][0], IDbat, numBat)
+                    else:
+                        print_devagar("\n\033[1;31mIsso não é um número.\033[0m\n")
+                        verificador = None
                     if verificador is not None:
                         luta(IDbat, numBat, Save)
                     else:

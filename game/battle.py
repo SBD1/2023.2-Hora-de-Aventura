@@ -97,7 +97,13 @@ def luta(idNPC: int, numInstancia: int, jogadorID: int):
                     print_devagar("\nDigite apenas o id da habilidade!\n")   
 
                     hab = input()
-                    ID = consulta.getPossuiHabPK(jogadorID, hab)
+                    if hab.isdigit():
+                        
+                        ID = consulta.getPossuiHabPK(jogadorID, hab)
+                    else:
+                        print_devagar("\n\033[1;31mIsso não é um número.\033[0m\n")
+                        ID = None
+
                     if ID is not None:
                         danoAtaque = ID[0][3] + randint(-4,3)
                         defesa = defesaJogador + randint(-4,3)
@@ -181,6 +187,12 @@ def luta(idNPC: int, numInstancia: int, jogadorID: int):
 
                     print_devagar("\nDigite apenas o id do item!\n")
                     item = input()
+                    if item.isdigit():
+                        
+                        IDi = consulta.getPossuiHabPK(jogadorID, hab)
+                    else:
+                        print_devagar("\n\033[1;31mIsso não é um número.\033[0m\n")
+                        IDi = None
                     IDi = inv.getInventarioArmasID(jogadorID, item)
 
                     if IDi is not None:
@@ -266,7 +278,12 @@ def luta(idNPC: int, numInstancia: int, jogadorID: int):
                     print_devagar("\nDigite apenas o ID da poção!\n")
 
                     IdPocao = input()
-                    teste = inv2.getInventarioConsumiveisID(jogadorID, IdPocao)
+                    if IdPocao.isdigit():
+                        
+                        teste = inv2.getInventarioConsumiveisID(jogadorID, IdPocao)
+                    else:
+                        print_devagar("\n\033[1;31mIsso não é um número.\033[0m\n")
+                        teste = None
 
                     os.system('cls')
                     if teste is not None:
