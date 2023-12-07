@@ -278,8 +278,7 @@ def luta(idNPC: int, numInstancia: int, jogadorID: int):
                     print_devagar("\nDigite apenas o ID da poção!\n")
 
                     IdPocao = input()
-                    if IdPocao.isdigit():
-                        
+                    if IdPocao.isdigit():                        
                         teste = inv2.getInventarioConsumiveisID(jogadorID, IdPocao)
                     else:
                         print_devagar("\n\033[1;31mIsso não é um número.\033[0m\n")

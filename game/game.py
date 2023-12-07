@@ -5,6 +5,7 @@ pc = Pc()
 personagem = Personagem()
 possuiHab = PossuiHab()
 lc=Local()
+loja = Loja()
 instancia = Instancia()
 instanciaItem = Instanciaitem()
 inventario = Inventario()
@@ -16,9 +17,12 @@ def CarregarJogo():
         posicao=lc.getLocalPc(jogador[0][0])
         print("\n"+80*"-"+"\n")
         print(f"\033[1;32m{jogador[0][1]}\nLocal: {posicao[0][2]}\nDescrição: {posicao[0][1]}\nCoordenada: {posicao[0][0]}\033[0m")
+        
         ameacas = instancia.getInstanciasLocais(posicao[0][0])
+        lojas = loja.getLojaLocal(posicao[0][0])
+        
         print("\n"+80*"-"+"\n")
-        print("\033[0;36m|1| = Mudar de sala\n|2| = Voltar para o menu principal\n|3| = Lutar\033[0m")
+        print("\033[0;36m|1| = Mudar de sala\n|2| = Voltar para o menu principal\n|3| = Lutar\n|4| = Comprar na loja\033[0m")
         opcao = input()
         match opcao:
             case '1':
@@ -43,6 +47,11 @@ def CarregarJogo():
                         luta(IDbat, numBat, Save)
                     else:
                         print_devagar("\n\033[1mEssa monstro não está aqui. Talvez nem exista\033[0m\n")   
+            case '4':
+                if not lojas:
+                    print_devagar("\nComprar a onde?? Não tem nada aqui!\n")
+                elif lojas:
+                    print_devagar("\n\033[1;31mParabéns! Agora vai dormir!!!\033[0m\n")
             case _:
                 print("\nOpção inválida\n")    
                 
