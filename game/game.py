@@ -51,7 +51,12 @@ def CarregarJogo():
                 if not lojas:
                     print_devagar("\nComprar a onde?? Não tem nada aqui!\n")
                 elif lojas:
-                    print_devagar("\n\033[1;31mParabéns! Agora vai dormir!!!\033[0m\n")
+                    loja.getItensLoja(lojas[0][0])
+                    print_devagar("\n\033[1mDigite um id para comprar algum item. Ou <n> pra não comprar\033[0m\n")
+                    digitado = input()
+                    if(digitado == 'n'):
+                        print_devagar("\n\033[1mTchau!\033[0m\n")
+                    
             case _:
                 print("\nOpção inválida\n")    
                 

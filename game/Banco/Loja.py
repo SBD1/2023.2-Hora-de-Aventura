@@ -76,3 +76,33 @@ class Loja:
         finally:
             cursor.close()
 
+    def getItensLoja(self, LojaNome: str):
+        try:
+            conexao=self.db.conexao
+            cursor=conexao.cursor()
+            cursor.execute(f"select ps.iditem, ar.nome, ps.loja, ps.precoitem from possuiitem ps " 
+                           f"JOIN armamento ar ON ps.iditem = ar.item "
+                           f"where ps.loja = '{LojaNome}' "
+                           f"union "
+                           f"select ps.iditem, arm.nome, ps.loja, ps.precoitem from possuiitem ps "
+                           f"JOIN armadura arm ON ps.iditem = arm.item "
+                           f"where ps.loja = '{LojaNome}' "
+                           f"union "
+                           f"select ps.iditem, cons.nome, ps.loja, ps.precoitem from possuiitem ps "
+                           f"JOIN consumivel cons ON ps.iditem = cons.item "
+                           f"where ps.loja = '{LojaNome}'; ")
+
+            conexao.commit()
+            lojaItens = cursor.fetchall()
+            if lojaItens:
+                print("\033[1;32m\nItens:\n\033[0m")
+                for item in lojaItens:
+                    idItem = item[0] 
+                    nome = item[1].strip()
+                    preco = item[3]
+                    print(f"\033[1;32midItem\033[0m = {idItem}, \033[1;32mNome\033[0m = {nome}, \033[1;32mPreco\033[0m = {preco}")
+                return lojaItens
+        except psycopg2.IntegrytError as e:
+            print("Erro ao consultar Loja", e)
+        finally:
+            cursor.close()
