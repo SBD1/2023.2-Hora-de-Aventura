@@ -20,6 +20,13 @@ def print_rapido(str):
         sys.stdout.flush()
         time.sleep(0.003)
 
+def clear(): # Faz o Clear em Windows ou Linux
+    if os.name == 'nt':  # Windows
+        os.system('cls')
+    else:  # Linux
+        os.system('clear')
+
+#def calcularXP(idNPC:int, jogadorID:int):
 def luta(idNPC: int, numInstancia: int, jogadorID: int):
    
     
@@ -47,8 +54,6 @@ def luta(idNPC: int, numInstancia: int, jogadorID: int):
 
         vidaInstacia = iAux[0][2]
 
-        if(vidaInstacia <= 0):
-            break
         #acessando informacoes do jogador
         jogador = Pc()
         statusJogador = jogador.getPC(jogadorID)
@@ -58,6 +63,12 @@ def luta(idNPC: int, numInstancia: int, jogadorID: int):
         forcaJogador = statusJogador[0][7]
         defesaJogador = statusJogador[0][8]
 
+        if(vidaInstacia <= 0):
+            XpGanho=CalcularXp(nivelJogador, nivel)
+            XpTotal= XpGanho + statusJogador[0][2]
+            print(f'Você ganhou {XpGanho} Xp')
+            jogador.updatePcXp(jogadorID, XpTotal)
+            break
 
 
 
@@ -143,7 +154,7 @@ def luta(idNPC: int, numInstancia: int, jogadorID: int):
                         danoInfligidoJogador = danoMonstro - defesaJogador
                         danoInfligidoMonstro = danoAtaque - defesaMonstro
 
-                        os.system('cls')
+                        clear()
                         print_devagar(f"jogador -{danoInfligidoJogador}\n")
                         print_devagar(f"monstro -{danoInfligidoMonstro}\n\n")
 
@@ -174,7 +185,7 @@ def luta(idNPC: int, numInstancia: int, jogadorID: int):
                             print_um_pouco_mais_rapido("\033[0;31m    ⠀⠀⠀⠀⠈⠙⠛⠛⠛⠋⠁\033[0m\n")
                             break
                     else:
-                        os.system('cls')
+                        clear()
                         print_devagar("\nHabilidade inexistente\n")
                         
                         danoMonstro = forca + randint(-4,3)
@@ -234,7 +245,7 @@ def luta(idNPC: int, numInstancia: int, jogadorID: int):
                         danoInfligidoJogador = danoMonstro - defesaJogador
                         danoInfligidoMonstro = danoAtaque - defesaMonstro
 
-                        os.system('cls')
+                        clear()
                         print_devagar(f"jogador -{danoInfligidoJogador}\n")
                         print_devagar(f"monstro -{danoInfligidoMonstro}\n\n")
 
@@ -266,7 +277,7 @@ def luta(idNPC: int, numInstancia: int, jogadorID: int):
                             break
 
                     else:
-                        os.system('cls')
+                        clear()
                         print_devagar("\nItem inexistente\n")
 
                         danoMonstro = forca + randint(-4,3)
@@ -313,16 +324,19 @@ def luta(idNPC: int, numInstancia: int, jogadorID: int):
                         print_devagar("\n\033[1;31mIsso não é um número.\033[0m\n")
                         teste = None
 
-                    os.system('cls')
+                    clear()
                     if teste is not None:
                         novaVida = vidaJogador + teste[0][2]
                         jogador.atualizarVidaPCID(jogadorID, novaVida)
                     else:
-                        os.system('cls')
+                        clear()
                         print_devagar("\nPoção inexistente\n")
                 
                 if(vidaInstacia <= 0):
-                    print_devagar("\nVoce derrotou o monstro\n")    
+                    print_devagar("\nVoce derrotou o monstro\n")
+                    """ XpGanho=CalcularXp(nivelJogador, nivel)
+                    XpTotal= XpGanho + statusJogador[0][2]
+                    jogador.updatePcXp(jogadorID, XpTotal)  """   
 
             case 'fugir':
                 print_devagar("Você fugiu!\n")
@@ -331,3 +345,12 @@ def luta(idNPC: int, numInstancia: int, jogadorID: int):
             case _:
                 print_devagar("\nDigite uma das opcoes!\n")
 
+def CalcularXp(nivelPc: int, nivelInimigo:int): # Calcula a diferença 
+    valorFixo=10
+    multiplicador= 2
+    diferencaNivel=nivelInimigo-nivelPc
+    if diferencaNivel<0:
+        diferencaNivel=0
+    Xp_ganho=(diferencaNivel*multiplicador)+valorFixo
+    Xp_ganho=round(Xp_ganho)
+    return Xp_ganho

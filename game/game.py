@@ -13,6 +13,7 @@ inventario = Inventario()
 def CarregarJogo():
     Save=input("\033[1;32mDigite o ID do seu personagem: \033[0m")
     jogador=pc.getPC(Save)
+    clear()
     while(True):
         posicao=lc.getLocalPc(jogador[0][0])
         print("\n"+80*"-"+"\n")
@@ -22,7 +23,7 @@ def CarregarJogo():
         lojas = loja.getLojaLocal(posicao[0][0])
         
         print("\n"+80*"-"+"\n")
-        print("\033[0;36m|1| = Mudar de sala\n|2| = Voltar para o menu principal\n|3| = Lutar\n|4| = Comprar na loja\033[0m")
+        print("\033[0;36m|1| = Mudar de sala\n|2| = Voltar para o menu principal\n|3| = Lutar\n|4| = Comprar na loja\n|5| = Ver status completo\033[0m")
         opcao = input()
         match opcao:
             case '1':
@@ -56,11 +57,12 @@ def CarregarJogo():
                     digitado = input()
                     if(digitado == 'n'):
                         print_devagar("\n\033[1mTchau!\033[0m\n")
+            case '5':
+                StatusJogador(jogador[0][0])
                     
             case _:
                 print("\nOpção inválida\n")    
                 
-
 
 def EncontrarSalas(pos, Id):
     Quadrado=15
@@ -92,6 +94,7 @@ def EncontrarSalas(pos, Id):
 
     for i in salas_disponiveis:
         if(i==mudar):
+            clear()
             print(f"Você viajou para a sala: {i}")
             pc.updatePcLocal(Id, mudar)
 
@@ -222,3 +225,18 @@ def menuJogador():
             possuiHab.deletarPossuiHabALL(pcID)
             #tirar id de personagem
             personagem.deletarPersonagem(pcID)
+
+def StatusJogador(Id:int):
+    clear()
+    jogador=pc.getPC(Id)
+    print(f'\033[35mID = {jogador[0][0]}\n')
+    print(f'Nome = {jogador[0][1]}\n')
+    print(f'XP = {jogador[0][2]}\n')
+    print(f'Vida = {jogador[0][3]}\n')
+    print(f'LvL = {jogador[0][4]}\n')
+    print(f'Dinheiro = {jogador[0][5]}\n')
+    print(f'Espécie = {jogador[0][6]}\n')
+    print(f'Força = {jogador[0][7]}\n')
+    print(f'Defesa = {jogador[0][8]}\n')
+    print(f'Local = {jogador[0][9]}\033[0m\n')
+    

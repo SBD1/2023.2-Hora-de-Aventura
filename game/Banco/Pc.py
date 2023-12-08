@@ -115,14 +115,22 @@ class Pc:
         finally:
             cursor.close()
 
-        
-            
-            
     def updatePcLocal(self,Personagem:int, Local:int):
         try:
             conexao = self.db.conexao
             cursor = conexao.cursor()
             cursor.execute(f"""update pc set local = {Local} where personagem = {Personagem};""")
+            conexao.commit()
+        except psycopg2.Error as e:
+            print("Erro ao cosultar os PC's", e )
+        finally:
+            cursor.close()
+
+    def updatePcXp(self,Personagem:int, Xp:int):
+        try:
+            conexao = self.db.conexao
+            cursor = conexao.cursor()
+            cursor.execute(f"""update pc set xp = {Xp} where personagem = {Personagem};""")
             conexao.commit()
         except psycopg2.Error as e:
             print("Erro ao cosultar os PC's", e )
