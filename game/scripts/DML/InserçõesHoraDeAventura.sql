@@ -676,8 +676,8 @@ insert into habilidade values(6, 'porrada', 0, 10);
 INSERT INTO Habilidade VALUES (7, 'Setas de Gelo', 18, 60); -- Cristal
 INSERT INTO Habilidade VALUES (8, 'Setas de Gelo2', 18, 120);
 INSERT INTO Habilidade VALUES (9, 'Setas de Gelo3', 18, 400);
-INSERT INTO Habilidade VALUES (10, 'Onda de morte', 30, 1800);
-INSERT INTO Habilidade VALUES (11, 'Bola de fogo', 4, 60);
+INSERT INTO Habilidade VALUES (10, 'Onda de morte', 30, 1800); 
+INSERT INTO Habilidade VALUES (11, 'Bola de fogo', 4, 60); -- Povo de Fogo
 INSERT INTO Habilidade VALUES (12, 'Bola de fogo2', 8, 235);
 INSERT INTO Habilidade VALUES (13, 'mísseis mágicos', 1, 180);
 INSERT INTO Habilidade VALUES (14, 'Magia da luz', 10, 999);
@@ -699,7 +699,7 @@ insert into habilidade values(29, 'Elasticidade3', 0, 200);
 insert into habilidade values(30, 'Elasticidade4', 0, 500);
 INSERT INTO Habilidade VALUES (31, 'Cuspe ácido3', 4, 740);
 INSERT INTO Habilidade VALUES (32, 'Estalinho5', 0, 600);
-INSERT INTO Habilidade VALUES (33, 'Ataque sonoro', 0, 600);
+INSERT INTO Habilidade VALUES (33, 'Ataque sonoro', 0, 600); 
 
 insert into prerequisitohab values(3,12);
 insert into prerequisitohab values(12,11);
