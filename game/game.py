@@ -23,7 +23,8 @@ def CarregarJogo():
         lojas = loja.getLojaLocal(posicao[0][0])
         
         print("\n"+80*"-"+"\n")
-        print("\033[0;36m|1| = Mudar de sala\n|2| = Voltar para o menu principal\n|3| = Lutar\n|4| = Comprar na loja\n|5| = Ver status completo\033[0m")
+        print("\033[0;36m|1| = Mudar de sala\n|2| = Voltar para o menu principal\n|3| = Lutar\n|4| = Comprar na loja\n|5| = Ver status completo\n"
+              "|6| = Vizualizar Inventário\033[0m")
         opcao = input()
         match opcao:
             case '1':
@@ -72,7 +73,8 @@ def CarregarJogo():
                             novoSaldo = dinheiro - precoDoItem
                             if(novoSaldo >= 0):
                                 ##Realizar uma transaction criando a instancia e movendo pro inventario do jogador
-                                loja.compraDoItem(verificacao1[0][0], Save, novoSaldo)
+                                loja.compraDoItem(verificacao1[0][0], Save, novoSaldo, jogador[0][0])
+                                
                             else:
                                 print_devagar("\nDinheiro insuficiente\n")
                         else:
@@ -84,6 +86,9 @@ def CarregarJogo():
                         print_devagar("\n\033[1;31mISSO NÃO É UM NUMERO!!!.\033[0m\n")
             case '5':
                 StatusJogador(jogador[0][0])
+
+            case '6':
+                inventario.verItensInventario(jogador[0][0])
                     
             case _:
                 print("\nOpção inválida\n")    

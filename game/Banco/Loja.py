@@ -138,7 +138,7 @@ class Loja:
         finally:
             cursor.close()
     
-    def compraDoItem(self, iditem: int, idInventario: int, novoSaldo: int):
+    def compraDoItem(self, iditem: int, idInventario: int, novoSaldo: int, IDpersonagem:int):
         try:
             conexao=self.db.conexao
             cursor=conexao.cursor()
@@ -149,7 +149,7 @@ class Loja:
                             f"COALESCE((SELECT MAX(numeroitem) FROM instanciaItem WHERE IdItem = '{iditem}'), 0) + 1, "
                             f"10, "
                             f"'{idInventario}'); "
-                            f"UPDATE pc SET dinheiro = '{novoSaldo}' WHERE personagem = 40; "
+                            f"UPDATE pc SET dinheiro = '{novoSaldo}' WHERE {IDpersonagem} = 40; "
                             f"COMMIT; ")
             conexao.commit()
             
