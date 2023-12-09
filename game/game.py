@@ -115,30 +115,30 @@ def definirHabilidadePersonagem(pcEspecie,pcID):
     match pcEspecie:
         ## --- Humanous ---
         case 'Humano':
-            possuiHab.inserirPossuiHab(pcID,1)
+            possuiHab.inserirPossuiHab(pcID,20)
         
         case 'humano':
-            possuiHab.inserirPossuiHab(pcID,1)
+            possuiHab.inserirPossuiHab(pcID,20)
         
         ## --- Povo do fogo ---
         case 'Povo fogo':
-            possuiHab.inserirPossuiHab(pcID,2)
+            possuiHab.inserirPossuiHab(pcID,3)
         
         case 'Povo Fogo':
-            possuiHab.inserirPossuiHab(pcID,2)
+            possuiHab.inserirPossuiHab(pcID,3)
         
         case 'povo fogo':
-            possuiHab.inserirPossuiHab(pcID,2)
+            possuiHab.inserirPossuiHab(pcID,3)
         
         ## --- Povo do crystal ---
         case 'Povo crystal':
-            possuiHab.inserirPossuiHab(pcID,3)
+            possuiHab.inserirPossuiHab(pcID,7)
         
         case 'Povo Crystal':
-            possuiHab.inserirPossuiHab(pcID,3)
+            possuiHab.inserirPossuiHab(pcID,7)
         
         case 'povo crystal':
-            possuiHab.inserirPossuiHab(pcID,3)
+            possuiHab.inserirPossuiHab(pcID,7)
                 
         ## --- Vampirous ---        
         case 'Vampiro':

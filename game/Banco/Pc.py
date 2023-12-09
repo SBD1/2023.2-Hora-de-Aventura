@@ -136,3 +136,14 @@ class Pc:
             print("Erro ao cosultar os PC's", e )
         finally:
             cursor.close()
+
+    def updatePcDinheiro(self,Personagem:int, Dinheiro:int):
+        try:
+            conexao = self.db.conexao
+            cursor = conexao.cursor()
+            cursor.execute(f"""update pc set dinheiro = {Dinheiro} where personagem = {Personagem};""")
+            conexao.commit()
+        except psycopg2.Error as e:
+            print("Erro ao cosultar os PC's", e )
+        finally:
+            cursor.close()

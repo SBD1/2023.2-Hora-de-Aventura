@@ -6,19 +6,19 @@ def print_devagar(str):
     for letter in str:
         sys.stdout.write(letter)
         sys.stdout.flush()
-        time.sleep(0.041)
+        time.sleep(0.0041)
 
 def print_um_pouco_mais_rapido(str):
     for letter in str:
         sys.stdout.write(letter)
         sys.stdout.flush()
-        time.sleep(0.005)
+        time.sleep(0.0005)
 
 def print_rapido(str):
     for letter in str:
         sys.stdout.write(letter)
         sys.stdout.flush()
-        time.sleep(0.00003)
+        time.sleep(0.0003)
 
 def clear(): # Faz o Clear em Windows ou Linux
     if os.name == 'nt':  # Windows
@@ -162,11 +162,15 @@ def luta(idNPC: int, numInstancia: int, jogadorID: int):
 
                             iAux = inimigoAux.getInstanciaID(idNPC,numInstancia) # Acessando a informacao da instancia especifica do monstro
                             if iAux is None:
-                                print_devagar("\nVoce derrotou o monstro\n")
-                                XpGanho=CalcularXp(nivelJogador, nivel)
-                                print(f'Você ganhou {XpGanho} Xp')
-                                XpTotal= XpGanho + statusJogador[0][2]
-                                jogador.updatePcXp(jogadorID, XpTotal)
+                                print_devagar("\nVoce derrotou o monstro\n\n")
+                                XpGanho=CalcularXp(nivelJogador, nivel) # Calcula o xp ganho
+                                print(f'\033[35mVocê ganhou {XpGanho} Xp\033[0m\n')
+                                XpTotal= XpGanho + statusJogador[0][2] # Soma ao xp existente
+                                jogador.updatePcXp(jogadorID, XpTotal) # Atualiza o xp total
+                                DinheiroGanho=GerarDinheiro() # Gera uma quantidade de Dinheiro 
+                                print(f'\033[35mVocê ganhou {DinheiroGanho} de Dinheiro\033[0m')
+                                DinheiroTotal=DinheiroGanho+statusJogador[0][5] # Soma ao dinheiro existente
+                                jogador.updatePcDinheiro(jogadorID, DinheiroTotal) # Atualiza o Dinheiro total
                                 break
                     
                         if(novaVida <= 0):
@@ -262,11 +266,15 @@ def luta(idNPC: int, numInstancia: int, jogadorID: int):
 
                             iAux = inimigoAux.getInstanciaID(idNPC,numInstancia) # Acessando a informacao da instancia especifica do monstro
                             if iAux is None:
-                                print_devagar("\nVoce derrotou o monstro\n")
-                                XpGanho=CalcularXp(nivelJogador, nivel)
-                                print(f'Você ganhou {XpGanho} Xp')
-                                XpTotal= XpGanho + statusJogador[0][2]
-                                jogador.updatePcXp(jogadorID, XpTotal)
+                                print_devagar("\nVoce derrotou o monstro\n\n")
+                                XpGanho=CalcularXp(nivelJogador, nivel) # Calcula o xp ganho
+                                print(f'\033[35mVocê ganhou {XpGanho} Xp\033[0m\n')
+                                XpTotal= XpGanho + statusJogador[0][2] # Soma ao xp existente
+                                jogador.updatePcXp(jogadorID, XpTotal) # Atualiza o xp total
+                                DinheiroGanho=GerarDinheiro() # Gera uma quantidade de Dinheiro 
+                                print(f'\033[35mVocê ganhou {DinheiroGanho} de Dinheiro\033[0m')
+                                DinheiroTotal=DinheiroGanho+statusJogador[0][5] # Soma ao dinheiro existente
+                                jogador.updatePcDinheiro(jogadorID, DinheiroTotal) # Atualiza o Dinheiro total
                                 break
                         if(novaVida <= 0):
                             print_um_pouco_mais_rapido("\033[0;31m   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣠⡀⠀\n")
@@ -351,13 +359,24 @@ def luta(idNPC: int, numInstancia: int, jogadorID: int):
             case _:
                 print_devagar("\nDigite uma das opcoes!\n")
 
-def CalcularXp(nivelPc: int, nivelInimigo:int): # Calcula a diferença 
-    valorFixo=10
-    multiplicador= 2
-    diferencaNivel=nivelInimigo-nivelPc
-    if diferencaNivel<0:
+def CalcularXp(nivelPc: int, nivelInimigo:int): # Calcula o ganho de xp por ganhar a batalha
+    valorFixo=10 # Mínimo de xp ganho na batalha
+    multiplicador= 2 
+    diferencaNivel=nivelInimigo-nivelPc # Diferença de nivel entre o jogador e o inimigo
+    if diferencaNivel<0: # Não deixa jogador perder xp
         diferencaNivel=0
-    Xp_ganho=(diferencaNivel*multiplicador)+valorFixo
-    Xp_ganho=round(Xp_ganho)
+    Xp_ganho=(diferencaNivel*multiplicador)+valorFixo 
+    Xp_ganho=round(Xp_ganho) # Arredonta para int
     return Xp_ganho
 
+def GerarDinheiro():
+    chance=randint(1, 100) 
+    if chance<=60: # 60% de chance de ganhar uma quantidade pequena de dinheiro
+        Dinheiro=randint(0,10)
+        return Dinheiro
+    elif chance<=94: # 34% de chance de ganhar uma quantidade média de dinheiro
+        Dinheiro=randint(11,20)
+        return Dinheiro
+    else: # 6% de chance de ganhar uma quantidade grande de dinheiro
+        Dinheiro=randint(21,30)
+        return Dinheiro
