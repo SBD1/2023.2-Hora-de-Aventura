@@ -11,7 +11,6 @@ class Inventario:
             cursor=conexao.cursor()
             cursor.execute(f"""INSERT INTO Inventario VALUES({IDinv}, '{QTD_de_itens}', {Personagem});""")
             conexao.commit()
-            return print("Inventario Inserido")
         except psycopg2.Error as e:
             print("Erro ao inserir Inventario", e)
         finally:
@@ -37,7 +36,6 @@ class Inventario:
             cursor=conexao.cursor()
             cursor.execute(f"""DELETE FROM Inventario WHERE IDinv = {IDinv};""")
             conexao.commit()
-            return print("Inventario Deletada")
         except psycopg2.Error as e:
             print("Erro ao deletar Inventario", e)
         finally:

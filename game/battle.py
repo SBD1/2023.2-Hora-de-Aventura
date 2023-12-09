@@ -18,7 +18,7 @@ def print_rapido(str):
     for letter in str:
         sys.stdout.write(letter)
         sys.stdout.flush()
-        time.sleep(0.003)
+        time.sleep(0.00003)
 
 def clear(): # Faz o Clear em Windows ou Linux
     if os.name == 'nt':  # Windows
@@ -52,7 +52,7 @@ def luta(idNPC: int, numInstancia: int, jogadorID: int):
         forca = i[0][6]
         defesa = i[0][7]
 
-        vidaInstacia = iAux[0][2]
+        vidaInstancia = iAux[0][2]
 
         #acessando informacoes do jogador
         jogador = Pc()
@@ -63,12 +63,6 @@ def luta(idNPC: int, numInstancia: int, jogadorID: int):
         forcaJogador = statusJogador[0][7]
         defesaJogador = statusJogador[0][8]
 
-        if(vidaInstacia <= 0):
-            XpGanho=CalcularXp(nivelJogador, nivel)
-            XpTotal= XpGanho + statusJogador[0][2]
-            print(f'Você ganhou {XpGanho} Xp')
-            jogador.updatePcXp(jogadorID, XpTotal)
-            break
 
 
 
@@ -109,7 +103,7 @@ def luta(idNPC: int, numInstancia: int, jogadorID: int):
         print_rapido("                    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n")
         print_rapido("                    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\033[0m\n")
 
-        print_devagar(f"\033[1;32mInimigo = \033[0m{nome}\n\033[1;32mEspecie = \033[0m{especie}\n\033[1;32mNivel = \033[0m{nivel}\n\033[1;32mVida = \033[0m{vidaInstacia}\n\n")
+        print_devagar(f"\033[1;32mInimigo = \033[0m{nome}\n\033[1;32mEspecie = \033[0m{especie}\n\033[1;32mNivel = \033[0m{nivel}\n\033[1;32mVida = \033[0m{vidaInstancia}\n\n")
         print_devagar(f"{nomeJogador} | vida = {vidaJogador} | lvl = {nivelJogador} | dano = {forcaJogador} | defesa = {defesaJogador}\n\n")
 
         
@@ -163,8 +157,17 @@ def luta(idNPC: int, numInstancia: int, jogadorID: int):
                             jogador.atualizarVidaPCID(jogadorID, novaVida)
                         
                         if(danoInfligidoMonstro > 0):
-                            novaVidaMonstro = vidaInstacia - danoInfligidoMonstro
+                            novaVidaMonstro = vidaInstancia - danoInfligidoMonstro
                             inimigoAux.atualizarVidaInstanciaID(idNPC, numInstancia, novaVidaMonstro)
+
+                            iAux = inimigoAux.getInstanciaID(idNPC,numInstancia) # Acessando a informacao da instancia especifica do monstro
+                            if iAux is None:
+                                print_devagar("\nVoce derrotou o monstro\n")
+                                XpGanho=CalcularXp(nivelJogador, nivel)
+                                print(f'Você ganhou {XpGanho} Xp')
+                                XpTotal= XpGanho + statusJogador[0][2]
+                                jogador.updatePcXp(jogadorID, XpTotal)
+                                break
                     
                         if(novaVida <= 0):
                             print_um_pouco_mais_rapido("\033[0;31m   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣠⡀⠀\n")
@@ -254,9 +257,17 @@ def luta(idNPC: int, numInstancia: int, jogadorID: int):
                             jogador.atualizarVidaPCID(jogadorID, novaVida)
 
                         if(danoInfligidoMonstro > 0):
-                            novaVidaMonstro = vidaInstacia - danoInfligidoMonstro
+                            novaVidaMonstro = vidaInstancia - danoInfligidoMonstro
                             inimigoAux.atualizarVidaInstanciaID(idNPC, numInstancia, novaVidaMonstro)
-                    
+
+                            iAux = inimigoAux.getInstanciaID(idNPC,numInstancia) # Acessando a informacao da instancia especifica do monstro
+                            if iAux is None:
+                                print_devagar("\nVoce derrotou o monstro\n")
+                                XpGanho=CalcularXp(nivelJogador, nivel)
+                                print(f'Você ganhou {XpGanho} Xp')
+                                XpTotal= XpGanho + statusJogador[0][2]
+                                jogador.updatePcXp(jogadorID, XpTotal)
+                                break
                         if(novaVida <= 0):
                             print_um_pouco_mais_rapido("\033[0;31m   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣠⡀⠀\n")
                             print_um_pouco_mais_rapido("\033[0;31m    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⣤⠀⠀⠀⢀⣴⣿⡶⠀⣾⣿⣿⡿⠟⠛⠁\n")
@@ -332,11 +343,6 @@ def luta(idNPC: int, numInstancia: int, jogadorID: int):
                         clear()
                         print_devagar("\nPoção inexistente\n")
                 
-                if(vidaInstacia <= 0):
-                    print_devagar("\nVoce derrotou o monstro\n")
-                    """ XpGanho=CalcularXp(nivelJogador, nivel)
-                    XpTotal= XpGanho + statusJogador[0][2]
-                    jogador.updatePcXp(jogadorID, XpTotal)  """   
 
             case 'fugir':
                 print_devagar("Você fugiu!\n")
@@ -354,3 +360,4 @@ def CalcularXp(nivelPc: int, nivelInimigo:int): # Calcula a diferença
     Xp_ganho=(diferencaNivel*multiplicador)+valorFixo
     Xp_ganho=round(Xp_ganho)
     return Xp_ganho
+

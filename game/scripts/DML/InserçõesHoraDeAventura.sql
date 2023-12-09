@@ -1,3 +1,5 @@
+begin transaction;
+
 insert into mundo values('Cubo do Prismo','Cubo do prismo');
 
 insert into mundo values('Mundo de O','Cubo do prismo');
@@ -28,9 +30,12 @@ insert into regiao values('Céu', 'Mundo de O');
 
 insert into regiao values('Reino Caroço', 'Mundo de O');
 
+insert into regiao values('Terra do Litch', 'Mundo de O');
+
 insert into regiao values('Exosfera', 'Espaço');
 
 insert into regiao values('Inferno', 'Noitosfera');
+
 
 
 
@@ -315,7 +320,7 @@ insert into local values('252', 'Pequena ilha caroço' ,'Ilihnha', false, 'Reino
 
 insert into local values('253', 'Centro da cidade' ,'Centro', false, 'Reino Caroço');
 
-local values('256', 'O restaurante entre esse o fim do universo' ,'Restaurante the end', false, 'Exosfera');
+insert into local values('256', 'O restaurante entre esse o fim do universo' ,'Restaurante the end', false, 'Exosfera');
 
 insert into local values('257', 'O planetoide do fim ' ,'Planetoide', true, 'Exosfera');
 
@@ -356,10 +361,6 @@ insert into local values('292', ' Um corredor futurista mas desgastado' ,'corred
 insert into local values('293', ' Um corredor futurista com um monte de corpos, no centro um amalgama de carne que forma um olho que pisca freneticamente. Possivelmente feito pelo Litch' ,'corredor de Carne', true, 'Exosfera');
 
 insert into local values('294', ' Uma quina, para a única virada que sobrou da destruida e mal acabada cidadela' ,'virada de corredor', true, 'Exosfera');
- 
-
-
-
 
 
 insert into personagem values('1',false);
@@ -391,7 +392,7 @@ insert into instancia values(5,5 ,60 ,30);
 insert into personagem values('6',false);
 insert into npc values(6,'Canelinha', 10, false, 1, 'doce', 2, 10);
 
-insert into instancia values(6,6 ,10 ,30);
+insert into instancia values(5,6 ,10 ,2);
 
 insert into personagem values('7',false);
 insert into npc values(7,'Rato Doce', 20, false, 1, 'doce', 5, 15);
@@ -454,6 +455,7 @@ insert into personagem values('16',false);
 insert into npc values(16,'Urso malvado', 17, true, 55, 'Besta', 30, 60);
 
 insert into instancia values(16,27 ,55 ,64);
+
 
 insert into personagem values('17',false);
 insert into npc values(17,'Lobo Raivoso', 7, true, 16, 'Besta', 10, 20);
@@ -562,6 +564,11 @@ insert into npc values(32,'Criança Nuvem', 1, false,1, 'nuvem', 1, 1);
 
 insert into instancia values(32,71 ,1 ,149);
 
+insert into personagem values('33',false);
+insert into npc values(33,'Esqueleto mortal', 190, true,80, 'Esqueleto', 100, 300);
+
+insert into instancia values(33,72 ,190 ,197);
+
 insert into personagem values('34',false);
 insert into npc values(34,'Faraó', 590, true,99, 'Esqueleto', 500, 500);
 
@@ -587,6 +594,9 @@ insert into npc values(37,'Robô mal', 200, true,99, 'robô', 100, 300);
 
 insert into instancia values(37,81 ,200 ,263);
 
+
+
+--Missão
 
 INSERT INTO Missao VALUES ('ganhar arma', false, 'Forje uma espada com o mordo menta', 100);
 INSERT INTO Missao VALUES ('AmigoStoyAqui', false, 'ponha alguém na party', 50);
@@ -652,6 +662,10 @@ INSERT INTO chefe VALUES (13, 'Mate o rei de fogo', 11);
 INSERT INTO chefe VALUES (68, 'Embate a noitosfera', 30);
 INSERT INTO chefe VALUES (74, 'Duro de matar', 35);
 INSERT INTO chefe VALUES (1, 'Morte ao bruxo', 1);
+
+--HABILIDADES
+
+
 
 insert into habilidade values(1, 'Elasticidade', 0, 100);
 insert into habilidade values(2, 'Elasticidade lvl 2', 0, 150);
@@ -746,26 +760,61 @@ insert into possuihab values('1',10);
 insert into possuihab values('1',24);
 insert into possuihab values('1',32);
 
---- 1 = armamento , 2 = consumivel, 3 = armadura 
+--Lojas
 
-insert into item values('001',1);
+insert into loja values('Loja do Doan', 'Loja');
+insert into loja values('Loja do Mr.Mcloud', 'Loja');
+insert into loja values('A ultima loja', 'Loja');
+insert into loja values('Loja do Arthur', 'Ferreiro', '5', 'S', '19');
 
-insert into item values('002',2 );
+update loja set local = 280 where nome = 'A ultima loja';
+update loja set local = 162 where nome = 'Loja do Mr.Mcloud';
+update loja set local = 3 where nome = 'Loja do Doan';
 
-insert into item values('003',3 );
 
-insert into armamento values('001', 'Espada', 20, 9 ); 
+--Espadas
 
-insert into consumivel values('002', 'Poção de vida', 30, 1 );
+insert into item values('1','1');
+insert into item values('2','1');
+insert into item values('3','1');
+insert into item values('4','1');
+insert into item values('5','1');
+insert into item values('6','1');
+insert into item values('7','1');
+insert into item values('8','2');
+insert into item values('9','3');
 
-insert into armadura values('003', 'Armadura de ferro', 70, 80);
+insert into armamento values('1','Scarlet','11');
+insert into armamento values('2','Espada Raiz','13');
+insert into armamento values('3','Espada de Grama','17');
+insert into armamento values('4','Espada Finn','15');
+insert into armamento values('5','Florete','13');
+insert into armamento values('6','Espada da Noite','23');
+insert into armamento values('7','Espada Rei Demonio','24');
 
-insert into inventario values(1,1,2);
+insert into armadura values('8', 'Escudo de Prata', '10', '15');
 
-insert  into instanciaitem values(1, 1, 100, 1); 
+insert into consumivel values('9', 'Elixir Tunadasso', '100', '1');
 
-insert into dropa values(1,1,0.22);
+insert into instanciaitem values('1', '1', '10');
+insert into instanciaitem values('2', '1', '10');
+insert into instanciaitem values('3', '1', '10');
+insert into instanciaitem values('4', '1', '10');
+insert into instanciaitem values('5', '1', '10');
+insert into instanciaitem values('6', '1', '10');
+insert into instanciaitem values('7', '1', '10');
 
-insert into loja values('Loja de Arma', 'Arma','Espadas', 2 );
+insert into possuiitem values('1', 'Loja do Doan', 'Loja', '45');
+insert into possuiitem values('2', 'Loja do Arthur', 'Ferreiro', '47');
+insert into possuiitem values('3', 'Loja do Doan', 'Loja', '51');
+insert into possuiitem values('4', 'Loja do Mr.Mcloud', 'Loja', '40');
+insert into possuiitem values('5', 'Loja do Doan', 'Loja', '45');
+insert into possuiitem values('6', 'Loja do Arthur', 'Ferreiro', '67');
+insert into possuiitem values('7', 'Loja do Arthur', 'Ferreiro', '68');
+insert into possuiitem values('8', 'Loja do Doan', 'Loja', '50');
+insert into possuiitem values('9', 'Loja do Doan', 'Loja', '30');
+insert into possuiitem values('8', 'Loja do Arthur', 'Ferreiro', '50');
+insert into possuiitem values('9', 'Loja do Arthur', 'Ferreiro', '30');
 
-insert into possuiitem values(1,'Loja de Arma', 'Espadas', 2);
+commit;
+end transaction; 

@@ -153,8 +153,7 @@ def definirHabilidadePersonagem(pcEspecie,pcID):
             menuJogador()
 
 def deletarJogador(pcID):
-    criarPC = Pc()
-    criarPC.deletarPC(pcID)
+    pc.deletarPC(pcID)
     
 def verJogadorOp(NomedoJogador,pcID):
     jogador = pc.consultarPCNome(NomedoJogador)
@@ -184,7 +183,8 @@ def criarJogador(pcID,pcNome,pcEspecie):
     personagem.criarPersonagem(pcID, True) 
     criarPC.criarPc(pcID,pcNome,0,100,0,0,pcEspecie,5,0,0)
     definirHabilidadePersonagem(pcEspecie, pcID)
-    ##inserirInventarioPersonagem(pcID)
+    inventario.inserirInventario(pcID, 0, pcID)
+    #inserirInventarioPersonagem(pcID)
     menuJogador()
 
 def menuJogador():
@@ -219,12 +219,15 @@ def menuJogador():
             atualizarJogador(pcID,pcNome)
         case '4':
             pcID = input("ID do jogador que deseja deletar :")
-            #Ordem de deleção: pc -> possuihab -> personagem
+            #Ordem de deleção: inventário -> pc -> possuihab -> personagem -> 
+            inventario.deletarInventario(pcID)
+            #deleta pc
             deletarJogador(pcID)
             #tirar id de possuihab
             possuiHab.deletarPossuiHabALL(pcID)
             #tirar id de personagem
             personagem.deletarPersonagem(pcID)
+            #
 
 def StatusJogador(Id:int):
     clear()

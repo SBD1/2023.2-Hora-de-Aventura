@@ -172,10 +172,7 @@ class Instancia:
             cursor = conexao.cursor()
             cursor.execute(f"SELECT * FROM instancia WHERE personagem = '{personagem}' AND numero = '{numero}';")
             consulta = cursor.fetchall()
-
-            if not consulta:
-                print("Não há nenhuma instancia com essas caracteristicas\n")
-            else:
+            if consulta:
                 return consulta
 
         except psycopg2.Error as e:
