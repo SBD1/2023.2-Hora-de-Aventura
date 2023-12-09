@@ -10,7 +10,7 @@ insert into mundo values('Espaço','Mundo de O');
 
 
 
-insert into regiao values('Reino Doce', 'Mundo de O');
+insert into regiao values('Reino Doce', 'Mundo de O'); 
 
 insert into regiao values('Planice', 'Mundo de O');
 
@@ -667,13 +667,13 @@ INSERT INTO chefe VALUES (1, 'Morte ao bruxo', 1);
 
 
 
-insert into habilidade values(1, 'Elasticidade', 0, 100);
-insert into habilidade values(2, 'Elasticidade lvl 2', 0, 150);
-insert into habilidade values(3, 'Baforada de fogo', 10, 350);
-insert into habilidade values(4, 'Mordida', 0, 30);
-INSERT INTO Habilidade VALUES (5, 'Chuva de Flechas', 0, 20);
-insert into habilidade values(6, 'porrada', 0, 10);
-INSERT INTO Habilidade VALUES (7, 'Setas de Gelo', 18, 60);
+insert into habilidade values(1, 'Elasticidade', 0, 100); --Cachorro
+insert into habilidade values(2, 'Elasticidade lvl 2', 0, 150); 
+insert into habilidade values(3, 'Baforada de fogo', 10, 350); 
+insert into habilidade values(4, 'Mordida', 0, 30); -- Vampiro
+INSERT INTO Habilidade VALUES (5, 'Chuva de Flechas', 0, 20); 
+insert into habilidade values(6, 'porrada', 0, 10); 
+INSERT INTO Habilidade VALUES (7, 'Setas de Gelo', 18, 60); -- Cristal
 INSERT INTO Habilidade VALUES (8, 'Setas de Gelo2', 18, 120);
 INSERT INTO Habilidade VALUES (9, 'Setas de Gelo3', 18, 400);
 INSERT INTO Habilidade VALUES (10, 'Onda de morte', 30, 1800);
@@ -682,11 +682,11 @@ INSERT INTO Habilidade VALUES (12, 'Bola de fogo2', 8, 235);
 INSERT INTO Habilidade VALUES (13, 'mísseis mágicos', 1, 180);
 INSERT INTO Habilidade VALUES (14, 'Magia da luz', 10, 999);
 INSERT INTO Habilidade VALUES (15, 'Cura reversa', 4, 60);
-INSERT INTO Habilidade VALUES (16, 'Bola de cocô', 4, 60);
+INSERT INTO Habilidade VALUES (16, 'Bola de cocô', 4, 60); 
 INSERT INTO Habilidade VALUES (17, 'Cuspe ácido', 2, 60);
 INSERT INTO Habilidade VALUES (18, 'Cuspe ácido2', 4, 340);
 INSERT INTO Habilidade VALUES (19, 'Vento gelado', 4, 360);
-INSERT INTO Habilidade VALUES (20, 'Estalinho', 0, 10);
+INSERT INTO Habilidade VALUES (20, 'Estalinho', 0, 10); -- Humano
 INSERT INTO Habilidade VALUES (21, 'Estalinho2', 0, 20);
 INSERT INTO Habilidade VALUES (22, 'Estalinho3', 0, 99);
 INSERT INTO Habilidade VALUES (23, 'Estalinho4', 0, 200);
