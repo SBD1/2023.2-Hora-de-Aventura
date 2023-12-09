@@ -56,6 +56,7 @@ class Instanciaitem:
             print(f"Encontramos problemas ao fazer a consulta. Erro: {e}\n")
         finally:
             cursor.close()
+            
     def consultarInstanciaItem(self):
         try:
             conexao = self.db.conexao
@@ -87,5 +88,17 @@ class Instanciaitem:
         
         finally:
             cursor.close()
+    
+    def deletarInstanciaItemIDinv(self, IDinv: int):
+        try:
+            conexao = self.db.conexao
+            cursor =  conexao.cursor()
+            cursor.execute(f"DELETE FROM instanciaItem WHERE idinv = {IDinv};")
+            delecaoFazMissao = conexao.commit()
+            return print("Instancia de item  deletado com sucesso!\n")
 
-
+        except psycopg2.IntegrityError as e:
+            print(f"Encontramos problemas ao fazer a delecao. Erro: {e}\n")
+        
+        finally:
+            cursor.close()

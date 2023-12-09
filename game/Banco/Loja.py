@@ -106,3 +106,54 @@ class Loja:
             print("Erro ao consultar Loja", e)
         finally:
             cursor.close()
+        
+    def getItemDaLoja(self, LojaNome: str, iditem: int):
+        try:
+            conexao=self.db.conexao
+            cursor=conexao.cursor()
+            cursor.execute(f"select ps.iditem, ar.nome, ps.loja, ps.precoitem from possuiitem ps " 
+                           f"JOIN armamento ar ON ps.iditem = ar.item "
+                           f"where ps.loja = '{LojaNome}' and  iditem = '{iditem}' "
+                           f"union "
+                           f"select ps.iditem, arm.nome, ps.loja, ps.precoitem from possuiitem ps "
+                           f"JOIN armadura arm ON ps.iditem = arm.item "
+                           f"where ps.loja = '{LojaNome}' and  iditem = '{iditem}' "
+                           f"union "
+                           f"select ps.iditem, cons.nome, ps.loja, ps.precoitem from possuiitem ps "
+                           f"JOIN consumivel cons ON ps.iditem = cons.item "
+                           f"where ps.loja = '{LojaNome}' and  iditem = '{iditem}' ;")
+
+            conexao.commit()
+            lojaItens = cursor.fetchall()
+            if lojaItens:
+                print("\033[1;32m\nIten Selecionado:\n\033[0m")
+                for item in lojaItens:
+                    idItem = item[0] 
+                    nome = item[1].strip()
+                    preco = item[3]
+                    print(f"\033[1;33midItem\033[0m = {idItem}, \033[1;33mNome\033[0m = {nome}, \033[1;33mPreco\033[0m = {preco}")
+                return lojaItens
+        except psycopg2.IntegrytError as e:
+            print("Erro ao consultar Loja", e)
+        finally:
+            cursor.close()
+    
+    def compraDoItem(self, iditem: int, idInventario: int, novoSaldo: int):
+        try:
+            conexao=self.db.conexao
+            cursor=conexao.cursor()
+            cursor.execute( f"BEGIN TRANSACTION; "
+                            f"INSERT INTO instanciaItem "
+                            f"VALUES ( "
+                            f"'{iditem}', "
+                            f"COALESCE((SELECT MAX(numeroitem) FROM instanciaItem WHERE IdItem = '{iditem}'), 0) + 1, "
+                            f"10, "
+                            f"'{idInventario}'); "
+                            f"UPDATE pc SET dinheiro = '{novoSaldo}' WHERE personagem = 40; "
+                            f"COMMIT; ")
+            conexao.commit()
+            
+        except psycopg2.IntegrytError as e:
+            print("Erro ao consultar Loja", e)
+        finally:
+            cursor.close()

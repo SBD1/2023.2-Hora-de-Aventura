@@ -83,7 +83,7 @@ class Inventario:
                            f"FROM instanciaitem ia  "
                            f"JOIN inventario i ON ia.idinv = i.idinv "
                            f"JOIN armamento ar ON ia.iditem = ar.item "
-                           f"WHERE i.personagem = '{personagem}';")
+                           f"WHERE i.personagem = '{personagem}' AND ia.iditem = '{IdArma}';")
             consulta = cursor.fetchall()
             if consulta:
                 return consulta

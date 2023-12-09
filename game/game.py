@@ -52,11 +52,36 @@ def CarregarJogo():
                 if not lojas:
                     print_devagar("\nComprar a onde?? Não tem nada aqui!\n")
                 elif lojas:
+                    ## função mostrando os itens que a loja vende
                     loja.getItensLoja(lojas[0][0])
+
                     print_devagar("\n\033[1mDigite um id para comprar algum item. Ou <n> pra não comprar\033[0m\n")
+                    
+                    ##Conferir se o item selecionado está na loja
                     digitado = input()
-                    if(digitado == 'n'):
-                        print_devagar("\n\033[1mTchau!\033[0m\n")
+                    if digitado.isdigit():
+                        ##Conferir se o item está na loja
+                        verificacao1 = loja.getItemDaLoja(lojas[0][0], digitado)
+
+                        if verificacao1:
+                            ##Conferir se o jogador tem dinheiro pra comprar o item
+                            qwert = pc.getPCbyID(Save)
+                            dinheiro = qwert[0][5]
+                            precoDoItem = verificacao1[0][3]
+                            
+                            novoSaldo = dinheiro - precoDoItem
+                            if(novoSaldo >= 0):
+                                ##Realizar uma transaction criando a instancia e movendo pro inventario do jogador
+                                loja.compraDoItem(verificacao1[0][0], Save, novoSaldo)
+                            else:
+                                print_devagar("\nDinheiro insuficiente\n")
+                        else:
+                            print_devagar("\nA Loja não possui este item\n")
+                    
+                    elif(digitado == 'n'):
+                        print_devagar("\nFoi um prazer ter você em nossa loja!")
+                    else:
+                        print_devagar("\n\033[1;31mISSO NÃO É UM NUMERO!!!.\033[0m\n")
             case '5':
                 StatusJogador(jogador[0][0])
                     
@@ -219,7 +244,10 @@ def menuJogador():
             atualizarJogador(pcID,pcNome)
         case '4':
             pcID = input("ID do jogador que deseja deletar :")
-            #Ordem de deleção: inventário -> pc -> possuihab -> personagem -> 
+            #Ordem de deleção: itens do inventário -> inventário -> pc -> possuihab -> personagem 
+            ##deletar itens do inventario
+            instanciaItem.deletarInstanciaItemIDinv(pcID)
+            ##deletar inventario
             inventario.deletarInventario(pcID)
             #deleta pc
             deletarJogador(pcID)
@@ -242,4 +270,3 @@ def StatusJogador(Id:int):
     print(f'Força = {jogador[0][7]}\n')
     print(f'Defesa = {jogador[0][8]}\n')
     print(f'Local = {jogador[0][9]}\033[0m\n')
-    

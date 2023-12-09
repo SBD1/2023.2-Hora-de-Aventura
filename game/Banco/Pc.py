@@ -48,6 +48,19 @@ class Pc:
         finally:
             cursor.close()
 
+    def getPCbyID(self, id: int):
+        try:
+            conexao = self.db.conexao
+            cursor = conexao.cursor()
+            cursor.execute(f"""SELECT * FROM pc WHERE personagem = '{id}' ; """)
+            busca = cursor.fetchall() 
+            if busca:
+                return busca
+        except psycopg2.Error as e:
+            print("Erro ao consultar os PCs:", e)
+        finally:
+            cursor.close()
+
                 
     def consultarPCNome(self, Nome:str):
         try:

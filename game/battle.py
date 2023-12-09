@@ -6,13 +6,13 @@ def print_devagar(str):
     for letter in str:
         sys.stdout.write(letter)
         sys.stdout.flush()
-        time.sleep(0.0041)
+        time.sleep(0.041)
 
 def print_um_pouco_mais_rapido(str):
     for letter in str:
         sys.stdout.write(letter)
         sys.stdout.flush()
-        time.sleep(0.0005)
+        time.sleep(0.005)
 
 def print_rapido(str):
     for letter in str:
@@ -235,12 +235,10 @@ def luta(idNPC: int, numInstancia: int, jogadorID: int):
                     print_devagar("\nDigite apenas o id do item!\n")
                     item = input()
                     if item.isdigit():
-                        
-                        IDi = consulta.getPossuiHabPK(jogadorID, hab)
+                        IDi = inv.getInventarioArmasID(jogadorID, item)
                     else:
                         print_devagar("\n\033[1;31mIsso não é um número.\033[0m\n")
                         IDi = None
-                    IDi = inv.getInventarioArmasID(jogadorID, item)
 
                     if IDi is not None:
                         danoAtaque = IDi[0][2] + randint(-4,3)
