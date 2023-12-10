@@ -74,6 +74,17 @@ class Personagem:
             print("Erro ao deletar em Mundo", e)
         finally:       
                cursor.close()
+        
+    def criarPersonagemIncrementoID(self,ATC:bool):
+        try:    
+            conexao = self.db.conexao
+            cursor = conexao.cursor()
+            cursor.execute(f"""INSERT INTO personagem VALUES((SELECT COALESCE(MAX(idpersonagem), 0) FROM personagem) + 1, {ATC});""")
+            insercaoPersonagem = conexao.commit()
+        except psycopg2.Error as e: 
+            print("Erro ao inserir personagem", e)
+        finally:
+            cursor.close()     
     
     
     

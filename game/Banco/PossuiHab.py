@@ -18,6 +18,17 @@ class PossuiHab:
             print(f"Erro ao inserir possuihab", e)
         finally:
             cursor.close()
+    
+    def inserirPossuiHabIncremento(self,habilidade:int):
+        try:
+            conexao = self.db.conexao
+            cursor = conexao.cursor()
+            cursor.execute(f"""INSERT INTO possuihab VALUES((SELECT COALESCE(MAX(personagem), 0) FROM pc),{habilidade})""")
+            inserirDropItem = conexao.commit()
+        except psycopg2.IntegrityError as e:
+            print(f"Erro ao inserir possuihab", e)
+        finally:
+            cursor.close()
 
     def consultarPossuiHabPK(self,personagem:int, habilidade:int):
         try:

@@ -8,18 +8,20 @@ class Pc:
         self.db = Database()
         pass
     
-    def criarPc(self, personagem:int, nome,
-                 xp:int,vida:int,lvl:int,dinheiro:int,especie,forca:int,defesa:int,local:int):    
-        try:    
+    def criarPc(self, nome:str,
+                 xp:int,vida:int,lvl:int,dinheiro:int,especie:str,forca:int,defesa:int,local:int):
+        try:
             conexao = self.db.conexao
             cursor = conexao.cursor()
-            cursor.execute(f"""insert into pc values({personagem},'{nome}',{xp},
-                           {vida},{lvl},{dinheiro},'{especie}',{forca},{defesa},{local});""")
+            cursor.execute(f"INSERT INTO pc VALUES((SELECT COALESCE(MAX(idpersonagem ), 0) FROM personagem),'{nome}', {xp},{vida},{lvl},{dinheiro},'{especie}',{forca},{defesa},{local});")
+
             conexao.commit()
-        except psycopg2.Error as e: 
-            print("Erro ao inserir PC", e)
+            conexao.commit()
+        except psycopg2.Error as e:
+            print("Erro ao criar os PC's", e )
         finally:
-            cursor.close()     
+            cursor.close()
+        
     
     def consultarPC(self):
         try:
