@@ -280,9 +280,13 @@ def StatusJogador(Id:int):
     print(f'Força = {jogador[0][7]}\n')
     print(f'Defesa = {jogador[0][8]}\n')
     print(f'Local = {jogador[0][9]}\033[0m\n')
+    Hab=possuiHab.consultarPossuiHabPersonagem(jogador[0][0])
+    for i in Hab:
+        print(i)
 
 def Evolucao(Id:int):
     jogador=pc.getPC(Id)
+    Id=jogador[0][0]
     Xp=jogador[0][2]
     Vida = jogador[0][3]
     LvL = jogador[0][4]
@@ -290,21 +294,60 @@ def Evolucao(Id:int):
     Defesa = jogador[0][8]
 
     print("\n"+80*"-"+"\n")
-    print(f"Você está no nível \033[1;32m{LvL}\033[0m e possui \033[1;32m{Xp}\033[0m de Xp\n")
-    print("\033[0;36m|1| = Gastar 100 de Xp para subir de nível\n|2| = Melhorar Habilidades\n\033[0m")
+    print("Você pode gastar 100 de Xp para subir de nível ou 150 de Xp para aprender novas habilidades\n\n"
+        f"Você está no nível \033[1;32m{LvL}\033[0m e possui \033[1;32m{Xp}\033[0m de Xp\n")
+    print("\033[0;36m|1| = Subir de nível\n|2| = Aprender Habilidades\n\033[0m")
     opcao = input()
     match opcao:
-        case '1':
-            if Xp >= 100: # Aumenta os atributos do jogador
-                NovoXp=Xp-100
-                NovoLvl=LvL+1
-                NovaVida=Vida+10
-                NovaForca=Forca+2
-                NovaDefesa=Defesa+2
-                pc.PcSubirNivel(jogador[0][0],NovoXp,NovoLvl,NovaVida,NovaForca,NovaDefesa)
-                clear()
-                print(f"Você subiu de nível e agora está no nível \033[1;32m{NovoLvl}\033[0m!\n")
+        case '1': # Subir de Nível
+            NovoXp=Xp-100
+            NovoLvl=LvL+1
+            NovaVida=Vida+10
+            NovaForca=Forca+2
+            NovaDefesa=Defesa+2
+            print(f'\nNovos Atributros: \n\nNível = \033[90m{LvL}\033[0m -> \033[1;32m{NovoLvl}\033[0m\n'
+                  f'Vida = \033[90m{Vida}\033[0m -> \033[1;32m{NovaVida}\033[0m\nForça = \033[90m{Forca}\033[0m -> \033[1;32m{NovaForca}\033[0m\n'
+                  f'Defesa = \033[90m{Defesa}\033[0m -> \033[1;32m{NovaDefesa}\033[0m\nXp = \033[90m{Xp}\033[0m -> \033[1;32m{NovoXp}\033[0m\n'
+                  '\nDigite 1 para confirmar ou -1 para cancelar')
+            opcao2 = input()
+            if opcao2 == '1':
+                if Xp >= 100: # Aumenta os atributos do jogador
+
+                    pc.PcSubirNivel(Id,NovoXp,NovoLvl,NovaVida,NovaForca,NovaDefesa)
+                    clear()
+                    print(f"Você subiu de nível e agora está no nível \033[1;32m{NovoLvl}\033[0m!\n")
+                else:
+                    clear()
+                    print("Você não possui Xp suficiente para subir de nível!\n")
             else:
                 clear()
-                print("Você não possui Xp suficiente para subir de nível!\n")
+        case '2': # Aprender Habilidades
+            Evo=possuiHab.consultarEvolucoesHabilidade(Id)
+            if not Evo: # Caso não existam evoluções encerra a função
+                return 0
+            Hab=possuiHab.consultarPossuiHabPersonagem(Id)
+            Lista=[]
+            for i in Hab:
+                Lista.append(i[0])
+            print("Você pode aprender as seguintes habilidades:\n")
+            for i in Evo: # Printa os opções de escolha
+                if i[0] not in Lista:
+                    #print(f"ID = \033[1;32m{i[0]}\033[0m | Nome = \033[1;32m{i[1]}\033[0m | Dano = \033[1;32m{i[2]}\033[0m | Cooldown = \033[1;32m{i[3]}\033[0m")
+                    print(f"\033[1;32mID\033[0m = {i[0]} | \033[1;32mNome\033[0m = {i[1]} | \033[1;32mDano\033[0m = {i[2]} | \033[1;32mCooldown\033[0m = {i[3]}")
+            
+            print("\nDigite o ID da habilidade que deseja aprender. Digite -1 para cancelar")
+            escolha=int(input())
+            if escolha == -1:
+                clear()
+            for i in Evo:
+                if(i[0]==escolha):
+                    if Xp >=150:
+                        NovoXp=Xp-150
+                        possuiHab.adicionarHabJogador(Id,escolha,NovoXp)
+                        print(f'Você aprendeu a Habilidade: {i[1]}')
+                    else:
+                        clear()
+                        print("Você não possui Xp suficiente para aprender essa habilidade!\n")
+                    
+
 

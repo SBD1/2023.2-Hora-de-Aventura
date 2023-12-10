@@ -704,12 +704,12 @@ INSERT INTO Habilidade VALUES (33, 'Ataque sonoro', 0, 600);
 insert into prerequisitohab values(3,12);
 insert into prerequisitohab values(12,11);
 insert into prerequisitohab values(25,26);
-insert into prerequisitohab values(9,8);
+insert into prerequisitohab values(9,8); -- Setas de Gelo3
 insert into prerequisitohab values(8,7);
 insert into prerequisitohab values(19,25);
 insert into prerequisitohab values(18,17);
 insert into prerequisitohab values(7,19);
-insert into prerequisitohab values(32,23);
+insert into prerequisitohab values(32,23); -- Estalinho5
 insert into prerequisitohab values(23,22);
 insert into prerequisitohab values(22,21);
 insert into prerequisitohab values(21,20);

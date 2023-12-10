@@ -125,4 +125,36 @@ class PossuiHab:
         finally:
             cursor.close()
    
-        
+    def consultarEvolucoesHabilidade(self, personagem:int):
+        try:
+            conexao = self.db.conexao
+            cursor = conexao.cursor()
+            cursor.execute(f"select h.idhabilidade, h.nome, h.dano, h.tempo_de_recarga, p.requisito from habilidade h "
+                            f"join prerequisitohab p on h.idhabilidade = p.idhabilidade "
+                            f"join possuihab ph ON p.requisito = ph.habilidade "
+                            f"where ph.personagem = {personagem};")
+            consulta = cursor.fetchall()
+            if not consulta:
+                print("Não existem evoluções disponíveis para as suas habilidades\n")
+            else:
+                return consulta
+        except psycopg2.IntegrityError as e:
+            print(f"Encontramos problemas ao fazer a consulta. Erro: {e}\n")
+        finally:
+            cursor.close()
+
+    def adicionarHabJogador(self, personagem:int, habilidade:int, xp:int):
+        try:
+            conexao = self.db.conexao
+            cursor = conexao.cursor()
+            cursor.execute(f"begin transaction;"
+                            f"update pc set xp = {xp} where personagem = {personagem};"
+                            f"insert into possuihab values({personagem}, {habilidade});"
+                            f"commit;"
+                            f"end transaction;")
+            conexao.commit()
+        except psycopg2.Error as e:
+            print("Erro ao cosultar os PC's", e )
+        finally:
+            cursor.close()
+            
