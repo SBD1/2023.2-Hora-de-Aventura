@@ -99,8 +99,8 @@ def CarregarJogo():
             case '7':
                 Evolucao(jogador[0][0])
             case '8':
-                local = input("Digite o ID do seu local:").strip()
-                verMissaoNoLocal(local)       
+                #local = input("Digite o ID do seu local:").strip()
+                verMissaoNoLocal(posicao[0][0])       
             case _:
                 print("\nOpção inválida\n")    
     
@@ -197,20 +197,30 @@ def deletarJogador(pcID):
 
 def verMissaoNoLocal(local:int):
     verMissao = lc.verMissaoLocal(local) 
+    if not verMissao:
+        return
     missoes = [f"\nMissão: {x[1]}\nDescrição:{x[2]}\nRecompensa:{x[3]}" for x in verMissao]
     for y in missoes:
         print(y)
     dependencia = input("\nDeseja ver dependencias de missão? Sim/Não\n")
-    if (dependencia == 'Sim' or 's' or 'ss' or 'SS'or 'Ss' or 'sS' ):
+    if (dependencia == 'Sim' or dependencia == 's' or dependencia == 'ss' or dependencia == 'SS'or dependencia == 'Ss' or dependencia == 'sS'
+        or dependencia == 'sim' ):
         missoes = [f"\nMissão: {x[1]}" for x in verMissao]
         for y in missoes:
             print(y)
         nomeMissao = input("\nDigite qual das missões ?\n")
         missao = prereqmiss.consultarPreRequisitoNomeMissao(nomeMissao)
+        clear()
+        if not missao:
+            return
         print(f"\nA missão {nomeMissao} é pré-requisito de:")
         missoes = [f"\nMissão: {y[0]}\nDescricao:{y[1]}\nRecompensa:{y[2]}\n" for y in missao]
         for z in missoes:
                 print(z)
+    elif (dependencia == 'Não' or dependencia == 'Nao' or dependencia == 'n' or dependencia == 'N' or dependencia == 'nn' or dependencia == 'NN'
+          or dependencia == 'Nn' or dependencia == 'nN'):
+        clear()
+        return
     else:
         print("Digite sim ou não !")
                    
@@ -349,7 +359,7 @@ def Evolucao(Id:int):
         case '2': # Aprender Habilidades
             Evo=possuiHab.consultarEvolucoesHabilidade(Id)
             if not Evo: # Caso não existam evoluções encerra a função
-                return 0
+                return 
             Hab=possuiHab.consultarPossuiHabPersonagem(Id)
             Lista=[]
             for i in Hab:
