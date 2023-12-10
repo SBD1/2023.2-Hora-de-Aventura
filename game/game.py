@@ -24,12 +24,13 @@ def CarregarJogo():
         
         print("\n"+80*"-"+"\n")
         print("\033[0;36m|1| = Mudar de sala\n|2| = Voltar para o menu principal\n|3| = Lutar\n|4| = Comprar na loja\n|5| = Ver status completo\n"
-              "|6| = Vizualizar Inventário\033[0m")
+              "|6| = Vizualizar Inventário\n|7| = Evolução de Personagem\033[0m")
         opcao = input()
         match opcao:
             case '1':
                 EncontrarSalas(posicao[0][0], jogador[0][0])
             case '2':
+                clear()
                 print_devagar("\033[31;1;4m\nVoltando para o menu principal\n\033[0m")
                 break
             case '3':
@@ -89,6 +90,9 @@ def CarregarJogo():
 
             case '6':
                 inventario.verItensInventario(jogador[0][0])
+
+            case '7':
+                Evolucao(jogador[0][0])
                     
             case _:
                 print("\nOpção inválida\n")    
@@ -275,3 +279,31 @@ def StatusJogador(Id:int):
     print(f'Força = {jogador[0][7]}\n')
     print(f'Defesa = {jogador[0][8]}\n')
     print(f'Local = {jogador[0][9]}\033[0m\n')
+
+def Evolucao(Id:int):
+    jogador=pc.getPC(Id)
+    Xp=jogador[0][2]
+    Vida = jogador[0][3]
+    LvL = jogador[0][4]
+    Forca = jogador[0][7]
+    Defesa = jogador[0][8]
+
+    print("\n"+80*"-"+"\n")
+    print(f"Você está no nível \033[1;32m{LvL}\033[0m e possui \033[1;32m{Xp}\033[0m de Xp\n")
+    print("\033[0;36m|1| = Gastar 100 de Xp para subir de nível\n|2| = Melhorar Habilidades\n\033[0m")
+    opcao = input()
+    match opcao:
+        case '1':
+            if Xp >= 100: # Aumenta os atributos do jogador
+                NovoXp=Xp-100
+                NovoLvl=LvL+1
+                NovaVida=Vida+10
+                NovaForca=Forca+2
+                NovaDefesa=Defesa+2
+                pc.PcSubirNivel(jogador[0][0],NovoXp,NovoLvl,NovaVida,NovaForca,NovaDefesa)
+                clear()
+                print(f"Você subiu de nível e agora está no nível \033[1;32m{NovoLvl}\033[0m!\n")
+            else:
+                clear()
+                print("Você não possui Xp suficiente para subir de nível!\n")
+

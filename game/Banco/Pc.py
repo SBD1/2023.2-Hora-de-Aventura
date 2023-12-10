@@ -160,3 +160,21 @@ class Pc:
             print("Erro ao cosultar os PC's", e )
         finally:
             cursor.close()
+
+    def PcSubirNivel(self,Personagem:int,xp:int,lvl:int,vida:int,forca:int,defesa:int ):
+        try:
+            conexao = self.db.conexao
+            cursor = conexao.cursor()
+            cursor.execute(f"begin transaction;"
+                            f"update pc set xp = {xp} where personagem = {Personagem};"
+                            f"update pc set lvl = {lvl} where personagem = {Personagem};"
+                            f"update pc set vida = {vida} where personagem = {Personagem};"
+                            f"update pc set forca = {forca} where personagem = {Personagem};"
+                            f"update pc set defesa = {defesa} where personagem = {Personagem};"
+                            f"commit;"
+                            f"end transaction;")
+            conexao.commit()
+        except psycopg2.Error as e:
+            print("Erro ao cosultar os PC's", e )
+        finally:
+            cursor.close()
