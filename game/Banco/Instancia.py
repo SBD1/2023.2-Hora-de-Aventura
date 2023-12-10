@@ -122,7 +122,7 @@ class Instancia:
         finally:
             cursor.close()
 
-    def getInstanciasLocais(self, localAtual: int):
+    def     getInstanciasLocais(self, localAtual: int):
         try:
             conexao = self.db.conexao
             cursor = conexao.cursor()

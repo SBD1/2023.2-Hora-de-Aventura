@@ -56,3 +56,27 @@ class PreRequisitoMissao:
             print("Erro ao consultar PreRequisitoMissao", e)
         finally:
             cursor.close()
+    
+    def consultarPreRequisitoNomeMissao(self, NomePreRequisito:str):
+        try:
+            conexao=self.db.conexao
+            cursor=conexao.cursor()
+            cursor.execute(f""" select c1.requisitomissao,c2.descricao,c2.recompensa """
+                           f""" from ( """
+	                       f"""select p.requisitomissao  from prerequisitomissao p"""
+	                       f""" left join missao on p.requisitomissao = missao.nome where p.nomeprerequisito = '{NomePreRequisito}' )as c1 """
+                           f""" left join ( """
+	                       f""" select missao.nome, missao.chefe , missao.descricao, missao.recompensa  from missao)as c2  """
+                           f""" on c1.requisitomissao = c2.nome """)
+            conexao.commit()
+            resultado = cursor.fetchall()
+            if resultado:
+              return resultado
+            else:
+                print("Essa missão não possui pré-requisito")            
+               
+        except psycopg2.Error as e:
+            print("Erro ao consultar PreRequisitoMissao", e)
+        finally:
+            cursor.close()
+            

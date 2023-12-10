@@ -90,3 +90,33 @@ class Local :
             print("Erro ao consultar local", e)
         finally:
             cursor.close()
+
+    def verMissaoLocal(self,local:int):
+        try:
+            conexao = self.db.conexao
+            cursor = conexao.cursor()
+            cursor.execute( f"SELECT local_missao_contem.local, local_missao_contem.missao, "
+                            f"descricao_recompensa_missao.descricao, descricao_recompensa_missao.recompensa "
+                            f"FROM ("
+                            f"   SELECT c.local, c.missao "
+                            f"   FROM contem c "
+                            f"   LEFT JOIN local l ON c.local = l.coordenada"
+                            f"   where l.coordenada = {local}   "     
+                            f") AS local_missao_contem "
+                            f"Left join("
+                            f"   SELECT m.nome, m.descricao, m.recompensa "
+                            f"   FROM missao m "
+                            f"   INNER JOIN contem c ON c.missao = m.nome"
+                            f") AS descricao_recompensa_missao "
+                            f"ON local_missao_contem.missao = descricao_recompensa_missao.nome;")
+            consultaLocal = cursor.fetchall()
+            if not consultaLocal:
+                print("\nNão há missão nesse local\n")
+            else:
+                print("\033[1;32mMissao Disponível!\033[0m")
+                return consultaLocal
+        except psycopg2.Error as e:
+            print("Erro ao consultar local", e)
+        finally:
+            cursor.close()
+        

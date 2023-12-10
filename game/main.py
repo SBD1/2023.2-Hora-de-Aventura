@@ -75,4 +75,7 @@ while(True):
         case '3':
            print_devagar("\033[31;1;4mFinalizando o jogo.....\033[0m\n")
            break    
-             
+
+  
+ 
+ 

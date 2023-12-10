@@ -9,8 +9,12 @@ loja = Loja()
 instancia = Instancia()
 instanciaItem = Instanciaitem()
 inventario = Inventario()
+prereqmiss = PreRequisitoMissao()
 
 def CarregarJogo():
+    print("\nPersonagens já criados:\n\n")
+    print("\033[1;32mID | Nome | Xp | Pv | lvl | $ | Esp    | For | Def | Local\033[0;36m")
+    conf = pc.consultarPC()
     Save=input("\033[1;32mDigite o ID do seu personagem: \033[0m")
     jogador=pc.getPC(Save)
     clear()
@@ -21,10 +25,11 @@ def CarregarJogo():
         
         ameacas = instancia.getInstanciasLocais(posicao[0][0])
         lojas = loja.getLojaLocal(posicao[0][0])
+        missao = lc.verMissaoLocal(posicao[0][0])
         
         print("\n"+80*"-"+"\n")
         print("\033[0;36m|1| = Mudar de sala\n|2| = Voltar para o menu principal\n|3| = Lutar\n|4| = Comprar na loja\n|5| = Ver status completo\n"
-              "|6| = Vizualizar Inventário\n|7| = Evolução de Personagem\033[0m")
+              "|6| = Vizualizar Inventário\n|7| = Evolução de Personagem\n|8| = Ver missão\033[0m")
         opcao = input()
         match opcao:
             case '1':
@@ -93,11 +98,12 @@ def CarregarJogo():
 
             case '7':
                 Evolucao(jogador[0][0])
-                    
+            case '8':
+                local = input("Digite o ID do seu local:").strip()
+                verMissaoNoLocal(local)       
             case _:
                 print("\nOpção inválida\n")    
-                
-
+    
 def EncontrarSalas(pos, Id):
     Quadrado=15
     Oeste=lc.getLocal(pos-1)
@@ -188,7 +194,26 @@ def definirHabilidadePersonagem(pcEspecie):
             
 def deletarJogador(pcID):
     pc.deletarPC(pcID)
-    
+
+def verMissaoNoLocal(local:int):
+    verMissao = lc.verMissaoLocal(local) 
+    missoes = [f"\nMissão: {x[1]}\nDescrição:{x[2]}\nRecompensa:{x[3]}" for x in verMissao]
+    for y in missoes:
+        print(y)
+    dependencia = input("\nDeseja ver dependencias de missão? Sim/Não\n")
+    if (dependencia == 'Sim' or 's' or 'ss' or 'SS'or 'Ss' or 'sS' ):
+        missoes = [f"\nMissão: {x[1]}" for x in verMissao]
+        for y in missoes:
+            print(y)
+        nomeMissao = input("\nDigite qual das missões ?\n")
+        missao = prereqmiss.consultarPreRequisitoNomeMissao(nomeMissao)
+        print(f"\nA missão {nomeMissao} é pré-requisito de:")
+        missoes = [f"\nMissão: {y[0]}\nDescricao:{y[1]}\nRecompensa:{y[2]}\n" for y in missao]
+        for z in missoes:
+                print(z)
+    else:
+        print("Digite sim ou não !")
+                   
 def verJogadorOp(NomedoJogador,pcID):
     jogador = pc.consultarPCNome(NomedoJogador)
     tuplas = [f"|Caracteristicas personagem\n| ID:{x[0]} | Nome: {x[1]} | LVL:{x[4]}| Especie:{x[6]}|\n\n" for x in jogador]
@@ -351,3 +376,6 @@ def Evolucao(Id:int):
                     
 
 
+ 
+
+ 
