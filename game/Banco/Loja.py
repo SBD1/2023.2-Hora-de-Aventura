@@ -149,7 +149,7 @@ class Loja:
                             f"COALESCE((SELECT MAX(numeroitem) FROM instanciaItem WHERE IdItem = '{iditem}'), 0) + 1, "
                             f"10, "
                             f"'{idInventario}'); "
-                            f"UPDATE pc SET dinheiro = '{novoSaldo}' WHERE {IDpersonagem} = 40; "
+                            f"UPDATE pc SET dinheiro = '{novoSaldo}' WHERE personagem = '{IDpersonagem}'; "
                             f"COMMIT; ")
             conexao.commit()
             
