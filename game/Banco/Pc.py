@@ -1,6 +1,7 @@
 import psycopg2
 from .Database import Database
 from .Personagem import Personagem
+from .Local import Local
 
 
 class Pc:
@@ -178,5 +179,21 @@ class Pc:
             conexao.commit()
         except psycopg2.Error as e:
             print("Erro ao cosultar os PC's", e )
+        finally:
+            cursor.close()
+
+    def atribuirMissaoAoJogador(self, pcID, missaoNome):
+        lc = Local()
+
+        
+        try:
+            conexao = self.db.conexao
+            cursor = conexao.cursor()
+            cursor.execute(
+                f"INSERT INTO fazMissao VALUES ({pcID}, '{missaoNome}', False);")
+            conexao.commit()
+            print("Missão atribuída ao jogador e registrada.")
+        except psycopg2.Error as e:
+            print("Erro ao inserir na tabela fazMissao", e)
         finally:
             cursor.close()

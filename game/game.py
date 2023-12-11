@@ -29,7 +29,7 @@ def CarregarJogo():
         
         print("\n"+80*"-"+"\n")
         print("\033[0;36m|1| = Mudar de sala\n|2| = Voltar para o menu principal\n|3| = Lutar\n|4| = Comprar na loja\n|5| = Ver status completo\n"
-              "|6| = Vizualizar Inventário\n|7| = Evolução de Personagem\n|8| = Ver missão\033[0m")
+      "|6| = Vizualizar Inventário\n|7| = Evolução de Personagem\n|10| = Ver missão\n|9| = Atribuir Missão\033[0m")
         opcao = input()
         match opcao:
             case '1':
@@ -98,9 +98,11 @@ def CarregarJogo():
 
             case '7':
                 Evolucao(jogador[0][0])
-            case '8':
+            case '10':
                 #local = input("Digite o ID do seu local:").strip()
-                verMissaoNoLocal(posicao[0][0])       
+                verMissaoNoLocal(posicao[0][0])    
+            case '9':
+                atribuirMissaoAoJogador(Save)
             case _:
                 print("\nOpção inválida\n")    
     
@@ -223,6 +225,14 @@ def verMissaoNoLocal(local:int):
         return
     else:
         print("Digite sim ou não !")
+
+
+def atribuirMissaoAoJogador(pcID):
+    # Solicite a entrada do jogador para a missão
+    missaoNome = input("Nome da missão a ser atribuída: ")
+
+    # Chame o método atribuirMissaoAoJogador da instância de Pc
+    pc.atribuirMissaoAoJogador(pcID, missaoNome)
                    
 def verJogadorOp(NomedoJogador,pcID):
     jogador = pc.consultarPCNome(NomedoJogador)

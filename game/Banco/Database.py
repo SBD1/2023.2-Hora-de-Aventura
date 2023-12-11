@@ -6,7 +6,7 @@ class Database:
             host="localhost",
             database="postgres",
             user="postgres",
-            password="postgres123")
+            password="davi123")
         pass  
     
    
