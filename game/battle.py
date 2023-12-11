@@ -139,26 +139,41 @@ def luta(idNPC: int, numInstancia: int, jogadorID: int):
                         ID = None
 
                     if ID is not None:
+                        inv = Inventario()
+                        auxArmor = inv.getInventarioArmaduras(jogadorID)
+
+                        if auxArmor:
+                            armor = auxArmor[0][2]
+                        else:
+                            armor = 0
+
                         danoAtaque = ID[0][3] + randint(-4,3)
-                        defesa = defesaJogador + randint(-4,3)
+                        defesaFinalJogador = defesaJogador + armor + randint(-4,3)
 
                         danoMonstro = forca + randint(-4,3)
                         defesaMonstro = defesa + randint(-4,3)
 
-                        danoInfligidoJogador = danoMonstro - defesaJogador
+                        danoInfligidoJogador = danoMonstro - defesaFinalJogador
                         danoInfligidoMonstro = danoAtaque - defesaMonstro
 
                         clear()
-                        print_devagar(f"jogador -{danoInfligidoJogador}\n")
-                        print_devagar(f"monstro -{danoInfligidoMonstro}\n\n")
+
+                        
 
                         if(danoInfligidoJogador > 0):
                             novaVida = vidaJogador - danoInfligidoJogador
                             jogador.atualizarVidaPCID(jogadorID, novaVida)
+                            print_devagar(f"jogador -{danoInfligidoJogador} de vida\n")
+                        
+                        if(danoInfligidoJogador <= 0):
+                            novaVida = vidaJogador
+                            print_devagar(f"\nJogador deu parry no ataque do monstro\n")
                         
                         if(danoInfligidoMonstro > 0):
                             novaVidaMonstro = vidaInstancia - danoInfligidoMonstro
                             inimigoAux.atualizarVidaInstanciaID(idNPC, numInstancia, novaVidaMonstro)
+                            print_devagar(f"monstro -{danoInfligidoMonstro} de vida\n\n")
+
 
                             iAux = inimigoAux.getInstanciaID(idNPC,numInstancia) # Acessando a informacao da instancia especifica do monstro
                             if iAux is None:
@@ -196,15 +211,28 @@ def luta(idNPC: int, numInstancia: int, jogadorID: int):
                         clear()
                         print_devagar("\nHabilidade inexistente\n")
                         
-                        danoMonstro = forca + randint(-4,3)
-                        defesa = defesaJogador + randint(-4,3)
-                        danoInfligidoJogador = danoMonstro - defesaJogador
+                        inv = Inventario()  
+                        auxArmor = inv.getInventarioArmaduras(jogadorID)
 
-                        print_devagar(f"jogador -{danoInfligidoJogador}\n\n")
+                        if auxArmor:
+                            armor = auxArmor[0][2]
+                        else:
+                            armor = 0
+
+                        danoMonstro = forca + randint(-4,3)
+                        defesaFinalJogador = defesaJogador + armor + randint(-4,3)
+                        danoInfligidoJogador = danoMonstro - defesaFinalJogador
+                       
+                        
+
+                        if(danoInfligidoJogador <= 0):
+                            novaVida = vidaJogador
+                            print_devagar(f"\nJogador deu parry no ataque do monstro\n")
 
                         if(danoInfligidoJogador > 0):
                             novaVida = vidaJogador - danoInfligidoJogador
                             jogador.atualizarVidaPCID(jogadorID, novaVida)
+                            print_devagar(f"jogador -{danoInfligidoJogador} de vida\n")
                             if(novaVida <= 0):
                                 print_um_pouco_mais_rapido("\033[0;31m   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣠⡀⠀\n")
                                 print_um_pouco_mais_rapido("\033[0;31m    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⣤⠀⠀⠀⢀⣴⣿⡶⠀⣾⣿⣿⡿⠟⠛⠁\n")
@@ -232,7 +260,7 @@ def luta(idNPC: int, numInstancia: int, jogadorID: int):
                     print_devagar("ID | Nome | Dano\n\n")
 
                     inv = Inventario()
-                    inv.consultarInventarioArmasID(jogadorID)
+                    inv.consultarInventarioArmasID(jogadorID, forcaJogador)
 
                     print_devagar("\nDigite apenas o id do item!\n")
                     item = input()
@@ -243,26 +271,40 @@ def luta(idNPC: int, numInstancia: int, jogadorID: int):
                         IDi = None
 
                     if IDi is not None:
-                        danoAtaque = IDi[0][2] + randint(-4,3)
-                        defesa = defesaJogador + randint(-4,3)
+                        auxArmor = inv.getInventarioArmaduras(jogadorID)
+
+                        if auxArmor:
+                            armor = auxArmor[0][2]
+                        else:
+                            armor = 0
+
+                        danoAtaque = IDi[0][2] + forcaJogador + randint(-4,3)
+                        
+                        defesaFinalJogador = defesaJogador + armor + randint(-4,3)
 
                         danoMonstro = forca + randint(-4,3)
                         defesaMonstro = defesa + randint(-4,3)
 
-                        danoInfligidoJogador = danoMonstro - defesaJogador
+                        danoInfligidoJogador = danoMonstro - defesaFinalJogador
                         danoInfligidoMonstro = danoAtaque - defesaMonstro
 
                         clear()
-                        print_devagar(f"jogador -{danoInfligidoJogador}\n")
-                        print_devagar(f"monstro -{danoInfligidoMonstro}\n\n")
-
+                        
+                        
+                        
                         if(danoInfligidoJogador > 0):
                             novaVida = vidaJogador - danoInfligidoJogador
                             jogador.atualizarVidaPCID(jogadorID, novaVida)
+                            print_devagar(f"jogador -{danoInfligidoJogador} de vida\n")
+                        
+                        if(danoInfligidoJogador <= 0):
+                            novaVida = vidaJogador
+                            print_devagar(f"\nJogador deu parry no ataque do monstro\n")
 
                         if(danoInfligidoMonstro > 0):
                             novaVidaMonstro = vidaInstancia - danoInfligidoMonstro
                             inimigoAux.atualizarVidaInstanciaID(idNPC, numInstancia, novaVidaMonstro)
+                            print_devagar(f"monstro -{danoInfligidoMonstro} de vida\n\n")
 
                             iAux = inimigoAux.getInstanciaID(idNPC,numInstancia) # Acessando a informacao da instancia especifica do monstro
                             if iAux is None:
@@ -300,15 +342,28 @@ def luta(idNPC: int, numInstancia: int, jogadorID: int):
                         clear()
                         print_devagar("\nItem inexistente\n")
 
-                        danoMonstro = forca + randint(-4,3)
-                        defesa = defesaJogador + randint(-4,3)
-                        danoInfligidoJogador = danoMonstro - defesaJogador
+                        inv = Inventario()
+                        auxArmor = inv.getInventarioArmaduras(jogadorID)
 
-                        print_devagar(f"jogador -{danoInfligidoJogador}\n")
+                        if auxArmor:
+                            armor = auxArmor[0][2]
+                        else:
+                            armor = 0
+
+                        danoMonstro = forca + randint(-4,3)
+                        defesaFinalJogador = defesaJogador + armor + randint(-4,3)
+                        danoInfligidoJogador = danoMonstro - defesaFinalJogador
+
+                        
+
+                        if(danoInfligidoJogador <= 0):
+                            novaVida = vidaJogador
+                            print_devagar(f"\nJogador deu parry no ataque do monstro\n")
 
                         if(danoInfligidoJogador > 0):
                             novaVida = vidaJogador - danoInfligidoJogador
                             jogador.atualizarVidaPCID(jogadorID, novaVida)
+                            print_devagar(f"jogador -{danoInfligidoJogador} de vida\n")
                             if(novaVida <= 0):
                                 print_um_pouco_mais_rapido("\033[0;31m   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣠⡀⠀\n")
                                 print_um_pouco_mais_rapido("\033[0;31m    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⣤⠀⠀⠀⢀⣴⣿⡶⠀⣾⣿⣿⡿⠟⠛⠁\n")
@@ -382,10 +437,8 @@ def GerarDinheiro():
     else: # 6% de chance de ganhar uma quantidade grande de dinheiro
         Dinheiro=randint(21,30)
         return Dinheiro
-    
+
 def Respawn(jogadorIDRespawn):
         print("\nRespawnando...")
         lc = Local()
         lc.setLocalPc(0,jogadorIDRespawn)
-     
-    

@@ -55,7 +55,7 @@ class Inventario:
         finally:
             cursor.close()
     
-    def consultarInventarioArmasID(self,personagem: int):
+    def consultarInventarioArmasID(self,personagem: int, forcaDoJogador: int):
         try:
             conexao = self.db.conexao
             cursor = conexao.cursor()
@@ -67,7 +67,7 @@ class Inventario:
             consulta = cursor.fetchall()
             if consulta:
                 for x in consulta:
-                    print(x)
+                    print(f"{x} \033[1;35m+ {forcaDoJogador} de dano de força\033[0m")
             else: 
                 print("\nParece que você não tem itens do tipo armamento\n")
         except psycopg2.IntegrityError as e:
@@ -128,7 +128,26 @@ class Inventario:
             print(f"Encontramos problemas ao fazer a consulta. Erro: {e}\n")
         finally:
             cursor.close()
+    
+    
+    def getInventarioArmaduras(self,personagem: int):
+        try:
+            conexao = self.db.conexao
+            cursor = conexao.cursor()
+            cursor.execute(f"SELECT ia.iditem, armor.nome, armor.defesa "
+                           f"FROM instanciaitem ia "
+                           f"JOIN inventario i ON ia.idinv = i.idinv "
+                           f"JOIN armadura armor ON ia.iditem = armor.item "
+                           f"WHERE i.personagem = {personagem} ORDER BY armor.defesa DESC;")
+            consulta = cursor.fetchall()
             
+            if consulta:
+                return consulta
+        except psycopg2.IntegrityError as e:
+            print(f"Encontramos problemas ao fazer a consulta. Erro: {e}\n")
+        finally:
+            cursor.close()
+
     def verItensInventario(self, IDpersonagem:int):
         try:
             conexao=self.db.conexao

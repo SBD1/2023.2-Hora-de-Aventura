@@ -91,18 +91,19 @@ class Local :
         finally:
             cursor.close()
 
-    def setLocalPc(self, coordenada:int, personagem):
+    def setLocalPc(self, coordenada:int, personagem: int):
         try:
             conexao = self.db.conexao
             cursor = conexao.cursor()
-            cursor.execute(f"update pc set local = '{coordenada}' where personage = {personagem};")
-            consultaLocal = cursor.fetchall()
-            if(consultaLocal == []):
-                return None
-            else:
-                return consultaLocal
+            cursor.execute(f"update pc set vida = 100, local = '{coordenada}' where personagem = '{personagem}';")
+            linhas_afetadas = cursor.rowcount
+            
+            if linhas_afetadas == 0:
+                print("Não há dados na tabela que correspondam à condição de atualização.")
+            
+            conexao.commit()
         except psycopg2.Error as e:
-            print("Erro ao consultar local", e)
+            print("Erro durante a atualização", e)
         finally:
             cursor.close()
         
@@ -135,4 +136,4 @@ class Local :
             print("Erro ao consultar local", e)
         finally:
             cursor.close()
-        
+
