@@ -190,6 +190,7 @@ def luta(idNPC: int, numInstancia: int, jogadorID: int):
                             print_um_pouco_mais_rapido("\033[0;31m    ⠀⠀⠀⣿⣿⡇⠀⠀⢀⣴⣿⣿⡟⠀⣿⣿⣿⣿⠃⠀⠀⣾⣿⣿⡿⠿⠛⢛⣿⡟⠀⠀⠀⠀⠀⠻⠿⠀⠀\n")
                             print_um_pouco_mais_rapido("\033[0;31m    ⠀⠀⠀⠹⣿⣿⣶⣾⣿⣿⣿⠟⠁⠀⠸⢿⣿⠇⠀⠀⠀⠛⠛⠁⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀\n")
                             print_um_pouco_mais_rapido("\033[0;31m    ⠀⠀⠀⠀⠈⠙⠛⠛⠛⠋⠁\033[0m\n")
+                            Respawn(jogadorID)
                             break
                     else:
                         clear()
@@ -221,6 +222,7 @@ def luta(idNPC: int, numInstancia: int, jogadorID: int):
                                 print_um_pouco_mais_rapido("\033[0;31m    ⠀⠀⠀⣿⣿⡇⠀⠀⢀⣴⣿⣿⡟⠀⣿⣿⣿⣿⠃⠀⠀⣾⣿⣿⡿⠿⠛⢛⣿⡟⠀⠀⠀⠀⠀⠻⠿⠀⠀\n")
                                 print_um_pouco_mais_rapido("\033[0;31m    ⠀⠀⠀⠹⣿⣿⣶⣾⣿⣿⣿⠟⠁⠀⠸⢿⣿⠇⠀⠀⠀⠛⠛⠁⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀\n")
                                 print_um_pouco_mais_rapido("\033[0;31m    ⠀⠀⠀⠀⠈⠙⠛⠛⠛⠋⠁\033[0m\n")
+                                Respawn(jogadorID)
                                 break
 
                 
@@ -291,6 +293,7 @@ def luta(idNPC: int, numInstancia: int, jogadorID: int):
                             print_um_pouco_mais_rapido("\033[0;31m    ⠀⠀⠀⣿⣿⡇⠀⠀⢀⣴⣿⣿⡟⠀⣿⣿⣿⣿⠃⠀⠀⣾⣿⣿⡿⠿⠛⢛⣿⡟⠀⠀⠀⠀⠀⠻⠿⠀⠀\n")
                             print_um_pouco_mais_rapido("\033[0;31m    ⠀⠀⠀⠹⣿⣿⣶⣾⣿⣿⣿⠟⠁⠀⠸⢿⣿⠇⠀⠀⠀⠛⠛⠁⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀\n")
                             print_um_pouco_mais_rapido("\033[0;31m    ⠀⠀⠀⠀⠈⠙⠛⠛⠛⠋⠁\033[0m\n")
+                            Respawn(jogadorID)
                             break
 
                     else:
@@ -323,6 +326,7 @@ def luta(idNPC: int, numInstancia: int, jogadorID: int):
                                 print_um_pouco_mais_rapido("\033[0;31m    ⠀⠀⠀⣿⣿⡇⠀⠀⢀⣴⣿⣿⡟⠀⣿⣿⣿⣿⠃⠀⠀⣾⣿⣿⡿⠿⠛⢛⣿⡟⠀⠀⠀⠀⠀⠻⠿⠀⠀\n")
                                 print_um_pouco_mais_rapido("\033[0;31m    ⠀⠀⠀⠹⣿⣿⣶⣾⣿⣿⣿⠟⠁⠀⠸⢿⣿⠇⠀⠀⠀⠛⠛⠁⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀\n")
                                 print_um_pouco_mais_rapido("\033[0;31m    ⠀⠀⠀⠀⠈⠙⠛⠛⠛⠋⠁\033[0m\n")
+                                Respawn(jogadorID)
                                 break
 
                 elif(atacar == "poção" or atacar == "poc" or atacar == "pocao"):
@@ -378,3 +382,10 @@ def GerarDinheiro():
     else: # 6% de chance de ganhar uma quantidade grande de dinheiro
         Dinheiro=randint(21,30)
         return Dinheiro
+    
+def Respawn(jogadorIDRespawn):
+        print("\nRespawnando...")
+        lc = Local()
+        lc.setLocalPc(0,jogadorIDRespawn)
+     
+    

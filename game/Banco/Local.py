@@ -91,6 +91,22 @@ class Local :
         finally:
             cursor.close()
 
+    def setLocalPc(self, coordenada:int, personagem):
+        try:
+            conexao = self.db.conexao
+            cursor = conexao.cursor()
+            cursor.execute(f"update pc set local = '{coordenada}' where personage = {personagem};")
+            consultaLocal = cursor.fetchall()
+            if(consultaLocal == []):
+                return None
+            else:
+                return consultaLocal
+        except psycopg2.Error as e:
+            print("Erro ao consultar local", e)
+        finally:
+            cursor.close()
+        
+        
     def verMissaoLocal(self,local:int):
         try:
             conexao = self.db.conexao
