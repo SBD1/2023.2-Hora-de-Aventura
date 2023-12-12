@@ -15,6 +15,4 @@ Apresentação da entrega 04 da disciplina Sistemas de Banco de 01, ministrada p
 - Henrique Batalha
 
 ## Video
-Apresentação 04: 
-
-<https://www.youtube.com/embed/ry7DldKHwB0?si=sSP_nlr31KcS34cA>
+Apresentação 04:<https://www.youtube.com/embed/ry7DldKHwB0?si=sSP_nlr31KcS34cA>
