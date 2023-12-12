@@ -17,5 +17,4 @@ Apresentação da entrega 04 da disciplina Sistemas de Banco de 01, ministrada p
 ## Video
 Apresentação 04: 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/ry7DldKHwB0?si=sSP_nlr31KcS34cA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
+<https://www.youtube.com/embed/ry7DldKHwB0?si=sSP_nlr31KcS34cA>

@@ -21,4 +21,5 @@ Apresentação da entrega 02 da disciplina Sistemas de Banco de 01, ministrada p
 
 ## Video
 Apresentação 02:
-<iframe width="560" height="315" src="https://www.youtube.com/embed/6ktuKswGC6Y?si=6Gm8HfD2A5Si5S51" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<https://www.youtube.com/embed/6ktuKswGC6Y?si=6Gm8HfD2A5Si5S51>
