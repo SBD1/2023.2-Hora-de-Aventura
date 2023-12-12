@@ -17,7 +17,6 @@ class Pc:
             cursor.execute(f"INSERT INTO pc VALUES((SELECT COALESCE(MAX(idpersonagem ), 0) FROM personagem),'{nome}', {xp},{vida},{lvl},{dinheiro},'{especie}',{forca},{defesa},{local});")
 
             conexao.commit()
-            conexao.commit()
         except psycopg2.Error as e:
             print("Erro ao criar os PC's", e )
         finally:
